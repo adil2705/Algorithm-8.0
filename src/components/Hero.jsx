@@ -1,5 +1,5 @@
 import { styles } from "../styles";
-import { astronaut } from "../assets";
+import { astronaut } from "../assets/images";
 import { motion } from "framer-motion";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "../hoc";

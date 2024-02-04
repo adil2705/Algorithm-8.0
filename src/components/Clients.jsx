@@ -1,3 +1,5 @@
+import React from "react";
+
 import { clients } from "../constants";
 import { styles } from "../styles";
 import { motion } from "framer-motion";

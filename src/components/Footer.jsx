@@ -1,5 +1,5 @@
 import React from "react";
-import { astronaut } from "../assets";
+import { astronaut } from "../assets/images";
 
 export default function Foot() {
     return (
@@ -11,10 +11,8 @@ export default function Foot() {
                             <img
                                 className="h-14 w-14"
                                 src={astronaut}
-                                alt="PC LOGO"
-                            />
+                                alt="PC LOGO" />
                             <h1 className="text-white font-bold text-xl ">AIKTC Algoritm 8.0</h1>
-
                         </div>
 
                         <div className="mt-6 lg:mb-0 mb-6">
@@ -30,7 +28,6 @@ export default function Foot() {
                             <button className="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 transform transition   hover:-translate-y-0.5" type="button">
                                 <a href="/" className="fab fa-linkedin" target='_blank'></a>
                             </button>
-
                             <button className="bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 transform transition   hover:-translate-y-0.5" type="button">
                                 <a href="/" className="fab fa-github" target='_blank'></a>
                             </button>
@@ -70,6 +67,5 @@ export default function Foot() {
                 </div>
             </div>
         </footer>
-
     )
 }

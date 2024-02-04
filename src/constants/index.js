@@ -11,7 +11,7 @@ import {
   app_development,
   Machine_Learning,
   blockchain
-} from "../assets";
+} from "../assets/images";
 
 export const navLinks = [
   {

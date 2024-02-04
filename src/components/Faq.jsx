@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
-import { fadeIn, textVariant } from "../utils/motion";
+import { fadeIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 
 const Faq = () => {
@@ -17,14 +17,12 @@ const Faq = () => {
                         <div
                             data-aos="fade-up"
                             data-aos-duration="1000"
-                            className="-mx-2 mt-4 flex flex-wrap sm:mx-auto sm:mb-2 lg:w-4/5"
-                        >
+                            className="-mx-2 mt-4 flex flex-wrap sm:mx-auto sm:mb-2 lg:w-4/5">
                             <div className="w-full px-4 py-2 lg:w-1/2 ">
                                 <details className="mb-8 shadow-card">
                                     <summary className="rounded-md bg-tertiary text-white border-b-4 border-white py-5 px-5 font-semibold">
                                         What is Algorithm 8.0 all about ?
                                     </summary>
-
                                     <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4">
                                         Algorithm hackathon is an event where participants come together to solve real world problems, basically in a competitive environment.
                                     </p>
@@ -33,7 +31,6 @@ const Faq = () => {
                                     <summary className="rounded-md bg-tertiary text-white border-b-4 border-white py-5 px-4 font-semibold">
                                         How many hours hackathon it is?
                                     </summary>
-
                                     <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4">
                                         Algorithm is a 32 Hrs hackathon. For more detail check the timeline section.
                                     </p>
@@ -44,7 +41,6 @@ const Faq = () => {
                                     <summary className="rounded-md  bg-tertiary text-white border-b-4 border-white py-5 px-5 font-semibold">
                                         Who can participate in Algorithm 8.0 ?
                                     </summary>
-
                                     <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4">
                                         The Algorithm is open exclusively for students of any background with any skill levels.
                                     </p>
@@ -53,7 +49,6 @@ const Faq = () => {
                                     <summary className="rounded-md  bg-tertiary text-white border-b-4 border-white py-5 px-5 font-semibold">
                                         What do I need to bring to the hackathon?
                                     </summary>
-
                                     <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4">
                                         It's better to bring your own laptop or any other computing device, along with any software/assets that you need to develop and test your code.
                                     </p>
@@ -64,7 +59,6 @@ const Faq = () => {
                                     <summary className="rounded-md  bg-tertiary text-white border-b-4 border-white py-5 px-5 font-semibold">
                                         How will the solutions be evaluated and scored?
                                     </summary>
-
                                     <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4">
                                         The solutions will be evaluated and scored based on criteria such as the efficiency and accuracy of the code, the creativity of the solution, and the quality of presentation.
                                     </p>
@@ -73,7 +67,6 @@ const Faq = () => {
                                     <summary className="rounded-md  bg-tertiary text-white border-b-4 border-white py-5 px-5 font-semibold">
                                         What kind of accommodation and food will be provided?
                                     </summary>
-
                                     <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4">
                                         The meals will be provided along with some snacks and basic amenities.
                                     </p>
@@ -84,7 +77,6 @@ const Faq = () => {
                                     <summary className="rounded-md  bg-tertiary text-white border-b-4 border-white py-5 px-5 font-semibold">
                                         Can I work on my solution before the hackathon?
                                     </summary>
-
                                     <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4">
                                         The problem statement will be provided 3 days before the conduction of the hackathon and the teams can start working on the hackathon once the problem statements are displayed.
                                     </p>
@@ -93,7 +85,6 @@ const Faq = () => {
                                     <summary className="rounded-md  bg-tertiary text-white border-b-4 border-white py-5 px-5 font-semibold">
                                         What kind of support will be available during the hackathon?
                                     </summary>
-
                                     <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4">
                                         Support during the hackathon may include access to mentors, technical support for hardware and software issues, and resources for researching algorithmic techniques.
                                     </p>
@@ -106,4 +97,5 @@ const Faq = () => {
         </div >
     );
 }
+
 export default SectionWrapper(Faq, "faq");
