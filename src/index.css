@@ -159,6 +159,21 @@
   background-clip: text;
   text-fill-color: transparent;
 }
+.text-gradient-green {
+  background: radial-gradient(
+    64.18% 64.18% at 71.16% 35.69%,
+    #2ecc71 0.89%,  /* Normal green color */
+    #27ae60 17.23%, /* Darker green color */
+    #145a4a 42.04%, /* Dark green color */
+    #1a6c4e 55.12%, /* Even darker green color */
+    #218c5f 71.54%, /* Even darker green color */
+    #27ae60 100%    /* Darker green color */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
 
 
 
@@ -173,6 +188,9 @@
   animation: mulShdSpin 1.1s infinite ease;
   transform: translateZ(0);
 }
+
+
+
 
 @keyframes mulShdSpin {
   0%,
@@ -249,4 +267,7 @@
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5),
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
   }
+
+
+  
 }

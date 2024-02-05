@@ -26,6 +26,7 @@ import web_development2 from "./coding.png";
 import bitcoin from "./bitcoin.png";
 import blockchain from "./blockchain.png";
 import app_development from "./app-development.png";
+import hero from "./hero.png";
 
 export {
   app_development,
@@ -53,5 +54,6 @@ export {
   logo,
   github,
   menu,
-  close
+  close,
+  hero
 };

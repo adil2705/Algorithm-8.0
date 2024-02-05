@@ -1,5 +1,6 @@
 import React from "react";
 
+
 import Lottie from 'react-lottie';
 import SignInAnimation from '../assets/lottie/signin.json'
 
@@ -113,12 +114,13 @@ export default function SignIn() {
 
   // add bg
   return (
+    <div>
     <section>
       <div className="fixed w-full top-0 z-10">
           {showAlert && <Alert message={alertMessage} type={alertType} />}
       </div>
-      <section className="items-center flex justify-center min-h-screen bg-black">
-        <div className="bg-white flex flex-col rounded-2xl md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-10 items-center">
+      <section className="items-center flex justify-center min-h-screen">
+        <div className=" flex flex-col rounded-2xl md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-10 items-center">
           <div>
             <Lottie 
               options={defaultOptions}
@@ -175,6 +177,11 @@ export default function SignIn() {
           </div>
         </div>
       </section>
+      
     </section>
+    <StarsCanvas />
+    
+    </div>
+
   );
 }

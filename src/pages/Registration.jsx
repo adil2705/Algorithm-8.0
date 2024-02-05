@@ -248,10 +248,13 @@ const Register = () => {
 
     return (
         <section>
-            <div className="fixed w-full top-0 z-10">
+            <div className="fixed bg-primary w-full top-0 z-10">
                 {showAlert && <Alert message={alertMessage} type={alertType} />}
             </div>
-            <div className={`${isMobile ? 'p-5' : 'p-10'}`}>
+            
+
+            
+            <div className={`${isMobile ? 'p-5' : 'p-10'}`} >
                 <h1 className="mb-8 ml-2 font-extrabold text-4xl">Registration Form</h1>
                 <div>
                     <form className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
@@ -427,8 +430,9 @@ const Register = () => {
 
                 </div>
             </div>
-            <StarsCanvas />
+          <StarsCanvas />  
         </section>
+        
     );
 };
 
