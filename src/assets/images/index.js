@@ -51,6 +51,5 @@ export {
   logo,
   github,
   menu,
-  close,
-  logo
+  close
 };

@@ -1,17 +1,14 @@
 import React from "react";
-import { astronaut } from "../assets/images";
+import { logo } from "../assets/images";
 
 export default function Foot() {
     return (
-        <footer className="relative pt-8 pb-6 flex justify-center border-t-2">
+        <footer className="relative pt-8 pb-6 flex justify-center border-t-2 bg-blur">
             <div className="container mx-auto px-4">
                 <div className="flex flex-wrap text-left lg:text-left max-w-7xl mx-auto">
                     <div className="w-full lg:w-6/12 px-4">
                         <div className="flex gap-4 items-center">
-                            <img
-                                className="h-14 w-14"
-                                src={astronaut}
-                                alt="PC LOGO" />
+                        <img src={logo} alt='logo' className='w-16 h-16 object-contain' />
                             <h1 className="text-white font-bold text-xl ">AIKTC Algoritm 8.0</h1>
                         </div>
 

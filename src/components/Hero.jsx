@@ -8,28 +8,28 @@ import Navbar from "./Navbar";
 
 const Hero = () => {
   return (
-    <section className="w-[100vw] h-[100vh] hero-bg">
+    <section className="w-[100vw] h-[100vh] hero-bg ">
       <Navbar />
-      <section className='flex md:flex-row flex-col sm:px-16 px-6 sm:py-16 py-20 pt-20'>
-        <div className='flex-1 flex-col xl:px-0 sm:px-16 px-6'>
-          <motion.div variants={fadeIn("right", "spring", 0.3, 0.75)}>
-          <p>Computer Engineering Presents</p>
-            <div className="flex flex-row justify-between items-center w-full">
-              <h1 className="flex-1 font-poppins font-semibold ss:text-[72px] text-[52px] text-white ss:leading-[100.8px] leading-[75px]">
-                AIKTC <br className="sm:block hidden" />{" "}
-                <span className="text-gradient">Algorithm 8.0</span>{" "}
-              </h1>
-            </div>
-            <h1 className="font-poppins font-semibold ss:text-[68px] text-[16px] sm:text-[25px] text-white ss:leading-[100.8px] leading-[75px] w-full">
-              WHERE <span className="text-gradient-blue">LOGIC</span>{" "} MEETS <span className="text-gradient-green">CREATIVITY</span>{" "}
+       <section id="home" className={`flex md:flex-row flex-col ${styles.paddingY} sm:px-16 px-6 sm:py-16 py-20 pt-20 max-w-7xl mx-auto relative z-0`}>    
+       
+            <div className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6`}>
+            <div className="flex flex-row justify-center items-center w-full mt-28">
+            <motion.div variants={fadeIn("right", "spring", 0.3, 0.75)}>
+            <h1 className="flex text-center font-poppins font-semibold lg:text-[162px] text-[72px] text-white ss:leading-[100.8px] leading-[75px]">
+             ALGO
             </h1>
-            <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-              Algorithm is a hackathon that was started in 2014 with the goal of raising social awareness through the use of web technology.
-            </p>
-          </motion.div>
-        </div>
-        {/* color stop GRADEINT */}
-      </section>
+            </motion.div>
+            <motion.div variants={fadeIn("left", "spring", 0.3, 0.75)}>
+            <h1 className="flex-end text-center font-poppins font-semibold lg:text-[162px] text-[72px] text-white ss:leading-[100.8px] leading-[75px]">
+             RITHM
+            </h1>
+            </motion.div>
+    </div>
+    </div>
+    </section>
+    
+    <a className="items-center lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-white text-lg text-orange-600 font-bold rounded-xl transition duration-200" href="/register">Register</a>
+
     </section>
   );
 };
