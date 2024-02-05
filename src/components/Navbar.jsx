@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <nav
       className={`${styles.paddingX
-        } w-full flex items-center py-5 fixed top-0 z-20 ${scrolled ? "bg-primary" : "bg-transparent"
+        } w-full flex items-center py-5 fixed top-0 z-20 ${scrolled ? "bg-black" : "bg-transparent"
         }`}>
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
@@ -39,8 +39,8 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}>
           <img src={astronaut} alt='logo' className='w-9 h-9 object-contain' />
-          <p className='text-white text-[18px] font-bold cursor-pointer flex '>
-            Algorithm 8.0
+          <p className='text-white text-[18px     ] font-bold cursor-pointer flex '>
+              LGORITHM
           </p>
         </Link>
         <ul className='list-none hidden sm:flex flex-row gap-10'>
@@ -51,7 +51,7 @@ const Navbar = () => {
                 } hover:text-white text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              <a href={`${nav.id}`}>{nav.title}</a>
             </li>
           ))}
         </ul>
