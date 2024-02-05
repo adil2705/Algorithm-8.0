@@ -28,13 +28,9 @@ const App = () => {
 
 const Landing = () => {
   return (
-    <div className='relative z-0 bg-primary'>
-        <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
-          <div className='relative z-1'>
-            <Navbar />
-            <Hero />
-            <StarsCanvas />
-          </div>
+    <div className='relative z-0 bg-black'>
+        <div className="relative z-0">
+          <Hero />
         </div>
         <div className='relative z-0'>
           <About />
@@ -46,6 +42,9 @@ const Landing = () => {
         </div>
         <div className='relative z-0'>
           <Faq />
+          <StarsCanvas />
+        </div>
+        <div className='relative z-0'>
           <Clients />
           <StarsCanvas />
         </div>

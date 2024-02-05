@@ -1,9 +1,6 @@
-import logo from "./logo.svg";
 import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
-
-// 
 import arrowUP from "./arrowUp.svg";
 import discount from "./Discount.svg"
 import robot from "./robot.png";
@@ -26,7 +23,7 @@ import web_development2 from "./coding.png";
 import bitcoin from "./bitcoin.png";
 import blockchain from "./blockchain.png";
 import app_development from "./app-development.png";
-import hero from "./hero.png";
+import logo from "./logo.png";
 
 export {
   app_development,
@@ -55,5 +52,5 @@ export {
   github,
   menu,
   close,
-  hero
+  logo
 };
