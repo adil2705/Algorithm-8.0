@@ -28,6 +28,13 @@
   box-shadow: 0 0 5px 10px #000000;
 }
 
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(50px);
+  border-radius: 10px;
+  box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.1);
+}
+
 .black-gradient {
   background: #000000; /* fallback for old browsers */
   background: -webkit-linear-gradient(

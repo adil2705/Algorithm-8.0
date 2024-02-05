@@ -46,7 +46,7 @@ const services = [
     icon: Machine_Learning,
   },
   {
-    title: "blockchain technology",
+    title: "Blockchain Technology",
     icon: blockchain,
   },
 ];

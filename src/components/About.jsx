@@ -13,14 +13,14 @@ const ServiceCard = ({ index, title, icon }) => (
   <Tilt className='xs:w-[226px] w-full'>
     <motion.div
       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-      className='w-full border-b-2 border-white p-[1px] rounded-[20px] shadow-card'>
+      className='w-full border-white p-[1px] rounded-[20px] bg-blur rounded-xl border-orange-600 border-2'>
       <div
         options={{
           max: 45,
           scale: 1,
           speed: 450,
         }}
-        className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'>
+        className='py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'>
         <img
           src={icon}
           alt='web-development'
