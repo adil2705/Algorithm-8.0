@@ -10,7 +10,7 @@ import {
 import { useState } from 'react';
 
 import { db } from "../firebase-config";
-import { collection, addDoc, getDoc, doc } from "firebase/firestore";
+import { collection, query, where, getDocs, updateDoc } from "firebase/firestore";
 
 const Edit = () => {
     const isMobile = window.innerWidth < 768;
@@ -48,6 +48,7 @@ const Edit = () => {
     const [member3Exists, setMember3Exists] = useState(false);
 
     const [loading, setLoading] = useState(false);
+    const [loading2, setLoading2] = useState(false);
 
     const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
     const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
@@ -55,6 +56,10 @@ const Edit = () => {
     const githubLinkedinRegex = /^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9]+$/;
     const linkedinRegex = /^(https?:\/\/)?(www\.)?linkedin\.com\/[a-zA-Z0-9]+$/;    
     const collegeRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+
+    var q = query(collection(db, "teams"), where("teamName", "==", teamName));
+    var querySnapshot = null;
+    var docRef = null;
 
     const getTeamData = async () => {
         if (!user) {
@@ -67,44 +72,11 @@ const Edit = () => {
             return;
         }
 
-        const docRef = await getDoc(doc(db, "teams", "teamName"));
+        setLoading2(true);
+        querySnapshot = await getDocs(q);
 
-        if (docRef.exists()) {
-            const data = docRef.data();
-            if(!data) { 
-                if(!data.nameLead || !data.emailLead || !data.contactLead 
-                    || !data.githubLead || !data.linkedinLead || !data.collegeLead) {
-                    setNameLead(data.nameLead);
-                    setEmailLead(data.emailLead);
-                    setContactLead(data.contactLead);
-                    setGithubLead(data.githubLead);
-                    setLinkedinLead(data.linkedinLead);
-                    setCollegeLead(data.collegeLead);
-                }
-                if(!data.nameMember2 && !data.emailMember2 && !data.contactMember2 
-                    && !data.githubMember2 && !data.linkedinMember2 && !data.collegeMember2) {
-                    setNameMember2(data.nameMember2);
-                    setEmailMember2(data.emailMember2);
-                    setContactMember2(data.contactMember2);
-                    setGithubMember2(data.githubMember2);
-                    setLinkedinMember2(data.linkedinMember2);
-                    setCollegeMember2(data.collegeMember2);
-                } else {
-                    setMember2Exists(true);
-                }
-                if(!data.nameMember3 && !data.emailMember3 && !data.contactMember3 
-                    && !data.githubMember3 && !data.linkedinMember3 && !data.collegeMember3) {
-                    setNameMember3(data.nameMember3);
-                    setEmailMember3(data.emailMember3);
-                    setContactMember3(data.contactMember3);
-                    setGithubMember3(data.githubMember3);
-                    setLinkedinMember3(data.linkedinMember3);
-                    setCollegeMember3(data.collegeMember3);
-                } else {
-                    setMember3Exists(true);
-                }
-            }
-        } else {
+        if (querySnapshot.empty) {
+            setLoading2(false);
             setAlertMessage('No such team exists.');
             setAlertType('error');
             setShowAlert(true);
@@ -112,6 +84,48 @@ const Edit = () => {
                 setShowAlert(false);
             }, 2000);
             return;
+        } else {
+            querySnapshot.forEach((doc) => {
+                docRef = doc;
+            });
+
+            if (docRef.exists()) {
+                const data = docRef.data();
+                if(data) { 
+                    if(data.nameLead || data.emailLead || data.contactLead 
+                        || data.githubLead || data.linkedinLead || data.collegeLead) {
+                        setNameLead(data.nameLead);
+                        setEmailLead(data.emailLead);
+                        setContactLead(data.contactLead);
+                        setGithubLead(data.githubLead);
+                        setLinkedinLead(data.linkedinLead);
+                        setCollegeLead(data.collegeLead);
+                    }
+                    if(data.nameMember2 && data.emailMember2 && data.contactMember2 
+                        && data.githubMember2 && data.linkedinMember2 && data.collegeMember2) {
+                        setNameMember2(data.nameMember2);
+                        setEmailMember2(data.emailMember2);
+                        setContactMember2(data.contactMember2);
+                        setGithubMember2(data.githubMember2);
+                        setLinkedinMember2(data.linkedinMember2);
+                        setCollegeMember2(data.collegeMember2);
+                    } else {
+                        setMember2Exists(true);
+                    }
+                    if(data.nameMember3 && data.emailMember3 && data.contactMember3 
+                        && data.githubMember3 && data.linkedinMember3 && data.collegeMember3) {
+                        setNameMember3(data.nameMember3);
+                        setEmailMember3(data.emailMember3);
+                        setContactMember3(data.contactMember3);
+                        setGithubMember3(data.githubMember3);
+                        setLinkedinMember3(data.linkedinMember3);
+                        setCollegeMember3(data.collegeMember3);
+                    } else {
+                        setMember3Exists(true);
+                    }
+                    setLoading2(false);
+                }
+            }
         }
     }
 
@@ -305,9 +319,11 @@ const Edit = () => {
             return; 
         }
 
+        /// TODO: throws docref is null
         setLoading(true);
         try {
-            const docRef = await addDoc(collection(db, "teams"), {
+            await updateDoc(docRef.ref, {
+                teamName: teamName,
                 nameLead: nameLead,
                 emailLead: emailLead,
                 contactLead: contactLead,
@@ -316,11 +332,13 @@ const Edit = () => {
                 collegeLead: collegeLead,
                 nameMember2: nameMember2,
                 emailMember2: emailMember2,
+                contactMember2: contactMember2,
                 githubMember2: githubMember2,
                 linkedinMember2: linkedinMember2,
                 collegeMember2: collegeMember2,
                 nameMember3: nameMember3,
                 emailMember3: emailMember3,
+                contactMember3: contactMember3,
                 githubMember3: githubMember3,
                 linkedinMember3: linkedinMember3,
                 collegeMember3: collegeMember3
@@ -374,8 +392,19 @@ const Edit = () => {
                         placeholder="Team Name" />
                     <button
                         onClick={getTeamData}
-                        className="bg-white font-bold h-full hover:bg-blue-700 px-4 py-2.5 text-orange-600 uppercase rounded-xl text-lg">
-                        Search
+                        className="bg-white font-bold h-full px-4 py-2.5 text-orange-600 hover:bg-orange-800 uppercase rounded-xl text-lg">
+                        {loading2 ? 
+                            <svg 
+                                aria-hidden="true" 
+                                className="w-8 h-6 animate-spin fill-white" 
+                                viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" 
+                                    fill="currentColor"/>
+                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" 
+                                    fill="currentFill"/>
+                            </svg> 
+                            : 'Search'
+                        }
                     </button>
                 </div>
                 <div>
@@ -549,14 +578,14 @@ const Edit = () => {
 
                         <div className="flex justify-center text-center md:text-left font-bold">
                             <button 
-                                className={`mt-3 ${isMobile ? 'mx-2' : 'mx-3'} text-lg bg-orange-600 hover:bg-blue-700 px-4 py-2 text-white font-bold uppercase rounded-xl`} 
+                                className={`mt-3 ${isMobile ? 'mx-2' : 'mx-3'} text-lg bg-orange-600 hover:bg-orange-800 px-4 py-2 text-white font-bold uppercase rounded-xl`} 
                                 type="submit"
                                 style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}
                                 onClick={onSubmit}>
                                 {loading ? 
                                 <svg 
                                     aria-hidden="true" 
-                                    className="w-8 h-6 text-blue-600 animate-spin fill-white" 
+                                    className="w-8 h-6 animate-spin fill-white" 
                                     viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" 
                                         fill="currentColor"/>
