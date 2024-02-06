@@ -28,7 +28,7 @@ const App = () => {
 
 const Landing = () => {
   return (
-    <div className='relative z-0 bg-black'>
+    <div className='relative z-0 bg-black overflow-x-hidden'>
         <div className="relative z-0">
           <Hero />
         </div>
