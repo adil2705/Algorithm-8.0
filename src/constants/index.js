@@ -9,7 +9,7 @@ import {
   four,
   web_development,
   app_development,
-  Machine_Learning,
+  machine_learning,
   blockchain
 } from "../assets/images";
 
@@ -43,7 +43,7 @@ const services = [
   },
   {
     title: "Machine Learning",
-    icon: Machine_Learning,
+    icon: machine_learning,
   },
   {
     title: "Blockchain Technology",
@@ -90,7 +90,6 @@ const experiences = [
     ],
   },
 ];
-
 
 export const clients = [
   {

@@ -13,7 +13,7 @@ const ServiceCard = ({ index, title, icon }) => (
   <Tilt className='xs:w-[226px] w-full'>
     <motion.div
       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-      className='w-full border-white p-[1px] rounded-[20px] bg-blur rounded-xl border-orange-600 border-2'>
+      className='w-full p-[1px] rounded-[20px] bg-blur rounded-xl border-orange-600 border-2'>
       <div
         options={{
           max: 45,
@@ -37,11 +37,11 @@ const About = () => {
   return (
     <>
       <motion.div variants={textVariant()} className="text-center">
-        <h2 className={styles.sectionHeadText}>Overview.</h2>
+        <h2 className={styles.sectionHeadText}>Overview</h2>
       </motion.div>
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
-        className='mt-4 text-secondary text-[17px]  leading-[30px] text-justify w-full'>
+        className='mt-4 text-secondary text-[18px] leading-[30px] text-justify w-full'>
         Overall, Algorithm is a unique and innovative event that encourages innovation and collaboration in the tech community. It provides a platform for participants to challenge themselves, expand their knowledge, and create meaningful solutions to real-world problems related to social awareness. Whether you are a seasoned developer or a newcomer to the field, Algorithm offers a unique opportunity to be a part of something truly impactful and make a difference in the world.
       </motion.p>
       <div className='mt-20 flex flex-wrap gap-10'>
