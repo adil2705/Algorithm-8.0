@@ -252,8 +252,6 @@ const Register = () => {
                 {showAlert && <Alert message={alertMessage} type={alertType} />}
             </div>
             
-
-            
             <div className={`${isMobile ? 'p-5' : 'p-10'}`} >
                 <h1 className="mb-8 ml-2 font-extrabold text-4xl">Registration Form</h1>
                 <div>

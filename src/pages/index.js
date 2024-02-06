@@ -1,7 +1,9 @@
-import Register from "./Registration";
+import Edit from "./Edit";
 import SignIn from "./SignIn";
+import Register from "./Register";
 
 export {
-  Register,
-  SignIn
+  Edit,
+  SignIn,
+  Register
 };
