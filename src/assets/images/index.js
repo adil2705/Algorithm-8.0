@@ -6,7 +6,6 @@ import airbnb from "./airbnb.png";
 import binance from "./binance.png";
 import coinbase from "./coinbase.png";
 import dropbox from "./dropbox.png";
-import astronaut2 from "./astronauts-shark.png";
 import one from "./one.png";
 import two from "./two.png";
 import three from "./three.png";
@@ -29,7 +28,6 @@ export {
   web_development2,
   machine_learning,
   web_development,
-  astronaut2,
   seven,
   six,
   five,

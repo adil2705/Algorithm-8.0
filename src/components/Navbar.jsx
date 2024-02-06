@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { logo } from "../assets/images";
+
+import { UserContext } from '../context/UserContext';
+
+import { auth } from "../firebase-config";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,6 +13,8 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const user = useContext(UserContext);
 
   return (
     <section>
@@ -49,12 +55,20 @@ const Navbar = () => {
           <li><a className="text-xl text-orange-600 font-bold" href="#clients">Sponsers</a></li>
         </ul>
         <a className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-white text-lg text-orange-600 font-bold rounded-xl transition duration-200" href="#contact">Contact</a>
-        <Link
-          to="/signin"
-          className="hidden lg:inline-block py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl transition duration-200">
-          Login
-        </Link>
+        {user == null ? 
+          <Link
+            to="/signin"
+            className="hidden lg:inline-block py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl transition duration-200">
+            Login
+          </Link> : 
+          <button
+            onClick={() => auth.signOut()}
+            className="hidden lg:inline-block py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl transition duration-200">
+            Logout
+          </button>
+        }
       </nav>
+      {/* TODO: Customize this */}
       <div className={`navbar-menu relative z-1 ${isMenuOpen ? '' : 'hidden'}`}>
         <div className="navbar-backdrop fixed bg-gray-800 opacity-25"></div>
         <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">

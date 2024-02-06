@@ -23,7 +23,7 @@ export default function Foot() {
                     <div className="w-full lg:w-6/12 px-4">
                         <div className="flex flex-wrap items-top mb-6">
                             <div className="w-full px-4">
-                                <span className="block uppercase text-gray-200 text-lg font-semibold mb-2">Contact Us</span>
+                                <span className="block uppercase text-gray-200 text-lg font-semibold mb-2">Reach us at</span>
                                 <ul className="list-unstyled">
                                     <li className="flex gap-4 items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-12 md:w-5" viewBox="0 0 20 20" fill="white">
