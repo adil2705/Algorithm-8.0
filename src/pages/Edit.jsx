@@ -161,16 +161,39 @@ const Edit = () => {
             return;
         }
 
-        if (!nameLead || !emailLead || !contactLead || !githubLead || !linkedinLead || !collegeLead || 
-            !nameMember2 || !emailMember2 || !contactMember2 || !githubMember2 || !linkedinMember2 || !collegeMember2 || 
-            !nameMember3 || !emailMember3 || !contactMember3 || !githubMember3 || !linkedinMember3 || !collegeMember3) {
-            setAlertMessage('Please fill all the fields.');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
+        if(memberCount == 3) {
+            if (!nameLead || !emailLead || !contactLead || !githubLead || !linkedinLead || !collegeLead || 
+                !nameMember2 || !emailMember2 || !contactMember2 || !githubMember2 || !linkedinMember2 || !collegeMember2 || 
+                !nameMember3 || !emailMember3 || !contactMember3 || !githubMember3 || !linkedinMember3 || !collegeMember3) {
+                setAlertMessage('Please fill all the fields.');
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        } else if(memberCount == 2) {
+            if (!nameLead || !emailLead || !contactLead || !githubLead || !linkedinLead || !collegeLead || 
+                !nameMember2 || !emailMember2 || !contactMember2 || !githubMember2 || !linkedinMember2 || !collegeMember2) {
+                setAlertMessage('Please fill all the fields.');
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        } else if(memberCount == 1) {
+            if (!nameLead || !emailLead || !contactLead || !githubLead || !linkedinLead || !collegeLead) {
+                setAlertMessage('Please fill all the fields.');
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
         }
 
         if (!nameRegex.test(nameLead)) {
@@ -228,7 +251,8 @@ const Edit = () => {
             return;
         }
 
-        if (!nameRegex.test(nameMember2)) {
+        if (!nameRegex.test(nameMember2) && memberCount > 1) {
+            console.log(memberCount);
             setAlertMessage('Please enter a valid Name (Member 2).');
             setAlertType('error');
             setShowAlert(true);
@@ -237,7 +261,7 @@ const Edit = () => {
             }, 2000);
             return;
         }
-        if (!emailRegex.test(emailMember2)) {
+        if (!emailRegex.test(emailMember2) && memberCount > 1) {
             setAlertMessage('Please enter a valid Email Address (Member 2).');
             setAlertType('error');
             setShowAlert(true);
@@ -246,7 +270,7 @@ const Edit = () => {
             }, 2000);
             return;
         }
-        if (!contactRegex.test(contactMember2)) {
+        if (!contactRegex.test(contactMember2) && memberCount > 1) {
             setAlertMessage('Please enter a valid Contact Number (Member 2).');
             setAlertType('error');
             setShowAlert(true);
@@ -255,7 +279,7 @@ const Edit = () => {
             }, 2000);
             return;
         }
-        if (!githubLinkedinRegex.test(githubMember2)) {
+        if (!githubLinkedinRegex.test(githubMember2) && memberCount > 1) {
             setAlertMessage('Please enter a valid GitHub Profile Link (Member 2).');
             setAlertType('error');
             setShowAlert(true);
@@ -264,7 +288,7 @@ const Edit = () => {
             }, 2000);
             return;
         }
-        if (!linkedinRegex.test(linkedinMember2)) {
+        if (!linkedinRegex.test(linkedinMember2) && memberCount > 1) {
             setAlertMessage('Please enter a valid LinkedIn Profile Link (Member 2).');
             setAlertType('error');
             setShowAlert(true);
@@ -273,7 +297,7 @@ const Edit = () => {
             }, 2000);
             return;
         }
-        if (!collegeRegex.test(collegeMember2)) {
+        if (!collegeRegex.test(collegeMember2) && memberCount > 1) {
             setAlertMessage('Please enter a valid College Name (Member 2).');
             setAlertType('error');
             setShowAlert(true);
@@ -283,7 +307,7 @@ const Edit = () => {
             return;
         }
 
-        if (!nameRegex.test(nameMember3)) {
+        if (!nameRegex.test(nameMember3) && memberCount > 2) {
             setAlertMessage('Please enter a valid Name (Member 3).');
             setAlertType('error');
             setShowAlert(true);
@@ -292,7 +316,7 @@ const Edit = () => {
             }, 2000);
             return;
         }
-        if (!emailRegex.test(emailMember3)) {
+        if (!emailRegex.test(emailMember3) && memberCount > 2) {
             setAlertMessage('Please enter a valid Email Address (Member 3).');
             setAlertType('error');
             setShowAlert(true);
@@ -301,7 +325,7 @@ const Edit = () => {
             }, 2000);
             return;
         }
-        if (!contactRegex.test(contactMember3)) {
+        if (!contactRegex.test(contactMember3) && memberCount > 2) {
             setAlertMessage('Please enter a valid Contact Number (Member 3).');
             setAlertType('error');
             setShowAlert(true);
@@ -310,7 +334,7 @@ const Edit = () => {
             }, 2000);
             return;
         }
-        if (!githubLinkedinRegex.test(githubMember3)) {
+        if (!githubLinkedinRegex.test(githubMember3) && memberCount > 2) {
             setAlertMessage('Please enter a valid GitHub Profile Link (Member 3).');
             setAlertType('error');
             setShowAlert(true);
@@ -319,7 +343,7 @@ const Edit = () => {
             }, 2000);
             return; 
         }
-        if (!linkedinRegex.test(linkedinMember3)) {
+        if (!linkedinRegex.test(linkedinMember3) && memberCount > 2) {
             setAlertMessage('Please enter a valid LinkedIn Profile Link (Member 3).');
             setAlertType('error');
             setShowAlert(true);
@@ -328,7 +352,7 @@ const Edit = () => {
             }, 2000);
             return; 
         }
-        if (!collegeRegex.test(collegeMember2)) {
+        if (!collegeRegex.test(collegeMember2) && memberCount > 2) {
             setAlertMessage('Please enter a valid College Name (Member 3).');
             setAlertType('error');
             setShowAlert(true);
@@ -336,6 +360,26 @@ const Edit = () => {
                 setShowAlert(false);
             }, 2000);
             return; 
+        }
+
+        if (nameMember2 || emailMember2 || contactMember2 || 
+            githubMember2 || linkedinMember2 || collegeMember2 && memberCount == 1) {
+            setAlertMessage('Cannot add new members.');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        } else if (nameMember3 || emailMember3 || contactMember3 ||
+            githubMember3 || linkedinMember3 || collegeMember3 && memberCount == 2) {
+            setAlertMessage('Cannot add new members.');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
         }
 
         setLoading(true);
@@ -388,15 +432,7 @@ const Edit = () => {
                     linkedinLead: linkedinLead,
                     collegeLead: collegeLead
                 });
-            } else {
-                setAlertMessage('Cannot add new members.');
-                setAlertType('error');
-                setShowAlert(true);
-                setTimeout(() => {
-                    setShowAlert(false);
-                }, 2000);
-                return;
-            }
+            } 
             setLoading(false);
             setAlertMessage('Edited Successfully.');
             setAlertType('success');
@@ -626,6 +662,8 @@ const Edit = () => {
                                     <li>Only the lead can edit the details.</li>
                                     <li>Ensure that the your email and the one you used for logging in are both same.</li>
                                     <li>New members cannot be added here only details of existing members can be altered.</li>
+                                    <li>Linkedin Link : linkedin.com/in/profile-id</li>
+                                    <li>GitHub Link : github.com/username</li>
                                 </ul>
                             </div>
                         </aside>

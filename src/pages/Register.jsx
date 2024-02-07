@@ -321,6 +321,8 @@ const Register = () => {
                                     <li>Ensure that the your email and the one you used for logging in are both same.</li>
                                     <li>Enter new team name to create a new team and share that with your partners.</li>
                                     <li>Each team can only have three members.</li>
+                                    <li>Linkedin Link : linkedin.com/in/profile-id</li>
+                                    <li>GitHub Link : github.com/username</li>
                                 </ul>
                             </div>
                         </aside>
