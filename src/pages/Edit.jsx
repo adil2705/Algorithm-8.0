@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { UserContext } from '../context/UserContext';
 
@@ -7,7 +7,7 @@ import {
   Alert
 } from "../components";
 
-import { useState } from 'react';
+import { Link } from "react-router-dom";
 
 import { db } from "../firebase-config";
 import { collection, query, where, getDocs, updateDoc } from "firebase/firestore";
@@ -67,8 +67,6 @@ const Edit = () => {
     const getTeamData = async (e) => {
         e.preventDefault();
 
-        console.log(user);
-
         if (!user) {
             setAlertMessage('Please login to edit.');
             setAlertType('error');
@@ -80,63 +78,64 @@ const Edit = () => {
         }
 
         setLoading2(true);
-        querySnapshot = await getDocs(q);
-
-        if (querySnapshot.empty) {
-            setLoading2(false);
-            setAlertMessage('No such team exists.');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        } else {
-            querySnapshot.forEach((doc) => {
-                setDocRef(doc);
-            });
-
-            if (docRef.exists()) {
-                const data = docRef.data();
-                if(data && user.email == data.emailLead) { 
-                    if(data.nameLead || data.emailLead || data.contactLead 
-                        || data.githubLead || data.linkedinLead || data.collegeLead) {
-                        setNameLead(data.nameLead);
-                        setEmailLead(data.emailLead);
-                        setContactLead(data.contactLead);
-                        setGithubLead(data.githubLead);
-                        setLinkedinLead(data.linkedinLead);
-                        setCollegeLead(data.collegeLead);
-                        setMemberCount(1);
-                    }
-                    if(data.nameMember2 && data.emailMember2 && data.contactMember2 
-                        && data.githubMember2 && data.linkedinMember2 && data.collegeMember2) {
-                        setNameMember2(data.nameMember2);
-                        setEmailMember2(data.emailMember2);
-                        setContactMember2(data.contactMember2);
-                        setGithubMember2(data.githubMember2);
-                        setLinkedinMember2(data.linkedinMember2);
-                        setCollegeMember2(data.collegeMember2);
-                        setMemberCount(2);
-                    } else {
-                        setMember2Exists(true);
-                    }
-                    if(data.nameMember3 && data.emailMember3 && data.contactMember3 
-                        && data.githubMember3 && data.linkedinMember3 && data.collegeMember3) {
-                        setNameMember3(data.nameMember3);
-                        setEmailMember3(data.emailMember3);
-                        setContactMember3(data.contactMember3);
-                        setGithubMember3(data.githubMember3);
-                        setLinkedinMember3(data.linkedinMember3);
-                        setCollegeMember3(data.collegeMember3);
-                        setMemberCount(3);
-                    } else {
-                        setMember3Exists(true);
-                    }
-                    setLoading2(false);
-                }
-                console.log(docRef)
+        querySnapshot = await getDocs(q).then((querySnapshot) => {
+            if (querySnapshot.empty) {
+                setLoading2(false);
+                setAlertMessage('No such team exists.');
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
             } else {
+                querySnapshot.forEach((doc) => {
+                    setDocRef(doc);
+                });
+            }
+        });
+    }
+
+    useEffect(() => {
+        if (docRef != null && docRef.exists()) {
+            const data = docRef.data();
+            if(data && user.email == data.emailLead) { 
+                if(data.nameLead || data.emailLead || data.contactLead 
+                    || data.githubLead || data.linkedinLead || data.collegeLead) {
+                    setNameLead(data.nameLead);
+                    setEmailLead(data.emailLead);
+                    setContactLead(data.contactLead);
+                    setGithubLead(data.githubLead);
+                    setLinkedinLead(data.linkedinLead);
+                    setCollegeLead(data.collegeLead);
+                    setMemberCount(1);
+                }
+                if(data.nameMember2 && data.emailMember2 && data.contactMember2 
+                    && data.githubMember2 && data.linkedinMember2 && data.collegeMember2) {
+                    setNameMember2(data.nameMember2);
+                    setEmailMember2(data.emailMember2);
+                    setContactMember2(data.contactMember2);
+                    setGithubMember2(data.githubMember2);
+                    setLinkedinMember2(data.linkedinMember2);
+                    setCollegeMember2(data.collegeMember2);
+                    setMemberCount(2);
+                } else {
+                    setMember2Exists(true);
+                }
+                if(data.nameMember3 && data.emailMember3 && data.contactMember3 
+                    && data.githubMember3 && data.linkedinMember3 && data.collegeMember3) {
+                    setNameMember3(data.nameMember3);
+                    setEmailMember3(data.emailMember3);
+                    setContactMember3(data.contactMember3);
+                    setGithubMember3(data.githubMember3);
+                    setLinkedinMember3(data.linkedinMember3);
+                    setCollegeMember3(data.collegeMember3);
+                    setMemberCount(3);
+                } else {
+                    setMember3Exists(true);
+                }
+                setLoading2(false);
+            } else if(data && user.email != data.emailLead) {
                 setLoading2(false);
                 setAlertMessage('Only lead can edit.');
                 setAlertType('error');
@@ -145,8 +144,8 @@ const Edit = () => {
                     setShowAlert(false);
                 }, 2000);
             }
-        }
-    }
+        } 
+    }, [docRef]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -485,7 +484,7 @@ const Edit = () => {
                         className="bg-white font-bold h-full px-4 py-2.5 text-orange-600 hover:bg-orange-800 uppercase rounded-xl text-lg">
                         {loading2 ? 
                             <svg 
-                                aria-hidden="true" arman
+                                aria-hidden="true" 
                                 className="w-8 h-6 animate-spin fill-white" 
                                 viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" 
@@ -499,7 +498,7 @@ const Edit = () => {
                 </div>
                 <div>
                     <form className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
-                        <fieldset className='border border-orange-600 p-6 rounded-2xl m-3'>
+                        <fieldset className='border border-orange-600 p-6 rounded-2xl m-3 bg-blur'>
                             <legend className='text-2xl font-bold px-2'>Member 1</legend>
                             <input 
                                 className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
@@ -516,7 +515,7 @@ const Edit = () => {
                                 onChange={(e) => setEmailLead(e.target.value)}
                                 required 
                                 placeholder="Email Address" />
-arman
+
                             <input 
                                 className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
@@ -550,7 +549,7 @@ arman
                                 placeholder="College Name" />
                         </fieldset>
                         
-                        <fieldset className='border border-orange-600 p-6 rounded-2xl m-3 flex-1'>
+                        <fieldset className='border border-orange-600 p-6 rounded-2xl m-3 flex-1 bg-blur'>
                             <legend className='text-2xl font-bold px-2'>Member 2</legend>
                             <p className={`${member2Exists == true ? 'block' : 'hidden'} text-red-500 text-lg font-bold my-3`}>Member 2 dosen't exists</p>
                             <input 
@@ -602,7 +601,7 @@ arman
                                 placeholder="College Name" />
                         </fieldset>
 
-                        <fieldset className='border border-orange-600 p-6 rounded-2xl m-3 flex-1'>
+                        <fieldset className='border border-orange-600 p-6 rounded-2xl m-3 flex-1 bg-blur'>
                             <legend className='text-2xl font-bold px-2'>Member 3</legend>
                             <p className={`${member3Exists == true ? 'block' : 'hidden'} text-red-500 text-lg font-bold my-3`}>Member 3 dosen't exists</p>
                             <input 
@@ -686,6 +685,15 @@ arman
                                 </svg> 
                                 : 'Save Changes'}
                             </button>
+                        </div>
+
+                        <div className="flex justify-center text-center md:text-left font-bold">
+                            <Link
+                                to="/register"
+                                className={`mt-3 ${isMobile ? 'mx-2' : 'mx-3'} text-lg bg-white px-4 py-2 text-orange-600 uppercase rounded-xl`} 
+                                style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                Fill Form
+                            </Link>
                         </div>
                     </form>
                 </div>

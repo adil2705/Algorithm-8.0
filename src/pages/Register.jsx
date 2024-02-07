@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { UserContext } from '../context/UserContext';
 
@@ -7,7 +7,7 @@ import {
   Alert
 } from "../components";
 
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { db } from "../firebase-config";
 import { collection, addDoc, updateDoc, getDocs, query, where } from "firebase/firestore";
@@ -253,7 +253,7 @@ const Register = () => {
                 </div>
                 <div>
                     <form className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
-                        <fieldset className='border border-orange-600 p-6 rounded-2xl m-3'>
+                        <fieldset className='border border-orange-600 p-6 rounded-2xl m-3 bg-blur'>
                             <legend className='text-2xl font-bold px-2'>Member</legend>
                             <input 
                                 className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
@@ -312,7 +312,6 @@ const Register = () => {
                                 placeholder="College Name" />
                         </fieldset>
 
-                        {/* TODO: Add instructions */}
                         <aside className='border border-orange-600 rounded-2xl p-3 mt-[26px] mx-2 mb-3 flex-1'>
                             <div className="bg-blur rounded-2xl h-full p-4">
                                 <h2 className="font-bold text-3xl">Instructions</h2>
@@ -329,7 +328,7 @@ const Register = () => {
 
                         <div className="flex justify-center text-center md:text-left font-bold">
                             <button 
-                                className={`mt-3 ${isMobile ? 'mx-2' : 'mx-3'} text-lg bg-orange-600 hover:bg-orange-800 px-4 py-2 text-white uppercase rounded-xl tracking-wider text-base`} 
+                                className={`mt-3 ${isMobile ? 'mx-2' : 'mx-3'} text-lg bg-orange-600 hover:bg-orange-800 px-4 py-2 text-white uppercase rounded-xl`} 
                                 type="submit"
                                 style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}
                                 onClick={onSubmit}>
@@ -346,11 +345,20 @@ const Register = () => {
                                 : 'Register'}
                             </button>
                         </div>
+
+                        <div className="flex justify-center text-center md:text-left font-bold">
+                            <Link
+                                to="/edit"
+                                className={`mt-3 ${isMobile ? 'mx-2' : 'mx-3'} text-lg bg-white px-4 py-2 text-orange-600 uppercase rounded-xl`} 
+                                style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                Edit Form
+                            </Link>
+                        </div>
                     </form>
 
                 </div>
             </div>
-          <StarsCanvas />  
+            <StarsCanvas />  
         </section>
         
     );
