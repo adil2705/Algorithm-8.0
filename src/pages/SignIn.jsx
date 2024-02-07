@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 import Lottie from 'react-lottie';
 import SignInAnimation from '../assets/lottie/signin.json'
@@ -9,17 +12,19 @@ import {
   createUserWithEmailAndPassword 
 } from "firebase/auth";
 
-import { useState } from "react";
 import { auth } from "../firebase-config";
 
 import { 
   StarsCanvas,
   Alert
 } from "../components";
-import { Navigate } from "react-router-dom";
 
 export default function SignIn() {
   const isMobile = window.innerWidth < 768;
+
+  const navigate = useNavigate();
+
+  const user = useContext(UserContext);
 
   const defaultOptions = {
     loop: true,
@@ -52,7 +57,7 @@ export default function SignIn() {
         setTimeout(() => {
             setShowAlert(false);
         }, 2000);
-        Navigate('/');
+        navigate('/');
     } catch (error) {
         setLoading(false);
         if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
@@ -65,7 +70,7 @@ export default function SignIn() {
                 setTimeout(() => {
                     setShowAlert(false);
                 }, 2000);
-                Navigate('/');
+                navigate('/');
             } catch (error) {
                 setLoading(false);
                 setAlertMessage(error.message);
@@ -112,7 +117,6 @@ export default function SignIn() {
     })
   }
 
-  // add bg
   return (
     <div className="relative z-0 bg-black overflow-x-hidden">
       <section>
@@ -169,11 +173,12 @@ export default function SignIn() {
                 </button>
               </div>
               <div className="text-center md:text-left font-bold">
-                <button 
-                  className="mt-4 bg-orange-600 hover:bg-orange-800 px-4 py-2 text-white uppercase rounded-xl tracking-wider text-base" 
-                  type="submit"
-                  style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}
-                  onClick={onSubmit}>
+                {!user ? 
+                  <button 
+                    className="mt-4 bg-orange-600 hover:bg-orange-800 px-4 py-2 text-white uppercase rounded-xl tracking-wider text-base" 
+                    type="submit"
+                    style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                    onClick={onSubmit}>
                   {loading ? 
                   <svg 
                       aria-hidden="true" 
@@ -186,6 +191,14 @@ export default function SignIn() {
                   </svg> 
                   : 'Submit'}
                 </button>
+                : 
+                <button 
+                  className="mt-4 bg-orange-600 hover:bg-orange-800 px-4 py-2 text-white uppercase rounded-xl tracking-wider text-base" 
+                  type="submit"
+                  style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    Already logged in
+                </button>
+                }
               </div>
             </div>
           </div>
@@ -194,6 +207,5 @@ export default function SignIn() {
       </section>
       <StarsCanvas />
     </div>
-
   );
 }
