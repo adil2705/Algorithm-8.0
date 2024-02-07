@@ -54,7 +54,7 @@ const Hero = () => {
 
     <section className="w-[100vw] h-[100vh] hero-bg items-center">
       <Navbar user={user} />
-      <section className={`absolute flex md:flex-row flex-col py-10 relative z-0 ${isMobile ? 'top-20' : 'top-0'}`}>    
+      <section className='absolute flex md:flex-row flex-col py-10 relative z-0'>    
         <div className={`flex-1 ${styles.flexStart} flex-col justify-center items-center`}>
           <motion.div variants={fadeIn("down", "spring", 0.3, 0.75)}>
             <h1 className="flex text-center justify-center font-poppins font-semibold lg:text-[40px] text-[30px] text-white">
