@@ -9,21 +9,25 @@ import {
   four,
   web_development,
   app_development,
-  Machine_Learning,
+  machine_learning,
   blockchain
 } from "../assets/images";
 
 export const navLinks = [
   {
-    id: "about",
-    title: "About",
+    id: "#about",
+    title: "About Us",
   },
   {
-    id: "work",
-    title: "Work",
+    id: "/signin",
+    title: "Login",
   },
   {
-    id: "contact",
+    id: "/register",
+    title: "Register",
+  },
+  {
+    id: "#contact",
     title: "Contact",
   },
 ];
@@ -39,10 +43,10 @@ const services = [
   },
   {
     title: "Machine Learning",
-    icon: Machine_Learning,
+    icon: machine_learning,
   },
   {
-    title: "blockchain technology",
+    title: "Blockchain Technology",
     icon: blockchain,
   },
 ];
@@ -86,7 +90,6 @@ const experiences = [
     ],
   },
 ];
-
 
 export const clients = [
   {

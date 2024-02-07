@@ -6,7 +6,7 @@ import emailjs from "@emailjs/browser";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
-import { astronaut2 } from "../assets/images";
+import { logo } from "../assets/images";
 
 const Contact = () => {
   const formRef = useRef();
@@ -67,20 +67,16 @@ const Contact = () => {
 
   return (
     <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
-    >
+      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden bg-blur py-5 px-8 rounded-2xl border-2 border-orange-600`}>
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-black-100 p-8 rounded-2xl shadow-card'
-      >
+        className='flex-[0.75]'>
         <p className={styles.sectionSubText}>Get in touch</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
-
+        <h3 className={styles.sectionHeadText}>Contact</h3>
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='mt-2 flex flex-col gap-4'
-        >
+          className='mt-2 flex flex-col gap-4'>
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your Name</span>
             <input
@@ -89,8 +85,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
+              className='bg-blur py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium' />
           </label>
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your email</span>
@@ -100,35 +95,29 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
+              className='bg-blur py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium' />
           </label>
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your Message</span>
             <textarea
-              rows={7}
+              rows={4}
               name='message'
               value={form.message}
               onChange={handleChange}
               placeholder='What you want to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
+              className='bg-blur py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium' />
           </label>
-
           <button
             type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
-          >
+            className='bg-white py-2 px-6 rounded-xl outline-none text-orange-600 text-lg font-bold shadow-md shadow-primary'>
             {loading ? "Sending..." : "Send"}
           </button>
         </form>
       </motion.div>
-
       <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
-      >
-        <img src={astronaut2} alt="billing" className="w-[100%] h-[100%] relative z-[5] " />
+        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'>
+        <img src={logo} alt="billing" className="w-[100%] h-[100%] relative z-[5] " />
       </motion.div>
     </div>
   );
