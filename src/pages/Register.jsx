@@ -46,10 +46,8 @@ const Register = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(user);
-
         if (!user) {
-            setAlertMessage('Please login to edit.');
+            setAlertMessage('Please login to register.');
             setAlertType('error');
             setShowAlert(true);
             setTimeout(() => {
@@ -319,9 +317,10 @@ const Register = () => {
                             <div className="bg-blur rounded-2xl h-full p-4">
                                 <h2 className="font-bold text-3xl">Instructions</h2>
                                 <ul className="list-disc mt-4 list-inside text-lg">
-                                    <li>All users must provide a valid email address and password to create an account.</li>
-                                    <li>Users must not use offensive, vulgar, or otherwise inappropriate language in their username or profile information</li>
-                                    <li>Users must not create multiple accounts for the same person.</li>
+                                    <li>Use existing team name to register your self as a part of existing team.</li>
+                                    <li>Ensure that the your email and the one you used for logging in are both same.</li>
+                                    <li>Enter new team name to create a new team and share that with your partners.</li>
+                                    <li>Each team can only have three members.</li>
                                 </ul>
                             </div>
                         </aside>

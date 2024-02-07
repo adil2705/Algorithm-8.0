@@ -47,6 +47,8 @@ const Edit = () => {
     const [member2Exists, setMember2Exists] = useState(false);
     const [member3Exists, setMember3Exists] = useState(false);
 
+    const [memberCount, setMemberCount] = useState(0);
+
     const [loading, setLoading] = useState(false);
     const [loading2, setLoading2] = useState(false);
 
@@ -65,7 +67,7 @@ const Edit = () => {
         e.preventDefault();
 
         console.log(user);
-        
+
         if (!user) {
             setAlertMessage('Please login to edit.');
             setAlertType('error');
@@ -95,7 +97,7 @@ const Edit = () => {
 
             if (docRef.exists()) {
                 const data = docRef.data();
-                if(data) { 
+                if(data && user.email == data.emailLead) { 
                     if(data.nameLead || data.emailLead || data.contactLead 
                         || data.githubLead || data.linkedinLead || data.collegeLead) {
                         setNameLead(data.nameLead);
@@ -104,6 +106,7 @@ const Edit = () => {
                         setGithubLead(data.githubLead);
                         setLinkedinLead(data.linkedinLead);
                         setCollegeLead(data.collegeLead);
+                        setMemberCount(1);
                     }
                     if(data.nameMember2 && data.emailMember2 && data.contactMember2 
                         && data.githubMember2 && data.linkedinMember2 && data.collegeMember2) {
@@ -113,6 +116,7 @@ const Edit = () => {
                         setGithubMember2(data.githubMember2);
                         setLinkedinMember2(data.linkedinMember2);
                         setCollegeMember2(data.collegeMember2);
+                        setMemberCount(2);
                     } else {
                         setMember2Exists(true);
                     }
@@ -124,11 +128,20 @@ const Edit = () => {
                         setGithubMember3(data.githubMember3);
                         setLinkedinMember3(data.linkedinMember3);
                         setCollegeMember3(data.collegeMember3);
+                        setMemberCount(3);
                     } else {
                         setMember3Exists(true);
                     }
                     setLoading2(false);
                 }
+            } else {
+                setLoading2(false);
+                setAlertMessage('Only lead can edit.');
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
             }
         }
     }
@@ -326,27 +339,63 @@ const Edit = () => {
         /// TODO: throws docref is null
         setLoading(true);
         try {
-            await updateDoc(docRef.ref, {
-                teamName: teamName,
-                nameLead: nameLead,
-                emailLead: emailLead,
-                contactLead: contactLead,
-                githubLead: githubLead,
-                linkedinLead: linkedinLead,
-                collegeLead: collegeLead,
-                nameMember2: nameMember2,
-                emailMember2: emailMember2,
-                contactMember2: contactMember2,
-                githubMember2: githubMember2,
-                linkedinMember2: linkedinMember2,
-                collegeMember2: collegeMember2,
-                nameMember3: nameMember3,
-                emailMember3: emailMember3,
-                contactMember3: contactMember3,
-                githubMember3: githubMember3,
-                linkedinMember3: linkedinMember3,
-                collegeMember3: collegeMember3
-            });
+            if(memberCount == 3) {
+                await updateDoc(docRef.ref, {
+                    teamName: teamName,
+                    nameLead: nameLead,
+                    emailLead: emailLead,
+                    contactLead: contactLead,
+                    githubLead: githubLead,
+                    linkedinLead: linkedinLead,
+                    collegeLead: collegeLead,
+                    nameMember2: nameMember2,
+                    emailMember2: emailMember2,
+                    contactMember2: contactMember2,
+                    githubMember2: githubMember2,
+                    linkedinMember2: linkedinMember2,
+                    collegeMember2: collegeMember2,
+                    nameMember3: nameMember3,
+                    emailMember3: emailMember3,
+                    contactMember3: contactMember3,
+                    githubMember3: githubMember3,
+                    linkedinMember3: linkedinMember3,
+                    collegeMember3: collegeMember3
+                });
+            } else if(memberCount == 2) {
+                await updateDoc(docRef.ref, {
+                    teamName: teamName,
+                    nameLead: nameLead,
+                    emailLead: emailLead,
+                    contactLead: contactLead,
+                    githubLead: githubLead,
+                    linkedinLead: linkedinLead,
+                    collegeLead: collegeLead,
+                    nameMember2: nameMember2,
+                    emailMember2: emailMember2,
+                    contactMember2: contactMember2,
+                    githubMember2: githubMember2,
+                    linkedinMember2: linkedinMember2,
+                    collegeMember2: collegeMember2
+                });
+            } else if(memberCount == 1) {
+                await updateDoc(docRef.ref, {
+                    teamName: teamName,
+                    nameLead: nameLead,
+                    emailLead: emailLead,
+                    contactLead: contactLead,
+                    githubLead: githubLead,
+                    linkedinLead: linkedinLead,
+                    collegeLead: collegeLead
+                });
+            } else {
+                setAlertMessage('Cannot add new members.');
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
             setLoading(false);
             setAlertMessage('Edited Successfully.');
             setAlertType('success');
@@ -573,9 +622,9 @@ const Edit = () => {
                             <div className="bg-blur rounded-2xl h-full p-4">
                                 <h2 className="font-bold text-3xl">Instructions</h2>
                                 <ul className="list-disc mt-4 list-inside text-lg">
-                                    <li>All users must provide a valid email address and password to create an account.</li>
-                                    <li>Users must not use offensive, vulgar, or otherwise inappropriate language in their username or profile information</li>
-                                    <li>Users must not create multiple accounts for the same person.</li>
+                                    <li>Only the lead can edit the details.</li>
+                                    <li>Ensure that the your email and the one you used for logging in are both same.</li>
+                                    <li>New members cannot be added here only details of existing members can be altered.</li>
                                 </ul>
                             </div>
                         </aside>
