@@ -10,9 +10,11 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 
 import { UserContext } from '../context/UserContext';
-import { main } from "../assets/images";
+import { full_logo, main } from "../assets/images";
 
 const Hero = () => {
+  const isMobile = window.innerWidth < 768;
+
   const user = useContext(UserContext);
 
   return (
@@ -51,24 +53,31 @@ const Hero = () => {
 
 
     <section className="w-[100vw] h-[100vh] hero-bg items-center">
-       <Navbar user={user} />
-       <section className={`flex md:flex-row flex-col ${styles.paddingY} sm:px-16 px-6 sm:py-16 py-10 relative z-0`}>    
-        <div className={`flex-1 ${styles.flexStart} flex-col justify-center items-center xl:px-0 sm:px-16 px-3`}>
+      <Navbar user={user} />
+      <section className={`absolute flex md:flex-row flex-col py-10 relative z-0 ${isMobile ? 'top-20' : 'top-0'}`}>    
+        <div className={`flex-1 ${styles.flexStart} flex-col justify-center items-center`}>
           <motion.div variants={fadeIn("down", "spring", 0.3, 0.75)}>
-            <h1 className="flex text-center justify-center font-poppins font-semibold lg:text-[50px] text-[25px] text-white">
+            <h1 className="flex text-center justify-center font-poppins font-semibold lg:text-[40px] text-[30px] text-white">
                AIKTC's
             </h1>
           </motion.div>
           <motion.div variants={fadeIn("down", "spring", 0.3, 0.75)}>
-            <h1 className="flex text-center justify-center font-poppins font-semibold lg:text-[25px] text-[15px] text-white">
+            <h1 className="flex text-center justify-center font-poppins font-semibold lg:text-[40px] text-[30px] text-white">
              Department of Computer Engineering Presents
             </h1>
           </motion.div>
-          <img src={main} alt="" className="lg:-mt-32 sm:-mt-32 lg:h-[500px]" />
+          <div className="flex flex-col justify-center items-center w-full p-0 my-5">
+            <h1 className="leading-none m-0 flex text-center font-bold lg:text-[150px] text-[60px] text-white p-0">
+              ALGORITHM
+            </h1>
+            <h1 className="leading-none m-0 flex text-center font-bold lg:text-[150px] text-[60px] text-white p-0">
+              8.0
+            </h1>
+          </div>
           <div className="flex flex-row justify-center items-center">
             <Link
               to="/register"
-              className="inline-block py-2 px-6 bg-white text-orange-600 text-2xl font-bold rounded-xl transition duration-200">
+              className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
                 Register
             </Link>
           </div>

@@ -11,6 +11,10 @@
   color-scheme: dark;
 }
 
+h1 {
+  margin: 0;
+}
+
 .hash-span {
   display: block;
 }
