@@ -1,6 +1,6 @@
 import React from "react";
-import { motion } from "framer-motion";
 
+import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { fadeIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
@@ -27,22 +27,22 @@ const Faq = () => {
                                         Algorithm hackathon is an event where participants come together to solve real world problems, basically in a competitive environment.
                                     </p>
                                 </details>
-                                <details className="mb-4 shadow-card">
-                                    <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-4 font-semibold">
-                                        How many hours hackathon it is?
-                                    </summary>
-                                    <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
-                                        Algorithm is a 32 Hrs hackathon. For more detail check the timeline section.
-                                    </p>
-                                </details>
-                            </div>
-                            <div className="w-full px-4 py-2 lg:w-1/2 ">
                                 <details className="mb-8 shadow-card">
                                     <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
                                         Who can participate in Algorithm 8.0 ?
                                     </summary>
                                     <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
                                         The Algorithm is open exclusively for students of any background with any skill levels.
+                                    </p>
+                                </details>
+                            </div>
+                            <div className="w-full px-4 py-2 lg:w-1/2 ">
+                                <details className="mb-4 shadow-card">
+                                    <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-4 font-semibold">
+                                        How many hours hackathon it is?
+                                    </summary>
+                                    <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
+                                        Algorithm is a 32 Hrs hackathon. For more detail check the timeline section.
                                     </p>
                                 </details>
                                 <details className="mb-4 shadow-card">
