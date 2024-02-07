@@ -203,7 +203,6 @@ export default function SignIn() {
             </div>
           </div>
         </section>
-        
       </section>
       <StarsCanvas />
     </div>

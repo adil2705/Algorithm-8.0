@@ -85,7 +85,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              className='bg-blur py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium' />
+              className='text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl' />
           </label>
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your email</span>
@@ -95,7 +95,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
-              className='bg-blur py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium' />
+              className='text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl' />
           </label>
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your Message</span>
@@ -105,7 +105,7 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder='What you want to say?'
-              className='bg-blur py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium' />
+              className='text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl' />
           </label>
           <button
             type='submit'
