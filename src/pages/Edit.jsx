@@ -61,7 +61,11 @@ const Edit = () => {
     var querySnapshot = null;
     var docRef = null;
 
-    const getTeamData = async () => {
+    const getTeamData = async (e) => {
+        e.preventDefault();
+
+        console.log(user);
+        
         if (!user) {
             setAlertMessage('Please login to edit.');
             setAlertType('error');

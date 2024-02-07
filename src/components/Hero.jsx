@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { styles } from "../styles";
 import { motion } from "framer-motion";
@@ -9,11 +9,15 @@ import { Link } from "react-router-dom";
 
 import Navbar from "./Navbar";
 
+import { UserContext } from '../context/UserContext';
+
 const Hero = () => {
+  const user = useContext(UserContext);
+
   return (
     <section className="w-[100vw] h-[100vh] hero-bg items-center">
-      <Navbar />
-       <section className={`flex md:flex-row flex-col ${styles.paddingY} sm:px-16 px-6 sm:py-16 py-10 relative z-0`}>    
+      <Navbar user={user} />
+      <section className={`flex md:flex-row flex-col ${styles.paddingY} sm:px-16 px-6 sm:py-16 py-10 relative z-0`}>    
         <div className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-3`}>
           <motion.div variants={fadeIn("right", "spring", 0.3, 0.75)}>
             <h1 className="flex text-center justify-center font-poppins font-semibold lg:text-[50px] text-[25px] text-white">

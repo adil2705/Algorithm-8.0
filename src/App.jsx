@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import { UserContext } from './context/UserContext';
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { onAuthStateChanged, getAuth } from "firebase/auth";
@@ -19,9 +17,13 @@ import {
 
 import { Register, SignIn, Edit, Dashboard } from "./pages"
 
+import { UserContext } from './context/UserContext';
+
 const App = () => {
   const [user, setUser] = useState(null);
   const auth = getAuth();
+
+  console.log(user);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -32,16 +34,17 @@ const App = () => {
   }, [auth]);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/edit" element={<Edit />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-
-      </Routes>
-    </BrowserRouter>
+    <UserContext.Provider value={user}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/edit" element={<Edit />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 

@@ -46,6 +46,8 @@ const Register = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
+        console.log(user);
+
         if (!user) {
             setAlertMessage('Please login to edit.');
             setAlertType('error');

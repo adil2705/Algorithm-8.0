@@ -230,7 +230,8 @@ const Dashboard = () => {
             4
             <div class="p-2">
               <div class="container">
-                <div className="m-4 text-white text-2xl">Timeline</div>
+                <div className="m-4 
+      <Navbar />text-white text-2xl">Timeline</div>
                 <div class="flex flex-col md:grid grid-cols-12 text-white">
                   <div class="flex md:contents">
                     <div class="col-start-2 col-end-4 mr-10 md:mx-auto relative">

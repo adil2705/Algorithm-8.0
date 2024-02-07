@@ -1,20 +1,21 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 
 import { logo } from "../assets/images";
 
-import { UserContext } from '../context/UserContext';
-
 import { auth } from "../firebase-config";
 
-const Navbar = () => {
+const Navbar = ({
+  user
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const user = useContext(UserContext);
+  console.log(user);
 
   return (
     <section>
