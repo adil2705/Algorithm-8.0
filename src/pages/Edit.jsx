@@ -60,7 +60,6 @@ const Edit = () => {
     const collegeRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 
     var q = query(collection(db, "teams"), where("teamName", "==", teamName));
-    var querySnapshot = null;
 
     const [docRef, setDocRef] = useState(null);
 
@@ -78,7 +77,7 @@ const Edit = () => {
         }
 
         setLoading2(true);
-        querySnapshot = await getDocs(q).then((querySnapshot) => {
+        await getDocs(q).then((querySnapshot) => {
             if (querySnapshot.empty) {
                 setLoading2(false);
                 setAlertMessage('No such team exists.');
@@ -361,8 +360,11 @@ const Edit = () => {
             return; 
         }
 
-        if (nameMember2 || emailMember2 || contactMember2 || 
-            githubMember2 || linkedinMember2 || collegeMember2 && memberCount == 1) {
+        if ((nameMember2 || emailMember2 || contactMember2 || 
+            githubMember2 || linkedinMember2 || collegeMember2 ||
+            nameMember3 || emailMember3 || contactMember3 ||
+            githubMember3 || linkedinMember3 || collegeMember3) 
+            && memberCount == 1) {
             setAlertMessage('Cannot add new members.');
             setAlertType('error');
             setShowAlert(true);
@@ -370,8 +372,8 @@ const Edit = () => {
                 setShowAlert(false);
             }, 2000);
             return;
-        } else if (nameMember3 || emailMember3 || contactMember3 ||
-            githubMember3 || linkedinMember3 || collegeMember3 && memberCount == 2) {
+        } else if ((nameMember3 || emailMember3 || contactMember3 ||
+            githubMember3 || linkedinMember3 || collegeMember3) && memberCount == 2) {
             setAlertMessage('Cannot add new members.');
             setAlertType('error');
             setShowAlert(true);

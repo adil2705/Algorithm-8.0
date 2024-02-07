@@ -318,7 +318,8 @@ const Register = () => {
                                 <ul className="list-disc mt-4 list-inside text-lg">
                                     <li>Use existing team name to register your self as a part of existing team.</li>
                                     <li>Ensure that the your email and the one you used for logging in are both same.</li>
-                                    <li>Enter new team name to create a new team and share that with your partners.</li>
+                                    <li>Enter new team name to create a new team and share that team name with your members so that they can become part of your team.</li>
+                                    <li>Member to register first is automatically the lead of the team.</li>
                                     <li>Each team can only have three members.</li>
                                     <li>Linkedin Link : linkedin.com/in/profile-id</li>
                                     <li>GitHub Link : github.com/username</li>
