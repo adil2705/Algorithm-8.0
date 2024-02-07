@@ -15,8 +15,6 @@ const Navbar = ({
     setIsMenuOpen(!isMenuOpen);
   };
 
-  console.log(user);
-
   return (
     <section>
       <nav className="relative px-16 py-4 flex justify-between items-center bg-blur">

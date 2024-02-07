@@ -23,8 +23,6 @@ const App = () => {
   const [user, setUser] = useState(null);
   const auth = getAuth();
 
-  console.log(user);
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);

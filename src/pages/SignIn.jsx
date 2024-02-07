@@ -194,7 +194,6 @@ export default function SignIn() {
                 : 
                 <button 
                   className="mt-4 bg-orange-600 hover:bg-orange-800 px-4 py-2 text-white uppercase rounded-xl tracking-wider text-base" 
-                  type="submit"
                   style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     Already logged in
                 </button>

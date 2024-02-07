@@ -250,7 +250,7 @@ const Edit = () => {
         }
 
         if (!nameRegex.test(nameMember2) && memberCount > 1) {
-            console.log(memberCount);
+            
             setAlertMessage('Please enter a valid Name (Member 2).');
             setAlertType('error');
             setShowAlert(true);
@@ -654,8 +654,6 @@ const Edit = () => {
                                 required 
                                 placeholder="College Name" />
                         </fieldset>
-
-                        {/* TODO: Add instructions */}
                         <aside className='border border-orange-600 rounded-2xl p-3 mt-[26px] mx-2 mb-3 flex-1'>
                             <div className="bg-blur rounded-2xl h-full p-4">
                                 <h2 className="font-bold text-3xl">Instructions</h2>
@@ -668,7 +666,6 @@ const Edit = () => {
                                 </ul>
                             </div>
                         </aside>
-
                         <div className="flex justify-center text-center md:text-left font-bold">
                             <button 
                                 className={`mt-3 ${isMobile ? 'mx-2' : 'mx-3'} text-lg bg-orange-600 hover:bg-orange-800 px-4 py-2 text-white font-bold uppercase rounded-xl`} 
@@ -688,7 +685,6 @@ const Edit = () => {
                                 : 'Save Changes'}
                             </button>
                         </div>
-
                         <div className="flex justify-center text-center md:text-left font-bold">
                             <Link
                                 to="/register"

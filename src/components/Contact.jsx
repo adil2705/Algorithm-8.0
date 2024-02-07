@@ -58,8 +58,6 @@ const Contact = () => {
         },
         (error) => {
           setLoading(false);
-          console.error(error);
-
           alert("Ahh, something went wrong. Please try again.");
         }
       );
@@ -94,7 +92,7 @@ const Contact = () => {
               name='email'
               value={form.email}
               onChange={handleChange}
-              placeholder="What's your web address?"
+              placeholder="What's your email address?"
               className='text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl' />
           </label>
           <label className='flex flex-col'>

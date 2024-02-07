@@ -10,11 +10,8 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 
 import { UserContext } from '../context/UserContext';
-import { full_logo, main } from "../assets/images";
 
 const Hero = () => {
-  const isMobile = window.innerWidth < 768;
-
   const user = useContext(UserContext);
 
   return (
@@ -50,8 +47,6 @@ const Hero = () => {
     //     </Link>
     //   </div>
     // </section>
-
-
     <section className="w-[100vw] h-[100vh] hero-bg items-center">
       <Navbar user={user} />
       <section className='absolute flex md:flex-row flex-col py-10 relative z-0'>    

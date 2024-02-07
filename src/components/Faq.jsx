@@ -27,9 +27,9 @@ const Faq = () => {
                                         Algorithm hackathon is an event where participants come together to solve real world problems, basically in a competitive environment.
                                     </p>
                                 </details>
-                                <details className="mb-8 shadow-card">
+                                <details className="mb-4 shadow-card">
                                     <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
-                                        Who can participate in Algorithm 8.0 ?
+                                        Who can participate in Algorithm 8.0?
                                     </summary>
                                     <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
                                         The Algorithm is open exclusively for students of any background with any skill levels.

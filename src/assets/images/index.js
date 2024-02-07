@@ -21,7 +21,6 @@ import blockchain from "./blockchain.png";
 import app_development from "./app-development.png";
 import logo from "./logo.png";
 import main from "./main.png";
-import full_logo from "./full-logo.png";
 
 export {
   app_development,
@@ -46,6 +45,5 @@ export {
   github,
   menu,
   main,
-  close,
-  full_logo,
+  close
 };
