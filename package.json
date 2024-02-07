@@ -1,6 +1,6 @@
 {
-  "name": "3dfolio",
-  "private": true,
+  "name": "Algorithm8.0",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
