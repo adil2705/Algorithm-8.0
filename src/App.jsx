@@ -12,7 +12,7 @@ import {
   Foot 
 } from "./components";
 
-import { Register, SignIn } from "./pages"
+import { Register, SignIn, Dashboard } from "./pages"
 
 const App = () => {
   return (
@@ -21,6 +21,7 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/register" element={<Register />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
@@ -54,7 +55,7 @@ const Landing = () => {
           <Foot />
           <StarsCanvas />
         </div>
-      </div>
+    </div>
   );
 }
 
