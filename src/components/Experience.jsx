@@ -25,8 +25,8 @@ const ExperienceCard = ({ experience }) => {
         borderRight: "3px solid #ea580c"
       }}
       contentArrowStyle={{ borderRight: "8px solid #ea580c" }}
-      date={experience.date}
-      dateClassName="text-orange-600 text-2xl font-bold"
+      // date={experience.date}
+      // dateClassName="text-orange-600 text-2xl font-bold"
       iconStyle={{ background: experience.iconBg }}
       icon={
         <div className='flex justify-center items-center w-full h-full'>

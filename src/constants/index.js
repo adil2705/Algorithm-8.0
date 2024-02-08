@@ -57,25 +57,25 @@ const experiences = [
     title: "Event Registration",
     icon: one,
     iconBg: "#383E56",
-    date: "13th Feb 2024 - 20th Feb 2024",
+    // date: "13th Feb 2024 - 20th Feb 2024",
     points: [
-      "Participants have to register themselves and form a team of 4 members.",
+      "Participants have to register themselves and form a team of 3 members.",
     ],
   },
   {
     title: "Problem statement announcement",
     icon: two,
     iconBg: "#E6DEDD",
-    date: "1st March 2024",
+    // date: "1st March 2024",
     points: [
-      "Problem statements will be announce and team leader has to select on topic and start work on it.",
+      "Problem statements will be announced and team lead has to select the topic and start working on it.",
     ],
   },
   {
     title: "Team Reporting Day",
     icon: three,
     iconBg: "#383E56",
-    date: "3rd March 2024",
+    // date: "1rd March 2024",
     points: [
       "Each team has to report to AIKTC CAMPUS at 9:00 AM IST to 10:00 AM IST.",
     ],
@@ -84,9 +84,9 @@ const experiences = [
     title: "Winner Announcement",
     icon: four,
     iconBg: "#E6DEDD",
-    date: "4th March 2024",
+    // date: "2nd March 2024",
     points: [
-      "Winner will be announce.",
+      "Winner will be announced.",
     ],
   },
 ];

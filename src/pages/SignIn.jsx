@@ -73,7 +73,7 @@ export default function SignIn() {
                 }, 2000);
             } catch (error) {
                 setLoading(false);
-                setAlertMessage(error.message);
+                setAlertMessage(getErrorMessage(error.code));
                 setAlertType('error');
                 setShowAlert(true);
                 setTimeout(() => {
@@ -82,7 +82,7 @@ export default function SignIn() {
             }
         } else {
             setLoading(false);
-            setAlertMessage(error.message);
+            setAlertMessage(getErrorMessage(error.code));
             setAlertType('error');
             setShowAlert(true);
             setTimeout(() => {
@@ -90,7 +90,26 @@ export default function SignIn() {
             }, 2000);
         }
     }
-};
+  };
+
+  function getErrorMessage(code) {
+    switch (code) {
+      case 'auth/invalid-email':
+        return 'The email address is invalid.';
+      case 'auth/user-disabled':
+        return 'The user corresponding to the given email has been disabled.';
+      case 'auth/user-not-found':
+        return 'There is no user corresponding to the given email.';
+      case 'auth/wrong-password':
+        return 'The password is invalid for the given email.';
+      case 'auth/email-already-in-use':
+        return 'The email address is already in use by another account.';
+      case 'auth/weak-password':
+        return 'The password must be 6 characters long or more.';
+      default:
+        return 'An unknown error occurred.';
+    }
+  }
 
   const forgotPassword = async (e) => {
     e.preventDefault()
@@ -108,7 +127,7 @@ export default function SignIn() {
     })
     .catch((error) => {
       setLoading(false);
-      setAlertMessage(error.message);
+      setAlertMessage(getErrorMessage(error.code));
       setAlertType('error');
       setShowAlert(true);
       setTimeout(() => {
@@ -123,7 +142,7 @@ export default function SignIn() {
         <div className="fixed w-full top-0 z-10">
             {showAlert && <Alert message={alertMessage} type={alertType} />}
         </div>
-        <section className="items-center flex justify-center min-h-screen">
+        <section className="items-center flex justify-center min-h-screen px-2">
           <div className="border-2 border-orange-600 bg-blur flex flex-col rounded-2xl md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-10 items-center">
             <div>
               <Lottie 
@@ -133,22 +152,25 @@ export default function SignIn() {
               />
             </div>
             <div className={`md:w-1/2 max-w-sm ${isMobile ? 'p-5' : 'p-10'}`}>
-                <div className='flex flex-row'>
-                  <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      className="h-10 w-10 cursor-pointer mt-0.5" 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor"
-                      onClick={() => window.history.back()}>
-                      <path 
-                          strokeLinecap="round" 
-                          strokeLinejoin="round" 
-                          strokeWidth={2} 
-                          d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                    <h1 className="mb-8 ml-2.5 font-extrabold text-4xl">Login or Create Account</h1>
-                </div>
+              <div className='flex flex-row'>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-10 w-10 cursor-pointer mt-0.5" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                  onClick={() => window.history.back()}>
+                  <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <h1 className="mb-8 ml-2.5 font-extrabold text-4xl">Login or Create Account</h1>
+              </div>
+              <p className="mb-4 text-base font-semibold">
+                If your account exists you will be logged in otherwise a new account will be created.
+              </p>
               <input 
                   className="text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl" 
                   type="text" 
