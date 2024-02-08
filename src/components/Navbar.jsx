@@ -100,8 +100,8 @@ const Navbar = ({
                   onClick={toggleMenu}
                   className="block p-4 text-lg font-semibold text-white" 
                   href="#">
-                    Home
-                  </a>
+                  Home
+                </a>
               </li>
               <li className="mb-1">
                 <a 
@@ -139,16 +139,22 @@ const Navbar = ({
           </div>
           <div className="mt-auto">
             <div className="pt-6">
-              <a className="lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-white text-lg text-orange-600 font-bold rounded-xl transition duration-200" href="#contact">Contact</a>
+              <a 
+                onClick={toggleMenu}
+                className="py-2 px-6 bg-white text-lg text-orange-600 font-bold rounded-xl focus:outline-none" 
+                href="#contact">
+                  Contact
+              </a>
               {user == null ? 
                 <Link
+                  onClick={toggleMenu}
                   to="/signin"
-                  className="m-2 lg:inline-block py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl transition duration-200">
+                  className="m-2 py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl focus:outline-none">
                   Login
                 </Link> : 
                 <button
                   onClick={() => auth.signOut()}
-                  className="m-2 lg:inline-block py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl transition duration-200">
+                  className="m-2 py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl focus:outline-none">
                   Logout
                 </button>
               }
