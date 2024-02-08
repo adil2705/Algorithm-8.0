@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/UserContext';
 import { db } from "../firebase-config";
 import { collection, query, where, getDocs, } from "firebase/firestore";
+import { notice } from "../constants";
 import {
   Alert
 } from "../components";
@@ -197,21 +198,22 @@ const Dashboard = () => {
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
                     <label htmlFor="github_profile" className="text-sm">Github Profile</label>
-                    <input id="github_profile" type="text" placeholder="Jo " value={githubLead} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <input id="github_profile" type="text" placeholder="Github link " value={githubLead} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
                     <label htmlFor="linkdin_profile" className="text-sm">Linkdin Profile</label>
-                    <input id="linkdin_profile" type="text" value={linkedinLead} placeholder="bhi chahiye " disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <input id="linkdin_profile" type="text" value={linkedinLead} placeholder="Linkdin link " disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full border-b">
                     <label htmlFor="college" className="text-sm">College Name</label>
-                    <input id="college" type="text" value={collegeLead} placeholder="daalo" disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <input id="college" type="text" value={collegeLead} placeholder="College name" disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                 </div>
               </fieldset>
               <fieldset className="grid grid-cols-4 gap-6 p-3 rounded-md shadow-sm ">
                 <div className="space-y-2 col-span-full lg:col-span-1 ">
                   <p className="font-medium">Member 2</p>
+                  <p className={`${member2Exists == true ? 'block' : 'hidden'} text-xs text-red-500`} >Member 2 dosen't exists</p>
                 </div>
                 <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                   <div className="col-span-full border-b">
@@ -224,25 +226,26 @@ const Dashboard = () => {
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
                     <label htmlFor="contact" className="text-sm">Contact</label>
-                    <input id="contact" type="number" placeholder="" value={contactMember2} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <input id="contact" type="number" placeholder="Contect" value={contactMember2} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
                     <label htmlFor="github_profile" className="text-sm">Github Profile</label>
-                    <input id="github_profile" type="text" placeholder="Jo " value={githubMember2} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <input id="github_profile" type="text" placeholder="Github Link" value={githubMember2} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
                     <label htmlFor="linkdin_profile" className="text-sm">Linkdin Profile</label>
-                    <input id="linkdin_profile" type="text" value={linkedinMember2} placeholder="bhi chahiye " disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <input id="linkdin_profile" type="text" value={linkedinMember2} placeholder="linkdin link" disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full border-b">
                     <label htmlFor="college" className="text-sm">College Name</label>
-                    <input id="college" type="text" value={collegeMember2} placeholder="daalo" disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <input id="college" type="text" value={collegeMember2} placeholder="College name" disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                 </div>
               </fieldset>
               <fieldset className="grid grid-cols-4 gap-6 p-3 rounded-md shadow-sm ">
                 <div className="space-y-2 col-span-full lg:col-span-1 ">
                   <p className="font-medium">Member 3</p>
+                  <p className={`${member3Exists == true ? 'block' : 'hidden'} text-xs text-red-500`} >Member 3 dosen't exists</p>
                 </div>
                 <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                   <div className="col-span-full border-b">
@@ -259,15 +262,15 @@ const Dashboard = () => {
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
                     <label htmlFor="github_profile" className="text-sm">Github Profile</label>
-                    <input id="github_profile" type="text" placeholder="Jo " value={githubMember3} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <input id="github_profile" type="text" placeholder="Github link " value={githubMember3} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
                     <label htmlFor="linkdin_profile" className="text-sm">Linkdin Profile</label>
-                    <input id="linkdin_profile" type="text" value={linkedinMember3} placeholder="bhi chahiye " disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <input id="linkdin_profile" type="text" value={linkedinMember3} placeholder="Linkdin link " disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full border-b">
                     <label htmlFor="college" className="text-sm">College Name</label>
-                    <input id="college" type="text" placeholder="daalo" value={collegeMember3} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <input id="college" type="text" placeholder="College name" value={collegeMember3} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                 </div>
               </fieldset>
@@ -277,11 +280,12 @@ const Dashboard = () => {
             <div className="text-white">
               <div className="container max-w-4xl px-10 py-6 mx-auto rounded-lg shadow-sm ">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm dark:text-gray-400">Jun 1, 2020</span>
+                  <span className="text-sm dark:text-gray-400">{notice[0].date}</span>
                 </div>
                 <div className="mt-3">
-                  <a rel="noopener noreferrer" href="#" className="text-xl font-bold hover:underline">NOTICE 1</a>
-                  <p className="mt-2 text-sm">Tamquam ita veritas res equidem. Ea in ad expertus paulatim poterunt. Imo volo aspi novi tur. Ferre hic neque vulgo hae athei spero. Tantumdem naturales excaecant notaverim etc cau perfacile occurrere. Loco visa to du huic at in dixi aër.</p>
+                  <a rel="noopener noreferrer" href="#" className="text-xl font-bold hover:underline">{notice[0].id}</a>
+                  {/* //if want to write notice go to constants/index.js and write on notice array. */}
+                  <p className="mt-2 text-sm">{notice[0].notice}</p>
                 </div>
               </div>
             </div>
@@ -388,7 +392,7 @@ const Dashboard = () => {
         {/* end inner content */}
       </div>
 
-    </div>
+    </div >
   );
 };
 
