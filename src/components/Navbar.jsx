@@ -18,6 +18,9 @@ const Navbar = ({
   const menuRef = React.useRef(null);
 
   const toggleMenu = () => {
+    if (isMenuOpen) {
+      enableBodyScroll(menuRef.current);
+    }
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -138,7 +141,7 @@ const Navbar = ({
             </ul>
           </div>
           <div className="mt-auto">
-            <div className="pt-6">
+            <div className="p-6">
               <a 
                 onClick={toggleMenu}
                 className="py-2 px-6 bg-white text-lg text-orange-600 font-bold rounded-xl focus:outline-none" 
@@ -149,12 +152,12 @@ const Navbar = ({
                 <Link
                   onClick={toggleMenu}
                   to="/signin"
-                  className="m-2 py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl focus:outline-none">
+                  className="ml-2 py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl focus:outline-none">
                   Login
                 </Link> : 
                 <button
                   onClick={() => auth.signOut()}
-                  className="m-2 py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl focus:outline-none">
+                  className="ml-2 py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl focus:outline-none">
                   Logout
                 </button>
               }
