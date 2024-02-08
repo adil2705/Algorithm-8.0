@@ -461,7 +461,7 @@ const Edit = () => {
                 <div className='flex flex-row'>
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
-                        className="h-10 w-10 cursor-pointer p-2" 
+                        className="h-8 w-8 cursor-pointer mt-0.5" 
                         fill="none" 
                         viewBox="0 0 24 24" 
                         stroke="currentColor"
@@ -472,7 +472,7 @@ const Edit = () => {
                             strokeWidth={2} 
                             d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
-                    <h1 className="mb-8 ml-2.5 font-extrabold text-4xl">Edit Registration Form</h1>
+                    <h1 className="mb-8 ml-2.5 font-bold text-4xl">Edit Registration</h1>
                 </div>
                 <div className="flex justify-center px-2.5">
                     <input 

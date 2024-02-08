@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { styles } from "../styles";
 import { motion } from "framer-motion";
@@ -11,10 +11,37 @@ import Navbar from "./Navbar";
 
 import { UserContext } from '../context/UserContext';
 
+import { db } from "../firebase-config";
+import { collection, query, where, getDocs } from "firebase/firestore";
+
 const Hero = () => {
   const isMobile = window.innerWidth < 768;
 
+  const [isRegistered, setIsRegistered] = useState(false);
+
   const user = useContext(UserContext);
+
+  if(user) {
+    const checkUserRegistered = async () => {
+      var q1 = query(collection(db, "teams"), where("emailLead", "==", user.email));
+      var q2 = query(collection(db, "teams"), where("emailMember2", "==", user.email));
+      var q3 = query(collection(db, "teams"), where("emailMember3", "==", user.email));
+  
+      const [querySnapshot1, querySnapshot2, querySnapshot3] = await Promise.all([
+        getDocs(q1),
+        getDocs(q2),
+        getDocs(q3)
+      ]);
+  
+      if (querySnapshot1.empty && querySnapshot2.empty && querySnapshot3.empty) {
+        setIsRegistered(false);
+      } else {
+        setIsRegistered(true);
+      }
+    }
+
+    checkUserRegistered();
+  }
 
   return (
     <section className={`w-[100vw] h-[100vh] mb-32 ${isMobile ? 'hero-bg-mobile' : 'hero-bg-desktop'}`}>
@@ -45,11 +72,18 @@ const Hero = () => {
               </motion.div>
             </div>
             <div className="flex flex-row justify-center items-center">
-              <Link
-                to="/register"
-                className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
-                  Register
-              </Link>
+              {!isRegistered ? 
+                <Link
+                  to="/register"
+                  className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
+                    Register
+                </Link> :
+                <Link
+                  to="/edit"
+                  className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
+                    Edit Form
+                </Link>
+              }
             </div>
           </div>
         </section>
