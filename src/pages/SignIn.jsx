@@ -56,8 +56,8 @@ export default function SignIn() {
         setShowAlert(true);
         setTimeout(() => {
             setShowAlert(false);
+            navigate('/');
         }, 2000);
-        navigate('/');
     } catch (error) {
         setLoading(false);
         if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
@@ -69,8 +69,8 @@ export default function SignIn() {
                 setShowAlert(true);
                 setTimeout(() => {
                     setShowAlert(false);
+                    navigate('/');
                 }, 2000);
-                navigate('/');
             } catch (error) {
                 setLoading(false);
                 setAlertMessage(error.message);
@@ -132,11 +132,11 @@ export default function SignIn() {
                 width={isMobile ? 300 : 420}
               />
             </div>
-            <div className={`md:w-1/2 max-w-sm ${isMobile ? 'px-5 py-6' : 'px-8 py-5'}`}>
+            <div className={`md:w-1/2 max-w-sm ${isMobile ? 'p-5' : 'p-10'}`}>
                 <div className='flex flex-row'>
                   <svg 
                       xmlns="http://www.w3.org/2000/svg" 
-                      className="h-10 w-10 cursor-pointer" 
+                      className="h-10 w-10 cursor-pointer mt-0.5" 
                       fill="none" 
                       viewBox="0 0 24 24" 
                       stroke="currentColor"

@@ -64,10 +64,10 @@ const Landing = () => {
         <Faq />
         <StarsCanvas />
       </div>
-      <div className='relative z-0'>
-        {/* <Clients /> */}
+      {/* <div className='relative z-0'>
+        <Clients />
         <StarsCanvas />
-      </div>
+      </div> */}
       <div className='relative z-0'>
         <Contact />
         <Foot />
