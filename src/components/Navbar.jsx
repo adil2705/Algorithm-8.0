@@ -6,14 +6,26 @@ import { logo } from "../assets/images";
 
 import { auth } from "../firebase-config";
 
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+
 const Navbar = ({
   user
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const menuRef = React.useRef(null);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  React.useEffect(() => {
+    if (isMenuOpen) {
+      disableBodyScroll(menuRef.current);
+    } else {
+      enableBodyScroll(menuRef.current);
+    }
+  }, [isMenuOpen]);
 
   return (
     <section>
@@ -67,13 +79,11 @@ const Navbar = ({
           </button>
         }
       </nav>
-      {/* TODO: Customize this */}
-      <div className={`navbar-menu relative z-50 ${isMenuOpen ? '' : 'hidden'}`}>
-        
-        <nav className="fixed z-20 top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-hidden">
+      <div ref={menuRef} className={`navbar-menu relative z-50 ${isMenuOpen ? '' : 'hidden'}`}>
+        <nav className="fixed z-20 top-0 left-0 bottom-0 flex flex-col w-full py-6 px-6 bg-blur overflow-y-hidden">
           <div className="flex items-center mb-8">
             <a className="mr-auto text-3xl font-bold leading-none" href="#">
-              <img src={logo} alt="" className="h-12"  />
+              <img src={logo} alt='logo' className='w-16 h-16 object-contain' />
             </a>
             <button onClick={toggleMenu}>
               <svg className="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -84,42 +94,67 @@ const Navbar = ({
           <div>
             <ul>
               <li className="mb-1">
-                <a className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="#">Home</a>
+                <a 
+                  onClick={toggleMenu}
+                  className="block p-4 text-lg font-semibold text-white hover:bg-orange-600 hover:text-blue-600 rounded" 
+                  href="#">
+                    Home
+                  </a>
               </li>
               <li className="mb-1">
-                <a className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="##about">Overview</a>
+                <a 
+                  onClick={toggleMenu}
+                  className="block p-4 text-lg font-semibold text-white hover:bg-orange-600 hover:text-blue-600 rounded" 
+                  href="#about">
+                  Overview
+                </a>
               </li>
               <li className="mb-1">
-                <a className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="##experience">Timeline</a>
+                <a 
+                  onClick={toggleMenu}
+                  className="block p-4 text-lg font-semibold text-white hover:bg-orange-600 hover:text-blue-600 rounded" 
+                  href="#experience">
+                  Timeline
+                </a>
               </li>
               <li className="mb-1">
-                <a className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="#faq">Faq</a>
+                <a 
+                  onClick={toggleMenu}
+                  className="block p-4 text-lg font-semibold text-white hover:bg-orange-600 hover:text-blue-600 rounded" 
+                  href="#faq">
+                  FAQ's
+                </a>
               </li>
-              
-              
+              <li className="mb-1">
+                <a 
+                  onClick={toggleMenu}
+                  className="block p-4 text-lg font-semibold text-white hover:bg-orange-600 hover:text-blue-600 rounded" 
+                  href="#faq">
+                  Sponsers
+                </a>
+              </li>
             </ul>
           </div>
           <div className="mt-auto">
             <div className="pt-6">
-            <a className="lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-orange-600 text-lg text-white font-bold rounded-xl transition duration-200" href="#contact">Contact</a>
-            {user == null ? 
-          <Link
-            to="/signin"
-            className="m-2 lg:inline-block py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl transition duration-200">
-            Login
-          </Link> : 
-          <button
-            onClick={() => auth.signOut()}
-            className="m-2 lg:inline-block py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl transition duration-200">
-            Logout
-          </button>
-        }
+              <a className="lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-white text-lg text-orange-600 font-bold rounded-xl transition duration-200" href="#contact">Contact</a>
+              {user == null ? 
+                <Link
+                  to="/signin"
+                  className="m-2 lg:inline-block py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl transition duration-200">
+                  Login
+                </Link> : 
+                <button
+                  onClick={() => auth.signOut()}
+                  className="m-2 lg:inline-block py-2 px-6 bg-orange-600 text-white text-lg font-bold rounded-xl transition duration-200">
+                  Logout
+                </button>
+              }
             </div>
-           
           </div>
         </nav>
       </div>
-  </section>
+    </section>
   );
 };
 
