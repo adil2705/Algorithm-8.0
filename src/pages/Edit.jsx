@@ -99,16 +99,13 @@ const Edit = () => {
         if (docRef != null && docRef.exists()) {
             const data = docRef.data();
             if(data && user.email == data.emailLead) { 
-                if(data.nameLead || data.emailLead || data.contactLead 
-                    || data.githubLead || data.linkedinLead || data.collegeLead) {
-                    setNameLead(data.nameLead);
-                    setEmailLead(data.emailLead);
-                    setContactLead(data.contactLead);
-                    setGithubLead(data.githubLead);
-                    setLinkedinLead(data.linkedinLead);
-                    setCollegeLead(data.collegeLead);
-                    setMemberCount(1);
-                }
+                setNameLead(data.nameLead);
+                setEmailLead(data.emailLead);
+                setContactLead(data.contactLead);
+                setGithubLead(data.githubLead);
+                setLinkedinLead(data.linkedinLead);
+                setCollegeLead(data.collegeLead);
+                setMemberCount(1);
                 if(data.nameMember2 && data.emailMember2 && data.contactMember2 
                     && data.githubMember2 && data.linkedinMember2 && data.collegeMember2) {
                     setNameMember2(data.nameMember2);
