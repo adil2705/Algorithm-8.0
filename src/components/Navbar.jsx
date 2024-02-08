@@ -131,7 +131,7 @@ const Navbar = ({
                 <a 
                   onClick={toggleMenu}
                   className="block p-4 text-lg font-semibold text-white" 
-                  href="#faq">
+                  href="#clients">
                   Sponsers
                 </a>
               </li>
