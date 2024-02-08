@@ -53,7 +53,6 @@ const Landing = () => {
         <Hero />
       </div>
       <div className='relative z-0 bg-black'>
-        <StarsCanvas />
         <About />
         <Experience />
         <Faq />
