@@ -52,23 +52,11 @@ const Landing = () => {
       <div className="relative ">
         <Hero />
       </div>
-      <div className='relative z-0'>
+      <div className='relative z-0 bg-black'>
         <About />
-        <StarsCanvas />
-      </div>
-      <div className='relative z-0'>
         <Experience />
-        <StarsCanvas />
-      </div>
-      <div className='relative z-0'>
         <Faq />
-        <StarsCanvas />
-      </div>
-      {/* <div className='relative z-0'>
-        <Clients />
-        <StarsCanvas />
-      </div> */}
-      <div className='relative z-0'>
+        {/* <Clients /> */}
         <Contact />
         <Foot />
         <StarsCanvas />

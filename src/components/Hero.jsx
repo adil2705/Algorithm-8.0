@@ -72,16 +72,23 @@ const Hero = () => {
               </motion.div>
             </div>
             <div className="flex flex-row justify-center items-center">
-              {!isRegistered ? 
+              {user ? !isRegistered ? 
                 <Link
                   to="/register"
                   className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
                     Register
-                </Link> :
+                </Link> 
+                :
                 <Link
                   to="/edit"
                   className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
                     Edit Form
+                </Link>
+                : 
+                <Link
+                  to="/signin"
+                  className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
+                  Login to Register
                 </Link>
               }
             </div>

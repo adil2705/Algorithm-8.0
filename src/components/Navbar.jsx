@@ -141,7 +141,7 @@ const Navbar = ({
             </ul>
           </div>
           <div className="mt-auto">
-            <div className="p-6">
+            <div className="p-6 flex justify-center">
               <a 
                 onClick={toggleMenu}
                 className="py-2 px-6 bg-white text-lg text-orange-600 font-bold rounded-xl focus:outline-none" 

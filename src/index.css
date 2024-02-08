@@ -39,9 +39,9 @@ h1 {
   background-position: center;
   background-repeat: no-repeat;
   box-shadow: 0 0 5px 10px #000000;
-  height: 80vh;
+  height: 100vh;
   border-bottom: 2px solid #ea580c;
-  border-radius: 0 0 35px 35px;
+  border-radius: 0 0 30px 30px;
 }
 
 .canvas-loader {
