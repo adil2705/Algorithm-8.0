@@ -49,7 +49,7 @@ const App = () => {
 const Landing = () => {
   return (
     <div className='relative z-0 bg-black overflow-x-hidden'>
-      <div className="relative ">
+      <div className="relative">
         <Hero />
       </div>
       <div className='relative z-0 bg-black'>
