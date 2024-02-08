@@ -110,4 +110,12 @@ export const clients = [
   },
 ];
 
+export const notice = [
+  {
+    date: "08 feb 2024",
+    id: "NOTICE 1",
+    notice: "Tamquam ita veritas res equidem. Ea in ad expertus paulatim poterunt. Imo volo aspi novi tur. Ferre hic neque vulgo hae athei spero. Tantumdem naturales excaecant notaverim etc cau perfacile occurrere. Loco visa to du huic at in dixi aër."
+  }
+];
+
 export { services, experiences };
