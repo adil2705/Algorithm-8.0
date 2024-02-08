@@ -29,6 +29,8 @@ h1 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  border-bottom: 1px solid #ea580c;
+  border-radius: 0 0 100px 100px;
 }
 
 .hero-bg-mobile {
@@ -38,6 +40,8 @@ h1 {
   background-repeat: no-repeat;
   box-shadow: 0 0 5px 10px #000000;
   height: 75vh;
+  border-bottom: 1px solid #ea580c;
+  border-radius: 0 0 50px 50px;
 }
 
 .glassmorphism {
