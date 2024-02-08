@@ -18,21 +18,23 @@ const ExperienceCard = ({ experience }) => {
     <VerticalTimelineElement 
       contentStyle={{
         background: "#000000",
-        color:"#fff"
-        
+        color:"#ea580c",
+        borderRadius: "20px",
+        borderLeft: "3px solid #ea580c",
+        borderTop: "3px solid #ea580c",
+        borderRight: "3px solid #ea580c"
       }}
-      contentArrowStyle={{ borderRight: "7px solid  orange" }}
+      contentArrowStyle={{ borderRight: "8px solid #ea580c" }}
       date={experience.date}
+      dateClassName="text-orange-600 text-2xl font-bold"
       iconStyle={{ background: experience.iconBg }}
       icon={
-        <div className='flex   justify-center items-center w-full h-full'>
+        <div className='flex justify-center items-center w-full h-full'>
           <img
             src={experience.icon}
-            className='w-[100%] h-[100%] object-contain'
-          />
+            className='w-[100%] h-[100%] object-contain' />
         </div>
       }>
-      
       <div>
         <h3 className= 'text-white text-[24px] font-bold'>{experience.title}</h3>
       </div>
@@ -40,13 +42,11 @@ const ExperienceCard = ({ experience }) => {
         {experience.points.map((point, index) => (
           <li
             key={`experience-point-${index}`}
-            className='text-white-100 text-[14px] pl-1 tracking-wider'
-          >
+            className='text-white-100 text-[15px] pl-1 tracking-wider'>
             {point}
           </li>
         ))}
       </ul>
-     
     </VerticalTimelineElement>
   );
 };
@@ -59,19 +59,15 @@ const Experience = () => {
           This is the detailed list event of Algorithm 8.0
         </p>
         <h2 className={`${styles.sectionHeadText} text-center`}>
-          TIMELINE OF EVENT
+          Timeline of Events
         </h2>
       </motion.div>
       <div className='mt-20 flex flex-col '>
         <VerticalTimeline >
-
-      
           {experiences.map((experience, index) => (
             <ExperienceCard 
               key={`experience-${index}`}
-              experience={experience}
-              
-            />
+              experience={experience} />
           ))}
         </VerticalTimeline>
       </div>
