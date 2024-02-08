@@ -54,6 +54,12 @@ h1 {
   animation: mulShdSpin 1.1s infinite ease;
   transform: translateZ(0);
 }
+@layer utilities {
+  .text-stroke {
+    -webkit-text-stroke: 2px #000000;
+  }
+}
+
 
 @keyframes mulShdSpin {
   0%,
