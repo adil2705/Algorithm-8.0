@@ -49,7 +49,7 @@ const App = () => {
 const Landing = () => {
   return (
     <div className='relative z-0 bg-black overflow-x-hidden'>
-      <div className="relative z-0">
+      <div className="relative ">
         <Hero />
       </div>
       <div className='relative z-0'>
@@ -65,7 +65,7 @@ const Landing = () => {
         <StarsCanvas />
       </div>
       <div className='relative z-0'>
-        <Clients />
+        {/* <Clients /> */}
         <StarsCanvas />
       </div>
       <div className='relative z-0'>
