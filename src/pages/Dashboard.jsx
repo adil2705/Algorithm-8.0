@@ -1,8 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
+
 import { UserContext } from '../context/UserContext';
+
 import { db } from "../firebase-config";
 import { collection, query, where, getDocs, } from "firebase/firestore";
+
 import { notice } from "../constants";
+
 import {
   Alert
 } from "../components";
@@ -134,38 +138,33 @@ const Dashboard = () => {
   }, [docRef]);
 
   return (
-    <div className="fixed isolate overflow-hidden h-screen w-screen flex items- justify-center">
+    <div className="fixed isolate overflow-hidden h-screen w-screen flex justify-center">
       <div
         className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl "
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         <div
           className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#554b00] to-[#eb5600] opacity-20"
           style={{
             clipPath:
               "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-        ></div>
+          }} />
       </div>
       <div
         className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu"
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         <div
           className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff0000] to-[#ff0000] opacity-20"
           style={{
             clipPath:
               "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-        ></div>
+          }} />
       </div>
       <div className="box m-12 p-6 lg:p-8 bg-orange-100 rounded-lg w-full md:overflow-hidden overflow-y-auto bg-opacity-10 ">
-
         <div className="grid grid-cols-1 md:grid-cols-6 grid-rows-full md:grid-rows-4 gap-4 text-black h-full">
-          <div className="h-96 md:h-full md:row-span-4 col-span-1 md:col-span-3 border text-white border-black overflow-y-auto">
-            <div className="bg-gradient-to-r from-amber-500 to-orange-900 rounded-md p-3 pl-4 sticky top-0"> {/* background-linear-gradient(90deg, rgba(163,55,4,1) 0%, rgba(255,122,13,1) 61%, rgba(157,6,6,1) 100%); */}
+          <div className="h-96 md:h-full md:row-span-4 col-span-1 md:col-span-3 border text-white border-orange-600 overflow-y-auto rounded-xl">
+            <div className="bg-gradient-to-r from-amber-500 to-orange-900 p-3 flex justify-center sticky top-0"> 
               <input
-                className="w-3/4 text-xl px-4 py-2 bg-inherite border border-solid mr-4 border-orange-600  rounded-xl mb-3"
+                className="w-3/4 text-xl px-4 py-2 bg-inherite border border-solid mr-4 border-orange-600 rounded-xl"
                 type="text"
                 value={teamName}
                 onChange={(e) => setTeamName(e.target.value)}
@@ -180,8 +179,8 @@ const Dashboard = () => {
             <form noValidate="" action="" className="container flex flex-col mx-auto space-y-12">
               <fieldset className="grid grid-cols-4 gap-6 p-3 rounded-md shadow-sm ">
                 <div className="space-y-2 col-span-full lg:col-span-1 ">
-                  <p className="font-medium">Member 1</p>
-                  <p className="text-xs">has access of deleting </p>
+                  <p className="text-lg">Member 1</p>
+                  <p className="text-medium">has access of deleting </p>
                 </div>
                 <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                   <div className="col-span-full border-b">
@@ -210,10 +209,11 @@ const Dashboard = () => {
                   </div>
                 </div>
               </fieldset>
+
               <fieldset className="grid grid-cols-4 gap-6 p-3 rounded-md shadow-sm ">
                 <div className="space-y-2 col-span-full lg:col-span-1 ">
-                  <p className="font-medium">Member 2</p>
-                  <p className={`${member2Exists == true ? 'block' : 'hidden'} text-xs text-red-500`} >Member 2 dosen't exists</p>
+                  <p className="text-lg">Member 2</p>
+                  <p className={`${member2Exists == true ? 'block' : 'hidden'} text-medium text-red-500`} >Member 2 dosen't exists</p>
                 </div>
                 <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                   <div className="col-span-full border-b">
@@ -242,10 +242,11 @@ const Dashboard = () => {
                   </div>
                 </div>
               </fieldset>
+
               <fieldset className="grid grid-cols-4 gap-6 p-3 rounded-md shadow-sm ">
                 <div className="space-y-2 col-span-full lg:col-span-1 ">
-                  <p className="font-medium">Member 3</p>
-                  <p className={`${member3Exists == true ? 'block' : 'hidden'} text-xs text-red-500`} >Member 3 dosen't exists</p>
+                  <p className="text-lg">Member 3</p>
+                  <p className={`${member3Exists == true ? 'block' : 'hidden'} text-medium text-red-500`}>Member 3 dosen't exists</p>
                 </div>
                 <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                   <div className="col-span-full border-b">
@@ -276,7 +277,8 @@ const Dashboard = () => {
               </fieldset>
             </form>
           </div>
-          <div className="row-span-2 col-span-1 md:col-span-2 border border-black md:overflow-y-auto">
+
+          <div className="row-span-2 col-span-1 md:col-span-2 border border-orange-600 rounded-md md:overflow-y-auto">
             <div className="text-white">
               <div className="container max-w-4xl px-10 py-6 mx-auto rounded-lg shadow-sm ">
                 <div className="flex items-center justify-between">
@@ -284,7 +286,6 @@ const Dashboard = () => {
                 </div>
                 <div className="mt-3">
                   <a rel="noopener noreferrer" href="#" className="text-xl font-bold hover:underline">{notice[0].id}</a>
-                  {/* //if want to write notice go to constants/index.js and write on notice array. */}
                   <p className="mt-2 text-sm">{notice[0].notice}</p>
                 </div>
               </div>
@@ -324,11 +325,9 @@ const Dashboard = () => {
             {/* card end */}
           </div>
           <div className="row-span-4 col-span-1 md:col-start-6 md:row-start-1  md:overflow-y-auto ">
-
             <div className="p-2">
               <div className="container">
-                <div className="m-4 
-      <Navbar />text-white text-2xl">Timeline</div>
+                <div className="m-4 text-white text-2xl">Timeline</div>
                 <div className="flex flex-col md:grid grid-cols-12 text-white">
                   <div className="flex md:contents">
                     <div className="col-start-2 col-end-4 mr-10 md:mx-auto relative">
@@ -389,9 +388,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        {/* end inner content */}
       </div>
-
     </div >
   );
 };
