@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useState, useRef, Suspense } from "react";
+import { useState, useRef, Suspense, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 
@@ -32,13 +32,19 @@ const Stars = (props) => {
 };
 
 const Scene = () => {
-  const { size } = useThree();
-  const aspect = size.width / size.height;
+  const { camera, gl } = useThree();
 
-  return (
-    <Stars aspect={aspect} />
-  );
+  useEffect(() => {
+    const handleResize = () => {
+      camera.aspect = gl.domElement.clientWidth / gl.domElement.clientHeight;
+      camera.updateProjectionMatrix();
+    };
 
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [camera, gl]);
+
+  return <Stars />;
 };
 
 const StarsCanvas = () => {
