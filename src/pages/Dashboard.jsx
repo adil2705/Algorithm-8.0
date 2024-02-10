@@ -193,7 +193,7 @@ const Dashboard = () => {
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
                     <label htmlFor="contact" className="text-sm">Contact</label>
-                    <input id="contact" type="number" placeholder="" value={contactLead} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <input id="contact" type="number" placeholder="Contact" value={contactLead} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
                     <label htmlFor="github_profile" className="text-sm">Github Profile</label>
@@ -259,7 +259,7 @@ const Dashboard = () => {
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
                     <label htmlFor="contact" className="text-sm">Contact</label>
-                    <input id="contact" type="number" placeholder="" value={contactMember3} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <input id="contact" type="number" placeholder="Contact" value={contactMember3} disabled="dsabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
                     <label htmlFor="github_profile" className="text-sm">Github Profile</label>
