@@ -473,7 +473,7 @@ const Edit = () => {
                 </div>
                 <div className="flex justify-center px-2.5">
                     <input 
-                        className="w-full text-xl px-4 py-2 border border-solid border-orange-600 mr-5 rounded-xl mb-3" 
+                        className="w-full text-xl bg-black px-4 py-2 border border-solid border-orange-600 mr-5 rounded-xl mb-3" 
                         type="text" 
                         value={teamName}
                         onChange={(e) => setTeamName(e.target.value)} 
@@ -500,7 +500,7 @@ const Edit = () => {
                         <fieldset className='border border-orange-600 p-6 rounded-2xl m-3 bg-blur'>
                             <legend className='text-2xl font-bold px-2'>Member 1</legend>
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
                                 value={nameLead}
                                 onChange={(e) => setNameLead(e.target.value)} 
@@ -508,7 +508,7 @@ const Edit = () => {
                                 placeholder="Full Name" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text"
                                 value={emailLead}
                                 onChange={(e) => setEmailLead(e.target.value)}
@@ -516,7 +516,7 @@ const Edit = () => {
                                 placeholder="Email Address" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
                                 value={contactLead}
                                 onChange={(e) => setContactLead(e.target.value)}  
@@ -524,7 +524,7 @@ const Edit = () => {
                                 placeholder="Contact No." />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
                                 value={githubLead}
                                 onChange={(e) => setGithubLead(e.target.value)}  
@@ -532,7 +532,7 @@ const Edit = () => {
                                 placeholder="GitHub Profile" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
                                 value={linkedinLead}
                                 onChange={(e) => setLinkedinLead(e.target.value)} 
@@ -540,7 +540,7 @@ const Edit = () => {
                                 placeholder="LinkedIn Address" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
                                 value={collegeLead}
                                 onChange={(e) => setCollegeLead(e.target.value)} 
@@ -552,7 +552,7 @@ const Edit = () => {
                             <legend className='text-2xl font-bold px-2'>Member 2</legend>
                             <p className={`${member2Exists == true ? 'block' : 'hidden'} text-red-500 text-lg font-bold my-3`}>Member 2 dosen't exists</p>
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
                                 value={nameMember2}
                                 onChange={(e) => setNameMember2(e.target.value)} 
@@ -560,7 +560,7 @@ const Edit = () => {
                                 placeholder="Full Name" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
                                 value={emailMember2}
                                 onChange={(e) => setEmailMember2(e.target.value)}  
@@ -568,7 +568,7 @@ const Edit = () => {
                                 placeholder="Email Address" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
                                 value={contactMember2}
                                 onChange={(e) => setContactMember2(e.target.value)}  
@@ -576,7 +576,7 @@ const Edit = () => {
                                 placeholder="Contact No." />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
                                 value={githubMember2}
                                 onChange={(e) => setGithubMember2(e.target.value)}
@@ -584,7 +584,7 @@ const Edit = () => {
                                 placeholder="GitHub Profile" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
                                 value={linkedinMember2}
                                 onChange={(e) => setLinkedinMember2(e.target.value)} 
@@ -592,7 +592,7 @@ const Edit = () => {
                                 placeholder="LinkedIn Address" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text"
                                 value={collegeMember2}
                                 onChange={(e) => setCollegeMember2(e.target.value)}  
@@ -604,7 +604,7 @@ const Edit = () => {
                             <legend className='text-2xl font-bold px-2'>Member 3</legend>
                             <p className={`${member3Exists == true ? 'block' : 'hidden'} text-red-500 text-lg font-bold my-3`}>Member 3 dosen't exists</p>
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text"
                                 value={nameMember3}
                                 onChange={(e) => setNameMember3(e.target.value)} 
@@ -612,7 +612,7 @@ const Edit = () => {
                                 placeholder="Full Name" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text"
                                 value={emailMember3}
                                 onChange={(e) => setEmailMember3(e.target.value)}  
@@ -620,7 +620,7 @@ const Edit = () => {
                                 placeholder="Email Address" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
                                 value={contactMember3}
                                 onChange={(e) => setCollegeMember3(e.target.value)}  
@@ -628,7 +628,7 @@ const Edit = () => {
                                 placeholder="Contact No." />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text"
                                 value={githubMember3}
                                 onChange={(e) => setGithubMember3(e.target.value)}
@@ -636,7 +636,7 @@ const Edit = () => {
                                 placeholder="GitHub Profile" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text"
                                 value={linkedinMember3}
                                 onChange={(e) => setLinkedinMember3(e.target.value)}
@@ -644,7 +644,7 @@ const Edit = () => {
                                 placeholder="LinkedIn Address" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text"
                                 value={collegeMember3}
                                 onChange={(e) => setCollegeMember3(e.target.value)}  

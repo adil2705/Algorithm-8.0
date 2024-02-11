@@ -400,7 +400,7 @@ const Register = () => {
                             <p className={`${membersExists == true ? 'block' : 'hidden'} text-green-500 text-lg font-bold my-3`}>{memberCount} members already registered.</p>
                             <legend className='text-2xl font-bold px-2'>Member</legend>
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
+                                className="text-xl w-full bg-black px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
                                 value={teamName}
                                 onChange={(e) => {
@@ -410,7 +410,7 @@ const Register = () => {
                                 placeholder="Team Name" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
+                                className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
                                 type="text" 
                                 value={nameMember}
                                 onChange={(e) => setNameMember(e.target.value)} 
@@ -418,7 +418,7 @@ const Register = () => {
                                 placeholder="Full Name" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
+                                className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
                                 type="text"
                                 value={user ? user.email : ''}
                                 onChange={(e) => setEmailMember(e.target.value)}
@@ -427,31 +427,45 @@ const Register = () => {
                                 placeholder="Email Address" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
+                                className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
                                 type="text" 
                                 value={contactMember}
                                 onChange={(e) => setContactMember(e.target.value)}  
                                 required 
                                 placeholder="Contact No." />
 
-                            <input
-                                className="text-xl w-full px-4 py-2 bg-[#302c34] border border-solid border-gray-300 rounded-xl mb-3"
-                                type="file"
-                                accept=".pdf"
-                                onChange={(e) => setResumeFile(e.target.files[0])}
-                                placeholder="Resume File"
-                                required />
+                            <div className="flex justify-between">
+                                <label
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    htmlFor="resumeFile">
+                                    {resumeFile ? 'Resume : ' + resumeFile.name : 'Click to select your Resume'}
+                                </label>
+                                <input
+                                    className="hidden"
+                                    type="file"
+                                    accept=".pdf"
+                                    id='resumeFile'
+                                    onChange={(e) => setResumeFile(e.target.files[0])}
+                                    required />
+                            </div>
 
-                            <input
-                                className="text-xl w-full px-4 py-2 bg-[#302c34] border border-solid border-gray-300 rounded-xl mb-3"
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => setImageFile(e.target.files[0])}
-                                placeholder="Image File"
-                                required />
+                            <div className="flex justify-between">
+                                <label
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    htmlFor="imageFile">
+                                    {imageFile ? 'Image : ' + imageFile.name : 'Click to select your Image'}
+                                </label>
+                                <input
+                                    className="hidden"
+                                    type="file"
+                                    accept="image/*"
+                                    id='imageFile'
+                                    onChange={(e) => setImageFile(e.target.files[0])}
+                                    required />
+                            </div>
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
+                                className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
                                 type="text" 
                                 value={githubMember}
                                 onChange={(e) => setGithubMember(e.target.value)}  
@@ -459,7 +473,7 @@ const Register = () => {
                                 placeholder="GitHub Profile" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
+                                className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
                                 type="text" 
                                 value={linkedinMember}
                                 onChange={(e) => setLinkedinMember(e.target.value)} 
@@ -467,7 +481,7 @@ const Register = () => {
                                 placeholder="LinkedIn Address" />
 
                             <input 
-                                className="text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
+                                className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
                                 type="text" 
                                 value={collegeMember}
                                 onChange={(e) => setCollegeMember(e.target.value)} 

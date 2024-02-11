@@ -172,7 +172,7 @@ export default function SignIn() {
                 If your account exists you will be logged in otherwise a new account will be created.
               </p>
               <input 
-                  className="text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl" 
+                  className="text-xl bg-black w-full px-4 py-2 border border-solid border-gray-300 rounded-xl" 
                   type="text" 
                   label="Email Address"
                   value={email}
@@ -180,7 +180,7 @@ export default function SignIn() {
                   required 
                   placeholder="Email Address" />
               <input 
-                  className="text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl mt-4" 
+                  className="text-xl bg-black w-full px-4 py-2 border border-solid border-gray-300 rounded-xl mt-4" 
                   type="password" 
                   label="Password"
                   value={password}
