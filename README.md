@@ -1,1 +1,1 @@
-# Web Frontend for Algorithm 8.0
+# Algorithm 8.0 Web Frontend
