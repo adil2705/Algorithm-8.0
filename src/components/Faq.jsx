@@ -7,8 +7,8 @@ import { SectionWrapper } from "../hoc";
 
 const Faq = () => {
    return (
-      <section className="text-gray-700  sm:py-16 py-20 pt-20 max-w-7xl mx-auto relative z-0">
-         <div className="container mx-auto px-5  text-center">
+      <section className="text-gray-700 sm:py-15 py-20 pt-20 max-w-7xl mx-auto relative z-0">
+         <div className="container mx-auto px-5 text-center">
             <motion.div variants={fadeIn("down", "spring", 0.3, 0.75)}>
                <h2 className={styles.sectionHeadText}>FAQ's</h2>
             </motion.div>
