@@ -209,7 +209,7 @@ const Register = () => {
               return;
             }
             try {
-              const resumeRef = ref(storage, `resumes/${resumeFile.name + Date.now()}`);
+              const resumeRef = ref(storage, `resumes/${Date.now() + '-' + resumeFile.name}`);
               await uploadBytes(resumeRef, resumeFile);
               const resumeLink = await getDownloadURL(resumeRef);
               setResumeLink(resumeLink);
@@ -236,7 +236,7 @@ const Register = () => {
               return;
             }
             try {
-              const imageRef = ref(storage, `images/${imageFile.name + Date.now()}`);
+              const imageRef = ref(storage, `images/${Date.now + '-' + imageFile.name}`);
               await uploadBytes(imageRef, imageFile);
               const imageLink = await getDownloadURL(imageRef);
               setImageLink(imageLink);
