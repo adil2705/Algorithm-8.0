@@ -10,7 +10,9 @@ import {
 
 import { Link } from 'react-router-dom';
 
-import { db } from "../firebase-config";
+import { db, storage } from "../firebase-config";
+
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc, updateDoc, getDocs, query, where } from "firebase/firestore";
 
 const Register = () => {
@@ -195,6 +197,61 @@ const Register = () => {
         }
 
         setLoading(true);
+
+        if (resumeFile) {
+            if (resumeMember.size > 20 * 1024) {
+              setAlertMessage("Resume file size exceeds the limit (20KB).");
+              setAlertType("error");
+              setShowAlert(true);
+              setTimeout(() => {
+                setShowAlert(false);
+              }, 2000);
+              return;
+            }
+            try {
+              const resumeRef = ref(storage, `resumes/${resumeFile.name + Date.now()}`);
+              await uploadBytes(resumeRef, resumeFile);
+              const resumeLink = await getDownloadURL(resumeRef);
+              setResumeLink(resumeLink);
+            } catch (error) {
+                setLoading(false);
+                setAlertMessage(error.message);
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+          }
+
+          if (imageFile) {
+            if (imageFile.size > 80 * 1024) {
+              setAlertMessage("Image file size exceeds the limit (80KB).");
+              setAlertType("error");
+              setShowAlert(true);
+              setTimeout(() => {
+                setShowAlert(false);
+              }, 2000);
+              return;
+            }
+            try {
+              const imageRef = ref(storage, `images/${imageFile.name + Date.now()}`);
+              await uploadBytes(imageRef, imageFile);
+              const imageLink = await getDownloadURL(imageRef);
+              setImageLink(imageLink);
+            } catch (error) {
+                setLoading(false);
+                setAlertMessage(error.message);
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+          }
+
         querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
@@ -203,6 +260,8 @@ const Register = () => {
                 nameLead: nameMember,
                 emailLead: user.email,
                 contactLead: contactMember,
+                resumeLead: resumeLink,
+                imageLead: imageLink,
                 githubLead: githubMember,
                 linkedinLead: linkedinMember,
                 collegeLead: collegeMember
@@ -244,18 +303,24 @@ const Register = () => {
                                 nameLead: data.nameLead,
                                 emailLead: data.emailLead,
                                 contactLead: data.contactLead,
+                                resumeLead: data.resumeLead,
+                                imageLead: data.imageLead,
                                 githubLead: data.githubLead,
                                 linkedinLead: data.linkedinLead,
                                 collegeLead: data.collegeLead,
                                 nameMember2: data.nameMember2,
                                 emailMember2: data.emailMember2,
                                 contactMember2: data.contactMember2,
+                                resumeMember2: data.resumeMember2,
+                                imageMember2: data.imageMember2,
                                 githubMember2: data.githubMember2,
                                 linkedinMember2: data.linkedinMember2,
                                 collegeMember2: data.collegeMember2,
                                 nameMember3: nameMember,
                                 emailMember3: user.email,
                                 contactMember3: contactMember,
+                                resumeMember3: resumeLink,
+                                imageMember3: imageLink,
                                 githubMember3: githubMember,
                                 linkedinMember3: linkedinMember,
                                 collegeMember3: collegeMember
@@ -276,12 +341,16 @@ const Register = () => {
                                 nameLead: data.nameLead,
                                 emailLead: data.emailLead,
                                 contactLead: data.contactLead,
+                                resumeLead: data.resumeLead,
+                                imageLead: data.imageLead,
                                 githubLead: data.githubLead,
                                 linkedinLead: data.linkedinLead,
                                 collegeLead: data.collegeLead,
                                 nameMember2: nameMember,
                                 emailMember2: user.email,
                                 contactMember2: contactMember,
+                                resumeMember2: resumeLink,
+                                imageMember2: imageLink,
                                 githubMember2: githubMember,
                                 linkedinMember2: linkedinMember,
                                 collegeMember2: collegeMember
@@ -364,7 +433,7 @@ const Register = () => {
                                 placeholder="Contact No." />
 
                             <input
-                                className="text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                className="text-xl w-full px-4 py-2 bg-[#302c34] border border-solid border-gray-300 rounded-xl mb-3"
                                 type="file"
                                 accept=".pdf"
                                 onChange={(e) => setResumeFile(e.target.files[0])}
@@ -372,7 +441,7 @@ const Register = () => {
                                 required />
 
                             <input
-                                className="text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                className="text-xl w-full px-4 py-2 bg-[#302c34] border border-solid border-gray-300 rounded-xl mb-3"
                                 type="file"
                                 accept="image/*"
                                 onChange={(e) => setImageFile(e.target.files[0])}
