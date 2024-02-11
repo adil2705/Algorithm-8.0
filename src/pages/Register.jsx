@@ -442,7 +442,7 @@ const Register = () => {
                     </form>
                 </div>
             </div>
-            <StarsCanvas />  
+            {!isMobile && <StarsCanvas />}   
         </section>
     );
 };
