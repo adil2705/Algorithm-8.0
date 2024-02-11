@@ -331,6 +331,7 @@ const Register = () => {
                             setShowAlert(true);
                             setTimeout(() => {
                                 setShowAlert(false);
+                                navigate('/');
                             }, 2000);
                             return;
                         } if (data.nameLead != null &&
@@ -361,6 +362,7 @@ const Register = () => {
                             setShowAlert(true);
                             setTimeout(() => {
                                 setShowAlert(false);
+                                navigate('/');
                             }, 2000);
                             return;
                         }
