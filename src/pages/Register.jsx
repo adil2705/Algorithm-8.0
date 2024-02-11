@@ -199,15 +199,15 @@ const Register = () => {
         setLoading(true);
 
         if (resumeFile) {
-            if (resumeMember.size > 20 * 1024) {
-              setAlertMessage("Resume file size exceeds the limit (20KB).");
-              setAlertType("error");
-              setShowAlert(true);
-              setTimeout(() => {
-                setShowAlert(false);
-              }, 2000);
-              return;
-            }
+            // if (resumeFile.size > 20 * 1024) {
+            //   setAlertMessage("Resume file size exceeds the limit (20KB).");
+            //   setAlertType("error");
+            //   setShowAlert(true);
+            //   setTimeout(() => {
+            //     setShowAlert(false);
+            //   }, 2000);
+            //   return;
+            // }
             try {
               const resumeRef = ref(storage, `resumes/${Date.now() + '-' + resumeFile.name}`);
               await uploadBytes(resumeRef, resumeFile);
@@ -236,11 +236,12 @@ const Register = () => {
               return;
             }
             try {
-              const imageRef = ref(storage, `images/${Date.now + '-' + imageFile.name}`);
+              const imageRef = ref(storage, `images/${Date.now() + '-' + imageFile.name}`);
               await uploadBytes(imageRef, imageFile);
               const imageLink = await getDownloadURL(imageRef);
               setImageLink(imageLink);
             } catch (error) {
+                console.log(error);
                 setLoading(false);
                 setAlertMessage(error.message);
                 setAlertType('error');
@@ -397,7 +398,7 @@ const Register = () => {
                 <div>
                     <form className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
                         <fieldset className='border border-orange-600 p-6 rounded-2xl m-3 bg-blur'>
-                            <p className={`${membersExists == true ? 'block' : 'hidden'} text-green-500 text-lg font-bold my-3`}>{memberCount} members already registered.</p>
+                            <p className={`${membersExists == true ? 'block' : 'hidden'} text-green-500 text-lg font-bold my-3`}>{memberCount} member/s already registered.</p>
                             <legend className='text-2xl font-bold px-2'>Member</legend>
                             <input 
                                 className="text-xl w-full bg-black px-4 py-2 border border-solid border-white rounded-xl mb-3" 
