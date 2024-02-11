@@ -142,8 +142,8 @@ export default function SignIn() {
         <div className="fixed w-full top-0 z-10">
             {showAlert && <Alert message={alertMessage} type={alertType} />}
         </div>
-        <section className="items-center flex justify-center min-h-screen px-2">
-          <div className="border-2 border-orange-600 bg-blur flex flex-col rounded-2xl md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-10 items-center">
+        <section className='items-center flex justify-center min-h-screen px-2'>
+          <div className={`${isMobile ? '' : 'border-2 border-orange-600'} bg-blur flex flex-col rounded-2xl md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-10 items-center`}>
             <div>
               <Lottie 
                 options={defaultOptions}
@@ -155,7 +155,7 @@ export default function SignIn() {
               <div className='flex flex-row'>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  className="h-10 w-10 cursor-pointer mt-0.5" 
+                  className="h-10 w-10 cursor-pointer mt-1" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"
@@ -225,7 +225,7 @@ export default function SignIn() {
           </div>
         </section>
       </section>
-      <StarsCanvas />
+      {!isMobile && <StarsCanvas />}
     </div>
   );
 }

@@ -304,7 +304,7 @@ const Register = () => {
                 <div className='flex flex-row'>
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
-                        className="h-8 w-8 cursor-pointer mt-0.5" 
+                        className="h-8 w-8 cursor-pointer mt-1" 
                         fill="none" 
                         viewBox="0 0 24 24" 
                         stroke="currentColor"

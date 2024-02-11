@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 
 import { 
@@ -59,7 +58,7 @@ const Landing = () => {
         {/* <Clients /> */}
         <Contact />
         <Foot />
-        <StarsCanvas />
+        {window.innerWidth > 768 && <StarsCanvas />}
       </div>
     </div>
   );
