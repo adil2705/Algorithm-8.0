@@ -119,6 +119,7 @@ const Register = () => {
     const uploadResume = async () => {    
         if (resumeFile) {
             if (resumeFile.size > 20 * 1024) {
+              setLoading(false);
               setAlertMessage("Resume file size exceeds the limit (20KB).");
               setAlertType("error");
               setShowAlert(true);
@@ -149,6 +150,7 @@ const Register = () => {
     const uploadImage = async () => {
         if (imageFile) {
             if (imageFile.size > 80 * 1024) {
+              setLoading(false);
               setAlertMessage("Image file size exceeds the limit (80KB).");
               setAlertType("error");
               setShowAlert(true);
