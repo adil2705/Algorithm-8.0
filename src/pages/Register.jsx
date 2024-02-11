@@ -118,9 +118,9 @@ const Register = () => {
 
     const uploadResume = async () => {    
         if (resumeFile) {
-            if (resumeFile.size > 20 * 1024) {
+            if (resumeFile.size > 100 * 1024) {
               setLoading(false);
-              setAlertMessage("Resume file size exceeds the limit (20KB).");
+              setAlertMessage("Resume file size exceeds the limit (100KB).");
               setAlertType("error");
               setShowAlert(true);
               setTimeout(() => {
@@ -149,9 +149,9 @@ const Register = () => {
 
     const uploadImage = async () => {
         if (imageFile) {
-            if (imageFile.size > 80 * 1024) {
+            if (imageFile.size > 100 * 1024) {
               setLoading(false);
-              setAlertMessage("Image file size exceeds the limit (80KB).");
+              setAlertMessage("Image file size exceeds the limit (100KB).");
               setAlertType("error");
               setShowAlert(true);
               setTimeout(() => {
@@ -510,8 +510,8 @@ const Register = () => {
                                     <li>Enter new team name to create a new team and share that team name with your members so that they can become part of your team.</li>
                                     <li>Member to register first is automatically the lead of the team.</li>
                                     <li>Each team can only have three members.</li>
-                                    <li>Upload your Resume in .pdf format ({'>'}20 kb)</li>
-                                    <li>Upload your Image in any image format ({'>'}80 kb)</li>
+                                    <li>Upload your Resume in .pdf format ({'>'}100 kb)</li>
+                                    <li>Upload your Image in any image format ({'>'}100 kb)</li>
                                     <li>Linkedin Link : linkedin.com/in/profile-id</li>
                                     <li>GitHub Link : github.com/username</li>
                                 </ul>
