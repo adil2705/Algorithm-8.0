@@ -85,7 +85,6 @@ const Register = () => {
     }, [teamName]);
 
     const checkIfMemberExists = async () => {
-        console.log(teamName);
         querySnapshot = await getDocs(q);
         if (!querySnapshot.empty) {
             querySnapshot.forEach((doc) => {
@@ -114,6 +113,66 @@ const Register = () => {
             }
         } else {
             setMembersExists(false);
+        }
+    }
+
+    const uploadResume = async () => {    
+        if (resumeFile) {
+            if (resumeFile.size > 20 * 1024) {
+              setAlertMessage("Resume file size exceeds the limit (20KB).");
+              setAlertType("error");
+              setShowAlert(true);
+              setTimeout(() => {
+                setShowAlert(false);
+              }, 2000);
+              return;
+            }
+            try {
+              const resumeRef = ref(storage, `resumes/${Date.now() + '-' + resumeFile.name}`);
+              await uploadBytes(resumeRef, resumeFile);
+              await getDownloadURL(resumeRef).then((url) => {
+                setResumeLink(url);
+              });
+            } catch (error) {
+                setLoading(false);
+                setAlertMessage(error.message);
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        }
+    }
+
+    const uploadImage = async () => {
+        if (imageFile) {
+            if (imageFile.size > 80 * 1024) {
+              setAlertMessage("Image file size exceeds the limit (80KB).");
+              setAlertType("error");
+              setShowAlert(true);
+              setTimeout(() => {
+                setShowAlert(false);
+              }, 2000);
+              return;
+            }
+            try {
+                const imageRef = ref(storage, `images/${Date.now() + '-' + imageFile.name}`);
+                await uploadBytes(imageRef, imageFile);
+                await getDownloadURL(imageRef).then((url) => {
+                    setImageLink(url);
+                });
+            } catch (error) {
+                setLoading(false);
+                setAlertMessage(error.message);
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
         }
     }
 
@@ -198,179 +257,129 @@ const Register = () => {
 
         setLoading(true);
 
-        if (resumeFile) {
-            // if (resumeFile.size > 20 * 1024) {
-            //   setAlertMessage("Resume file size exceeds the limit (20KB).");
-            //   setAlertType("error");
-            //   setShowAlert(true);
-            //   setTimeout(() => {
-            //     setShowAlert(false);
-            //   }, 2000);
-            //   return;
-            // }
-            try {
-              const resumeRef = ref(storage, `resumes/${Date.now() + '-' + resumeFile.name}`);
-              await uploadBytes(resumeRef, resumeFile);
-              const resumeLink = await getDownloadURL(resumeRef);
-              setResumeLink(resumeLink);
-            } catch (error) {
-                setLoading(false);
-                setAlertMessage(error.message);
-                setAlertType('error');
-                setShowAlert(true);
-                setTimeout(() => {
-                    setShowAlert(false);
-                }, 2000);
-                return;
-            }
-          }
+        uploadResume().then(() => {
+            uploadImage().then(async () => {
+                if(resumeLink != '' && imageLink != '') {
+                    querySnapshot = await getDocs(q);
+                    if (querySnapshot.empty) {
+                        await addDoc(collection(db, "teams"), {
+                            teamName: teamName,
+                            nameLead: nameMember,
+                            emailLead: user.email,
+                            contactLead: contactMember,
+                            resumeLead: resumeLink,
+                            imageLead: imageLink,
+                            githubLead: githubMember,
+                            linkedinLead: linkedinMember,
+                            collegeLead: collegeMember
+                        });
+                        setLoading(false);
+                        setAlertMessage('Registered Successfully.');
+                        setAlertType('success');
+                        setShowAlert(true);
+                        setTimeout(() => {
+                            setShowAlert(false);
+                            navigate('/');
+                        }, 2000);
+                        return;
+                    } else {
+                        querySnapshot.forEach((doc) => {
+                            docRef = doc;
+                        });
 
-          if (imageFile) {
-            if (imageFile.size > 80 * 1024) {
-              setAlertMessage("Image file size exceeds the limit (80KB).");
-              setAlertType("error");
-              setShowAlert(true);
-              setTimeout(() => {
-                setShowAlert(false);
-              }, 2000);
-              return;
-            }
-            try {
-              const imageRef = ref(storage, `images/${Date.now() + '-' + imageFile.name}`);
-              await uploadBytes(imageRef, imageFile);
-              const imageLink = await getDownloadURL(imageRef);
-              setImageLink(imageLink);
-            } catch (error) {
-                console.log(error);
-                setLoading(false);
-                setAlertMessage(error.message);
-                setAlertType('error');
-                setShowAlert(true);
-                setTimeout(() => {
-                    setShowAlert(false);
-                }, 2000);
-                return;
-            }
-          }
-
-        querySnapshot = await getDocs(q);
-
-        if (querySnapshot.empty) {
-            await addDoc(collection(db, "teams"), {
-                teamName: teamName,
-                nameLead: nameMember,
-                emailLead: user.email,
-                contactLead: contactMember,
-                resumeLead: resumeLink,
-                imageLead: imageLink,
-                githubLead: githubMember,
-                linkedinLead: linkedinMember,
-                collegeLead: collegeMember
-            });
-            setLoading(false);
-            setAlertMessage('Registered Successfully.');
-            setAlertType('success');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-                navigate('/');
-            }, 2000);
-            return;
-        } else {
-            querySnapshot.forEach((doc) => {
-                docRef = doc;
-            });
-
-            if(docRef.exists()) {
-                const data = docRef.data();
-                if(data) {
-                    if (data.teamName === teamName) {
-                        if (data.nameLead != null &&
-                         data.nameMember2 != null &&
-                         data.nameMember3 != null) {
-                            setLoading(false);
-                            setAlertMessage('Team already has 3 members');
-                            setAlertType('error');
-                            setShowAlert(true);
-                            setTimeout(() => {
-                                setShowAlert(false);
-                            }, 2000);
-                            return;
-                        } if (data.nameLead != null &&
-                         data.nameMember2 != null &&
-                         data.nameMember3 == null) {
-                            updateDoc(docRef.ref, {
-                                teamName: teamName,
-                                nameLead: data.nameLead,
-                                emailLead: data.emailLead,
-                                contactLead: data.contactLead,
-                                resumeLead: data.resumeLead,
-                                imageLead: data.imageLead,
-                                githubLead: data.githubLead,
-                                linkedinLead: data.linkedinLead,
-                                collegeLead: data.collegeLead,
-                                nameMember2: data.nameMember2,
-                                emailMember2: data.emailMember2,
-                                contactMember2: data.contactMember2,
-                                resumeMember2: data.resumeMember2,
-                                imageMember2: data.imageMember2,
-                                githubMember2: data.githubMember2,
-                                linkedinMember2: data.linkedinMember2,
-                                collegeMember2: data.collegeMember2,
-                                nameMember3: nameMember,
-                                emailMember3: user.email,
-                                contactMember3: contactMember,
-                                resumeMember3: resumeLink,
-                                imageMember3: imageLink,
-                                githubMember3: githubMember,
-                                linkedinMember3: linkedinMember,
-                                collegeMember3: collegeMember
-                            });
-                            setLoading(false);
-                            setAlertMessage('Registered Successfully.');
-                            setAlertType('success');
-                            setShowAlert(true);
-                            setTimeout(() => {
-                                setShowAlert(false);
-                                navigate('/');
-                            }, 2000);
-                            return;
-                        } if (data.nameLead != null &&
-                            data.nameMember2 == null &&
-                            data.nameMember3 == null) {
-                            updateDoc(docRef.ref, {
-                                teamName: teamName,
-                                nameLead: data.nameLead,
-                                emailLead: data.emailLead,
-                                contactLead: data.contactLead,
-                                resumeLead: data.resumeLead,
-                                imageLead: data.imageLead,
-                                githubLead: data.githubLead,
-                                linkedinLead: data.linkedinLead,
-                                collegeLead: data.collegeLead,
-                                nameMember2: nameMember,
-                                emailMember2: user.email,
-                                contactMember2: contactMember,
-                                resumeMember2: resumeLink,
-                                imageMember2: imageLink,
-                                githubMember2: githubMember,
-                                linkedinMember2: linkedinMember,
-                                collegeMember2: collegeMember
-                            });
-                            setLoading(false);
-                            setAlertMessage('Registered Successfully.');
-                            setAlertType('success');
-                            setShowAlert(true);
-                            setTimeout(() => {
-                                setShowAlert(false);
-                                navigate('/');
-                            }, 2000);
-                            return;
-                        }
+                        if(docRef.exists()) {
+                            const data = docRef.data();
+                            if(data) {
+                                if (data.teamName === teamName) {
+                                    if (data.nameLead != null &&
+                                    data.nameMember2 != null &&
+                                    data.nameMember3 != null) {
+                                        setLoading(false);
+                                        setAlertMessage('Team already has 3 members');
+                                        setAlertType('error');
+                                        setShowAlert(true);
+                                        setTimeout(() => {
+                                            setShowAlert(false);
+                                        }, 2000);
+                                        return;
+                                    } if (data.nameLead != null &&
+                                    data.nameMember2 != null &&
+                                    data.nameMember3 == null) {
+                                        updateDoc(docRef.ref, {
+                                            teamName: teamName,
+                                            nameLead: data.nameLead,
+                                            emailLead: data.emailLead,
+                                            contactLead: data.contactLead,
+                                            resumeLead: data.resumeLead,
+                                            imageLead: data.imageLead,
+                                            githubLead: data.githubLead,
+                                            linkedinLead: data.linkedinLead,
+                                            collegeLead: data.collegeLead,
+                                            nameMember2: data.nameMember2,
+                                            emailMember2: data.emailMember2,
+                                            contactMember2: data.contactMember2,
+                                            resumeMember2: data.resumeMember2,
+                                            imageMember2: data.imageMember2,
+                                            githubMember2: data.githubMember2,
+                                            linkedinMember2: data.linkedinMember2,
+                                            collegeMember2: data.collegeMember2,
+                                            nameMember3: nameMember,
+                                            emailMember3: user.email,
+                                            contactMember3: contactMember,
+                                            resumeMember3: resumeLink,
+                                            imageMember3: imageLink,
+                                            githubMember3: githubMember,
+                                            linkedinMember3: linkedinMember,
+                                            collegeMember3: collegeMember
+                                        });
+                                        setLoading(false);
+                                        setAlertMessage('Registered Successfully.');
+                                        setAlertType('success');
+                                        setShowAlert(true);
+                                        setTimeout(() => {
+                                            setShowAlert(false);
+                                            navigate('/');
+                                        }, 2000);
+                                        return;
+                                    } if (data.nameLead != null &&
+                                        data.nameMember2 == null &&
+                                        data.nameMember3 == null) {
+                                        updateDoc(docRef.ref, {
+                                            teamName: teamName,
+                                            nameLead: data.nameLead,
+                                            emailLead: data.emailLead,
+                                            contactLead: data.contactLead,
+                                            resumeLead: data.resumeLead,
+                                            imageLead: data.imageLead,
+                                            githubLead: data.githubLead,
+                                            linkedinLead: data.linkedinLead,
+                                            collegeLead: data.collegeLead,
+                                            nameMember2: nameMember,
+                                            emailMember2: user.email,
+                                            contactMember2: contactMember,
+                                            resumeMember2: resumeLink,
+                                            imageMember2: imageLink,
+                                            githubMember2: githubMember,
+                                            linkedinMember2: linkedinMember,
+                                            collegeMember2: collegeMember
+                                        });
+                                        setLoading(false);
+                                        setAlertMessage('Registered Successfully.');
+                                        setAlertType('success');
+                                        setShowAlert(true);
+                                        setTimeout(() => {
+                                            setShowAlert(false);
+                                            navigate('/');
+                                        }, 2000);
+                                        return;
+                                    }
+                                }
+                            }
+                        } 
                     }
                 }
-            } 
-        }
+            });
+        });
     }
 
     return (
