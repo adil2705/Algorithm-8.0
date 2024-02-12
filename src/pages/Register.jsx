@@ -510,8 +510,8 @@ const Register = () => {
                                     <li>Enter new team name to create a new team and share that team name with your members so that they can become part of your team.</li>
                                     <li>Member to register first is automatically the lead of the team.</li>
                                     <li>Each team can only have three members.</li>
-                                    <li>Upload your Resume in .pdf format ({'>'}100 kb)</li>
-                                    <li>Upload your Image in any image format ({'>'}100 kb)</li>
+                                    <li>Upload your Resume in .pdf format ({'<'}100 kb)</li>
+                                    <li>Upload your Image in any image format ({'<'}100 kb)</li>
                                     <li>Linkedin Link : linkedin.com/in/profile-id</li>
                                     <li>GitHub Link : github.com/username</li>
                                 </ul>
