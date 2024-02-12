@@ -1,7 +1,4 @@
-
-import React, { useContext, useEffect, useState } from 'react';
-
-import { UserContext } from '../context/UserContext';
+mport { UserContext } from '../context/UserContext';
 
 import { 
   StarsCanvas,
@@ -12,13 +9,10 @@ import { Link } from "react-router-dom";
 
 import { db } from "../firebase-config";
 import { collection, query, where, getDocs, updateDoc } from "firebase/firestore";
-import { getDoc, doc } from "firebase/firestore"; // Import getDoc from Firestore library
 
-// Define the Edit component
 const Edit = () => {
     const isMobile = window.innerWidth < 768;
 
-    // Obtain the current user from the context
     const user = useContext(UserContext);
 
     const [showAlert, setShowAlert] = useState(false);
@@ -53,8 +47,6 @@ const Edit = () => {
 
     const [memberCount, setMemberCount] = useState(0);
 
-    // Define state variables
-    const [teamData, setTeamData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [loading2, setLoading2] = useState(false);
 
@@ -251,10 +243,9 @@ const Edit = () => {
             }, 2000);
             return;
         }
-    const [error, setError] = useState(null);
 
         if (!nameRegex.test(nameMember2) && memberCount > 1) {
-
+            
             setAlertMessage('Please enter a valid Name (Member 2).');
             setAlertType('error');
             setShowAlert(true);
@@ -362,10 +353,7 @@ const Edit = () => {
                 setShowAlert(false);
             }, 2000);
             return; 
-// Add a conditional check to handle null user
-    if (!user || !user.email) {
-    return <p>User not authenticated or email not available.</p>;
-    }
+        }
 
         if ((nameMember2 || emailMember2 || contactMember2 || 
             githubMember2 || linkedinMember2 || collegeMember2 ||
@@ -389,11 +377,7 @@ const Edit = () => {
             }, 2000);
             return;
         }
-// Now you can safely access user.email
-   const userEmail = user.email;
 
-    // Function to fetch team data for the current user
-    const fetchTeamData = async () => {
         setLoading(true);
         try {
             if(memberCount == 3) {
@@ -444,18 +428,7 @@ const Edit = () => {
                     linkedinLead: linkedinLead,
                     collegeLead: collegeLead
                 });
-            // Fetch the document from Firestore using the user's email
-            const docRef = doc(db, "teams", user.email);
-            const docSnap = await getDoc(docRef); // Use getDoc function to fetch the document
-
-            // Check if the document exists
-            if (docSnap.exists()) {
-                // Set the team data if the document exists
-                setTeamData(docSnap.data());
-            } else {
-                // Handle the case where the document does not exist
-                setError('No team data found for the current user.');
-            }
+            } 
             setLoading(false);
             setAlertMessage('Edited Successfully.');
             setAlertType('success');
@@ -464,9 +437,6 @@ const Edit = () => {
                 setShowAlert(false);
             }, 2000);
         } catch (error) {
-            // Handle errors
-            setError(error.message);
-        } finally {
             setLoading(false);
             setAlertMessage(error.message);
             setAlertType('error');
@@ -475,15 +445,8 @@ const Edit = () => {
                 setShowAlert(false);
             }, 2000);
         }
-        }
-    };
+    }
 
-    // Fetch team data on component mount
-    useEffect(() => {
-        fetchTeamData();
-    }, []); // Empty dependency array ensures the effect runs only once on mount
-
-    // Render the component JSX
     return (
         <section className='relative z-0 bg-black overflow-x-hidden'>
             <div className="fixed bg-primary w-full top-0 z-10">
@@ -530,7 +493,7 @@ const Edit = () => {
                         }
                     </button>
                 </div>
-        <div>
+                <div>
                     <form className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
                         <fieldset className='border border-orange-600 p-6 rounded-2xl m-3 bg-blur'>
                             <legend className='text-2xl font-bold px-2'>Member 1</legend>
@@ -582,7 +545,7 @@ const Edit = () => {
                                 required 
                                 placeholder="College Name" />
                         </fieldset>
-
+                        
                         <fieldset className='border border-orange-600 p-6 rounded-2xl m-3 flex-1 bg-blur'>
                             <legend className='text-2xl font-bold px-2'>Member 2</legend>
                             <p className={`${member2Exists == true ? 'block' : 'hidden'} text-red-500 text-lg font-bold my-3`}>Member 2 dosen't exists</p>
@@ -617,8 +580,6 @@ const Edit = () => {
                                 onChange={(e) => setGithubMember2(e.target.value)}
                                 required 
                                 placeholder="GitHub Profile" />
-            {/* Render loading state */}
-            {loading && <p>Loading...</p>}
 
                             <input 
                                 className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
@@ -627,8 +588,6 @@ const Edit = () => {
                                 onChange={(e) => setLinkedinMember2(e.target.value)} 
                                 required 
                                 placeholder="LinkedIn Address" />
-            {/* Render error message if any */}
-            {error && <p>{error}</p>}
 
                             <input 
                                 className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
@@ -730,20 +689,11 @@ const Edit = () => {
                             </Link>
                         </div>
                     </form>
-            {/* Render team data */}
-            {teamData && (
-                <div>
-                    <p>Team Name: {teamData.teamName}</p>
-                    {/* Render other team details as needed */}
                 </div>
-            )}
-        </div>
+            </div>
           {!isMobile && <StarsCanvas />}  
         </section>
     );
 };
 
-// Export the Edit component
 export default Edit;
-
- 
