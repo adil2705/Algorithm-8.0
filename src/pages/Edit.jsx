@@ -1,4 +1,6 @@
-mport { UserContext } from '../context/UserContext';
+import React, { useContext, useEffect, useState } from 'react';
+
+import { UserContext } from '../context/UserContext';
 
 import { 
   StarsCanvas,
