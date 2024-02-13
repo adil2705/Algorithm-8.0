@@ -28,11 +28,11 @@ const Faq = () => {
               </details>
               <details class="mb-4">
                 <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
-                  <span> What kind of support will be available during the hackathon?</span>
+                  <span>What kind of accommodation and food will be provided?</span>
                   <span className="transition group-open:rotate-180" />
                 </summary>
                 <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
-                Support during the hackathon may include access to mentors, technical support for hardware and software issues, and resources for researching algorithmic techniques.
+                The meals will be provided along with some snacks and basic amenities.
                 </p>
                 </details>
                 <details class="mb-4">
