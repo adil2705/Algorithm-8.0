@@ -299,18 +299,7 @@ const Register = () => {
             return;
         }
 
-        if (!nameMember || !user || !contactMember 
-            || !githubMember || !linkedinMember || !collegeMember) {
-            setAlertMessage('Please fill all the fields');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-
-        if (!nameRegex.test(nameMember)) {
+        if (!nameRegex.test(nameMember) || !nameMember) {
             setAlertMessage('Please enter a valid Name.');
             setAlertType('error');
             setShowAlert(true);
@@ -328,7 +317,7 @@ const Register = () => {
             }, 2000);
             return;
         }
-        if (!contactRegex.test(contactMember)) {
+        if (!contactRegex.test(contactMember) || !contactMember) {
             setAlertMessage('Please enter a valid Contact Number.');
             setAlertType('error');
             setShowAlert(true);
@@ -337,7 +326,7 @@ const Register = () => {
             }, 2000);
             return;
         }
-        if (!githubLinkedinRegex.test(githubMember)) {
+        if (!githubLinkedinRegex.test(githubMember) || !githubMember) {
             setAlertMessage('Please enter a valid GitHub Profile Link.');
             setAlertType('error');
             setShowAlert(true);
@@ -346,7 +335,7 @@ const Register = () => {
             }, 2000);
             return;
         }
-        if (!linkedinRegex.test(linkedinMember)) {
+        if (!linkedinRegex.test(linkedinMember) || !linkedinMember) {
             setAlertMessage('Please enter a valid LinkedIn Profile Link.');
             setAlertType('error');
             setShowAlert(true);
@@ -355,8 +344,17 @@ const Register = () => {
             }, 2000);
             return;
         }
-        if (!collegeRegex.test(collegeMember)) {
+        if (!collegeRegex.test(collegeMember) || !collegeMember) {
             setAlertMessage('Please enter a valid College Name.');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if(!resumeFile) {
+            setAlertMessage('Please upload your Resume.');
             setAlertType('error');
             setShowAlert(true);
             setTimeout(() => {
@@ -373,6 +371,15 @@ const Register = () => {
             setShowAlert(false);
           }, 2000);
           return;
+        }
+        if(!imageFile) {
+            setAlertMessage('Please upload your Image.');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
         }
         if (imageFile.size > 100 * 1024) {
           setLoading(false);

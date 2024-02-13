@@ -9,7 +9,9 @@ import {
 
 import { Link } from "react-router-dom";
 
-import { db } from "../firebase-config";
+import { db, storage } from "../firebase-config";
+
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, query, where, getDocs, updateDoc } from "firebase/firestore";
 
 const Edit = () => {
@@ -26,6 +28,10 @@ const Edit = () => {
     const [nameLead, setNameLead] = useState('');
     const [emailLead, setEmailLead] = useState('');
     const [contactLead, setContactLead] = useState('');
+    const [resumeLead, setResumeLead] = useState('');
+    const [resumeLinkLead, setResumeLinkLead] = useState('');
+    const [imageLead, setImageLead] = useState('');
+    const [imageLinkLead, setImageLinkLead] = useState('');
     const [githubLead, setGithubLead] = useState('');
     const [linkedinLead, setLinkedinLead] = useState('');
     const [collegeLead, setCollegeLead] = useState('');
@@ -33,6 +39,10 @@ const Edit = () => {
     const [nameMember2, setNameMember2] = useState('');
     const [emailMember2, setEmailMember2] = useState('');
     const [contactMember2, setContactMember2] = useState('');
+    const [resumeMember2, setResumeMember2] = useState('');
+    const [resumeLinkMember2, setResumeLinkMember2] = useState('');
+    const [imageMember2, setImageMember2] = useState('');
+    const [imageLinkMember2, setImageLinkMember2] = useState('');
     const [githubMember2, setGithubMember2] = useState('');
     const [linkedinMember2, setLinkedinMember2] = useState('');
     const [collegeMember2, setCollegeMember2] = useState('');
@@ -40,6 +50,10 @@ const Edit = () => {
     const [nameMember3, setNameMember3] = useState('');
     const [emailMember3, setEmailMember3] = useState('');
     const [contactMember3, setContactMember3] = useState('');
+    const [resumeMember3, setResumeMember3] = useState('');
+    const [resumeLinkMember3, setResumeLinkMember3] = useState('');
+    const [imageMember3, setImageMember3] = useState('');
+    const [imageLinkMember3, setImageLinkMember3] = useState('');
     const [githubMember3, setGithubMember3] = useState('');
     const [linkedinMember3, setLinkedinMember3] = useState('');
     const [collegeMember3, setCollegeMember3] = useState('');
@@ -77,6 +91,7 @@ const Edit = () => {
         }
 
         setLoading2(true);
+
         await getDocs(q).then((querySnapshot) => {
             if (querySnapshot.empty) {
                 setLoading2(false);
@@ -103,6 +118,8 @@ const Edit = () => {
                 setEmailLead(data.emailLead);
                 setContactLead(data.contactLead);
                 setGithubLead(data.githubLead);
+                setImageLinkLead(data.imageLead);
+                setResumeLinkLead(data.resumeLead);
                 setLinkedinLead(data.linkedinLead);
                 setCollegeLead(data.collegeLead);
                 setMemberCount(1);
@@ -111,6 +128,8 @@ const Edit = () => {
                     setNameMember2(data.nameMember2);
                     setEmailMember2(data.emailMember2);
                     setContactMember2(data.contactMember2);
+                    setImageLinkMember2(data.imageMember2);
+                    setResumeLinkMember2(data.resumeMember2);
                     setGithubMember2(data.githubMember2);
                     setLinkedinMember2(data.linkedinMember2);
                     setCollegeMember2(data.collegeMember2);
@@ -123,6 +142,8 @@ const Edit = () => {
                     setNameMember3(data.nameMember3);
                     setEmailMember3(data.emailMember3);
                     setContactMember3(data.contactMember3);
+                    setImageLinkMember3(data.imageMember3);
+                    setResumeLinkMember3(data.resumeMember3);
                     setGithubMember3(data.githubMember3);
                     setLinkedinMember3(data.linkedinMember3);
                     setCollegeMember3(data.collegeMember3);
@@ -143,244 +164,178 @@ const Edit = () => {
         } 
     }, [docRef]);
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-
-        if (!user) {
-            setAlertMessage('Please login to edit.');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-
-        if(memberCount == 3) {
-            if (!nameLead || !emailLead || !contactLead || !githubLead || !linkedinLead || !collegeLead || 
-                !nameMember2 || !emailMember2 || !contactMember2 || !githubMember2 || !linkedinMember2 || !collegeMember2 || 
-                !nameMember3 || !emailMember3 || !contactMember3 || !githubMember3 || !linkedinMember3 || !collegeMember3) {
-                setAlertMessage('Please fill all the fields.');
-                setAlertType('error');
-                setShowAlert(true);
-                setTimeout(() => {
-                    setShowAlert(false);
-                }, 2000);
-                return;
-            }
-        } else if(memberCount == 2) {
-            if (!nameLead || !emailLead || !contactLead || !githubLead || !linkedinLead || !collegeLead || 
-                !nameMember2 || !emailMember2 || !contactMember2 || !githubMember2 || !linkedinMember2 || !collegeMember2) {
-                setAlertMessage('Please fill all the fields.');
-                setAlertType('error');
-                setShowAlert(true);
-                setTimeout(() => {
-                    setShowAlert(false);
-                }, 2000);
-                return;
-            }
-        } else if(memberCount == 1) {
-            if (!nameLead || !emailLead || !contactLead || !githubLead || !linkedinLead || !collegeLead) {
-                setAlertMessage('Please fill all the fields.');
-                setAlertType('error');
-                setShowAlert(true);
-                setTimeout(() => {
-                    setShowAlert(false);
-                }, 2000);
-                return;
-            }
-        }
-
-        if (!nameRegex.test(nameLead)) {
-            setAlertMessage('Please enter a valid Name (Lead).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!emailRegex.test(emailLead)) {
-            setAlertMessage('Please enter a valid Email Address (Lead).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!contactRegex.test(contactLead)) {
-            setAlertMessage('Please enter a valid Contact Number (Lead).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!githubLinkedinRegex.test(githubLead)) {
-            setAlertMessage('Please enter a valid GitHub Profile Link (Lead).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!linkedinRegex.test(linkedinLead)) {
-            setAlertMessage('Please enter a valid LinkedIn Profile Link (Lead).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!collegeRegex.test(collegeLead)) {
-            setAlertMessage('Please enter a valid College Name (Lead).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-
-        if (!nameRegex.test(nameMember2) && memberCount > 1) {
-            
-            setAlertMessage('Please enter a valid Name (Member 2).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!emailRegex.test(emailMember2) && memberCount > 1) {
-            setAlertMessage('Please enter a valid Email Address (Member 2).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!contactRegex.test(contactMember2) && memberCount > 1) {
-            setAlertMessage('Please enter a valid Contact Number (Member 2).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!githubLinkedinRegex.test(githubMember2) && memberCount > 1) {
-            setAlertMessage('Please enter a valid GitHub Profile Link (Member 2).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!linkedinRegex.test(linkedinMember2) && memberCount > 1) {
-            setAlertMessage('Please enter a valid LinkedIn Profile Link (Member 2).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!collegeRegex.test(collegeMember2) && memberCount > 1) {
-            setAlertMessage('Please enter a valid College Name (Member 2).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-
-        if (!nameRegex.test(nameMember3) && memberCount > 2) {
-            setAlertMessage('Please enter a valid Name (Member 3).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!emailRegex.test(emailMember3) && memberCount > 2) {
-            setAlertMessage('Please enter a valid Email Address (Member 3).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!contactRegex.test(contactMember3) && memberCount > 2) {
-            setAlertMessage('Please enter a valid Contact Number (Member 3).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-        if (!githubLinkedinRegex.test(githubMember3) && memberCount > 2) {
-            setAlertMessage('Please enter a valid GitHub Profile Link (Member 3).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return; 
-        }
-        if (!linkedinRegex.test(linkedinMember3) && memberCount > 2) {
-            setAlertMessage('Please enter a valid LinkedIn Profile Link (Member 3).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return; 
-        }
-        if (!collegeRegex.test(collegeMember2) && memberCount > 2) {
-            setAlertMessage('Please enter a valid College Name (Member 3).');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return; 
-        }
-
-        if ((nameMember2 || emailMember2 || contactMember2 || 
-            githubMember2 || linkedinMember2 || collegeMember2 ||
-            nameMember3 || emailMember3 || contactMember3 ||
-            githubMember3 || linkedinMember3 || collegeMember3) 
-            && memberCount == 1) {
-            setAlertMessage('Cannot add new members.');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        } else if ((nameMember3 || emailMember3 || contactMember3 ||
-            githubMember3 || linkedinMember3 || collegeMember3) && memberCount == 2) {
-            setAlertMessage('Cannot add new members.');
-            setAlertType('error');
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-            }, 2000);
-            return;
-        }
-
+    const uploadResumeLead = async () => {    
         setLoading(true);
+        if (resumeLead && resumeLinkLead == '') {
+            try {
+                setAlertMessage('Uploading Resume (Lead)...');
+                setAlertType('op');
+                setShowAlert(true);
+                const resumeRef = ref(storage, `resumes/${Date.now() + '-' + resumeLead.name}`);
+                await uploadBytes(resumeRef, resumeLead);
+                await getDownloadURL(resumeRef).then((url) => {
+                    setShowAlert(false);
+                    uploadImageLead(url);
+                });
+            } catch (error) {
+                setLoading(false);
+                setAlertMessage(error.message);
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        } else {
+            uploadImageLead('');
+        }
+    }
+
+    const uploadImageLead = async (resumeLeadUrl) => {
+        if (imageLead && imageLinkLead == '') {
+            try {
+                setAlertMessage('Uploading Image (Lead)...');
+                setAlertType('op');
+                setShowAlert(true);
+                const imageRef = ref(storage, `images/${Date.now() + '-' + imageLead.name}`);
+                await uploadBytes(imageRef, imageLead);
+                await getDownloadURL(imageRef).then((url) => {
+                    setShowAlert(false);
+                    uploadResumeMember2(resumeLeadUrl, url);
+                });
+            } catch (error) {
+                setLoading(false);
+                setAlertMessage(error.message);
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        } else {
+            uploadResumeMember2(resumeLeadUrl, '');
+        }
+    }
+
+    const uploadResumeMember2 = async (resumeLeadUrl, imageLeadUrl) => {    
+        if (resumeMember2 && resumeLinkMember2 == '') {
+            try {
+                setAlertMessage('Uploading Resume (Member 2)...');
+                setAlertType('op');
+                setShowAlert(true);
+                const resumeRef = ref(storage, `resumes/${Date.now() + '-' + resumeMember2.name}`);
+                await uploadBytes(resumeRef, resumeMember2);
+                await getDownloadURL(resumeRef).then((url) => {
+                    setShowAlert(false);
+                    uploadImageMember2(resumeLeadUrl, imageLeadUrl, url);
+                });
+            } catch (error) {
+                setLoading(false);
+                setAlertMessage(error.message);
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        } else {
+            uploadImageMember2(resumeLeadUrl, imageLeadUrl, '');
+        }
+    }
+
+    const uploadImageMember2 = async (resumeLeadUrl, imageLeadUrl, resumeMember2Url) => {
+        if (imageMember2 && imageLinkMember2 == '') {
+            try {
+                setAlertMessage('Uploading Image (Member 2)...');
+                setAlertType('op');
+                setShowAlert(true);
+                const imageRef = ref(storage, `images/${Date.now() + '-' + imageMember2.name}`);
+                await uploadBytes(imageRef, imageMember2);
+                await getDownloadURL(imageRef).then((url) => {
+                    setShowAlert(false);
+                    uploadResumeMember3(resumeLeadUrl, imageLeadUrl, resumeMember2Url, url);
+                });
+            } catch (error) {
+                setLoading(false);
+                setAlertMessage(error.message);
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        } else {
+            uploadResumeMember3(resumeLeadUrl, imageLeadUrl, resumeMember2Url, '');
+        }
+    }
+
+    const uploadResumeMember3 = async (resumeLeadUrl, imageLeadUrl, resumeMember2Url, imageMember2Url) => {    
+        setLoading(true);
+        if (resumeMember3 && resumeLinkMember3 == '') {
+            try {
+                setAlertMessage('Uploading Resume (Member 3)...');
+                setAlertType('op');
+                setShowAlert(true);
+                const resumeRef = ref(storage, `resumes/${Date.now() + '-' + resumeMember3.name}`);
+                await uploadBytes(resumeRef, resumeMember3);
+                await getDownloadURL(resumeRef).then((url) => {
+                    setShowAlert(false);
+                    uploadImageMember3(resumeLeadUrl, imageLeadUrl, resumeMember2Url, imageMember2Url, url);
+                });
+            } catch (error) {
+                setLoading(false);
+                setAlertMessage(error.message);
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        } else {
+            uploadImageMember3(resumeLeadUrl, imageLeadUrl, resumeMember2Url, imageMember2Url, '');
+        }
+    }
+
+    const uploadImageMember3 = async (resumeLeadUrl, imageLeadUrl, resumeMember2Url, imageMember2Url, resumeMember3Url) => {
+        if (imageMember3 && imageLinkMember3 == '') {
+            try {
+                setAlertMessage('Uploading Image (Member 3)...');
+                setAlertType('op');
+                setShowAlert(true);
+                const imageRef = ref(storage, `images/${Date.now() + '-' + imageMember3.name}`);
+                await uploadBytes(imageRef, imageMember3);
+                await getDownloadURL(imageRef).then((url) => {
+                    setShowAlert(false);
+                    saveToDB(resumeLeadUrl, imageLeadUrl, resumeMember2Url, imageMember2Url, resumeMember3Url, url);
+                });
+            } catch (error) {
+                setLoading(false);
+                setAlertMessage(error.message);
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        } else {
+            saveToDB(resumeLeadUrl, imageLeadUrl, resumeMember2Url, imageMember2Url, resumeMember3Url, '');
+        }
+    }
+
+    const saveToDB = async (
+        resumeLeadUrl, 
+        imageLeadUrl, 
+        resumeMember2Url, 
+        imageMember2Url, 
+        resumeMember3Url, 
+        imageMember3Url
+    ) => {
         try {
             if(memberCount == 3) {
                 await updateDoc(docRef.ref, {
@@ -388,18 +343,24 @@ const Edit = () => {
                     nameLead: nameLead,
                     emailLead: emailLead,
                     contactLead: contactLead,
+                    resumeLead: resumeLeadUrl != '' ? resumeLeadUrl : resumeLinkLead,
+                    imageLead: imageLeadUrl != '' ? imageLeadUrl : imageLinkLead,
                     githubLead: githubLead,
                     linkedinLead: linkedinLead,
                     collegeLead: collegeLead,
                     nameMember2: nameMember2,
                     emailMember2: emailMember2,
                     contactMember2: contactMember2,
+                    resumeMember2: resumeMember2Url != '' ? resumeMember2Url : resumeLinkMember2,
+                    imageMember2: imageMember2Url != '' ? imageMember2Url : imageLinkMember2,
                     githubMember2: githubMember2,
                     linkedinMember2: linkedinMember2,
                     collegeMember2: collegeMember2,
                     nameMember3: nameMember3,
                     emailMember3: emailMember3,
                     contactMember3: contactMember3,
+                    resumeMember3: resumeMember3Url != '' ? resumeMember3Url : resumeLinkMember3,
+                    imageMember3: imageMember3Url != '' ? imageMember3Url : imageLinkMember3,
                     githubMember3: githubMember3,
                     linkedinMember3: linkedinMember3,
                     collegeMember3: collegeMember3
@@ -409,6 +370,8 @@ const Edit = () => {
                     teamName: teamName,
                     nameLead: nameLead,
                     emailLead: emailLead,
+                    resumeLead: resumeLeadUrl != '' ? resumeLeadUrl : resumeLinkLead,
+                    imageLead: imageLeadUrl != '' ? imageLeadUrl : imageLinkLead,
                     contactLead: contactLead,
                     githubLead: githubLead,
                     linkedinLead: linkedinLead,
@@ -416,6 +379,8 @@ const Edit = () => {
                     nameMember2: nameMember2,
                     emailMember2: emailMember2,
                     contactMember2: contactMember2,
+                    resumeMember2: resumeMember2Url != '' ? resumeMember2Url : resumeLinkMember2,
+                    imageMember2: imageMember2Url != '' ? imageMember2Url : imageLinkMember2,
                     githubMember2: githubMember2,
                     linkedinMember2: linkedinMember2,
                     collegeMember2: collegeMember2
@@ -426,6 +391,8 @@ const Edit = () => {
                     nameLead: nameLead,
                     emailLead: emailLead,
                     contactLead: contactLead,
+                    resumeLead: resumeLeadUrl != '' ? resumeLeadUrl : resumeLinkLead,
+                    imageLead: imageLeadUrl != '' ? imageLeadUrl : imageLinkLead,
                     githubLead: githubLead,
                     linkedinLead: linkedinLead,
                     collegeLead: collegeLead
@@ -446,6 +413,338 @@ const Edit = () => {
             setTimeout(() => {
                 setShowAlert(false);
             }, 2000);
+        }
+    }
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!user) {
+            setAlertMessage('Please login to edit.');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+
+        if (!nameRegex.test(nameLead) || !nameLead) {
+            setAlertMessage('Please enter a valid Name (Lead).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if (!emailRegex.test(emailLead) || !emailLead) {
+            setAlertMessage('Please enter a valid Email Address (Lead).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if (!contactRegex.test(contactLead) || !contactLead) {
+            setAlertMessage('Please enter a valid Contact Number (Lead).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if (!githubLinkedinRegex.test(githubLead) || !githubLead) {
+            setAlertMessage('Please enter a valid GitHub Profile Link (Lead).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if (!linkedinRegex.test(linkedinLead) || !linkedinLead) {
+            setAlertMessage('Please enter a valid LinkedIn Profile Link (Lead).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if (!collegeRegex.test(collegeLead) || !collegeLead) {
+            setAlertMessage('Please enter a valid College Name (Lead).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if(resumeLinkLead == '') {
+            if(!resumeLead) {
+                setAlertMessage('Please upload your Resume (Lead).');
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+            if (resumeLead.size > 100 * 1024) {
+                setLoading(false);
+                setAlertMessage("Resume file size exceeds the limit (100KB) (Lead).");
+                setAlertType("error");
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        }
+        if(imageLinkLead == '') {
+            if(!imageLead) {
+                setAlertMessage('Please upload your Image (Lead).');
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+            if (imageLead.size > 100 * 1024) {
+                setLoading(false);
+                setAlertMessage("Image file size exceeds the limit (100KB) (Lead).");
+                setAlertType("error");
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        }
+
+        if ((!nameRegex.test(nameMember2) || !nameMember2) && memberCount > 1 ) {
+            setAlertMessage('Please enter a valid Name (Member 2).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if ((!emailRegex.test(emailMember2) || !emailMember2) && memberCount > 1) {
+            setAlertMessage('Please enter a valid Email Address (Member 2).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if ((!contactRegex.test(contactMember2) || !contactMember2) && memberCount > 1) {
+            setAlertMessage('Please enter a valid Contact Number (Member 2).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if ((!githubLinkedinRegex.test(githubMember2) || !githubMember2) && memberCount > 1) {
+            setAlertMessage('Please enter a valid GitHub Profile Link (Member 2).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if ((!linkedinRegex.test(linkedinMember2) || !linkedinMember2) && memberCount > 1) {
+            setAlertMessage('Please enter a valid LinkedIn Profile Link (Member 2).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if ((!collegeRegex.test(collegeMember2) || !collegeMember2) && memberCount > 1) {
+            setAlertMessage('Please enter a valid College Name (Member 2).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if(resumeLinkMember2 == '' && memberCount > 1) {
+            if(!resumeMember2) {
+                setAlertMessage('Please upload the Resume (Member 2).');
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+            if (resumeMember2.size > 100 * 1024) {
+                setLoading(false);
+                setAlertMessage("Resume file size exceeds the limit (100KB) (Member 2).");
+                setAlertType("error");
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        }
+        if(imageLinkMember2 == '' && memberCount > 1) {
+            if(!imageMember2) {
+                setAlertMessage('Please upload the Image (Member 2).');
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+            if (imageMember2.size > 100 * 1024) {
+                setLoading(false);
+                setAlertMessage("Image file size exceeds the limit (100KB) (Member 2).");
+                setAlertType("error");
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        }
+
+        if ((!nameRegex.test(nameMember3) || !nameMember3) && memberCount > 2) {
+            setAlertMessage('Please enter a valid Name (Member 3).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if ((!emailRegex.test(emailMember3) || !emailMember3) && memberCount > 2) {
+            setAlertMessage('Please enter a valid Email Address (Member 3).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if ((!contactRegex.test(contactMember3) || !contactMember3) && memberCount > 2) {
+            setAlertMessage('Please enter a valid Contact Number (Member 3).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+        if ((!githubLinkedinRegex.test(githubMember3) || !githubMember3) && memberCount > 2) {
+            setAlertMessage('Please enter a valid GitHub Profile Link (Member 3).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return; 
+        }
+        if ((!linkedinRegex.test(linkedinMember3) || !linkedinMember3) && memberCount > 2) {
+            setAlertMessage('Please enter a valid LinkedIn Profile Link (Member 3).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return; 
+        }
+        if ((!collegeRegex.test(collegeMember2) || !collegeMember3) && memberCount > 2) {
+            setAlertMessage('Please enter a valid College Name (Member 3).');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return; 
+        }
+        if(resumeLinkMember3 == '' && memberCount > 2) {
+            if(!resumeMember3) {
+                setAlertMessage('Please upload the Resume (Member 3).');
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+            if (resumeMember3.size > 100 * 1024) {
+                setLoading(false);
+                setAlertMessage("Resume file size exceeds the limit (100KB) (Member 3).");
+                setAlertType("error");
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        }
+        if(imageLinkMember3 == '' && memberCount > 2) {
+            if(!imageMember3) {
+                setAlertMessage('Please upload the Image (Member 3).');
+                setAlertType('error');
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+            if (imageMember3.size > 100 * 1024) {
+                setLoading(false);
+                setAlertMessage("Image file size exceeds the limit (100KB) (Member 3).");
+                setAlertType("error");
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 2000);
+                return;
+            }
+        }
+
+        if ((nameMember2 || emailMember2 || contactMember2 || resumeMember2 || imageMember2 ||
+            githubMember2 || linkedinMember2 || collegeMember2 ||
+            nameMember3 || emailMember3 || contactMember3 || resumeMember3 || imageMember3 ||
+            githubMember3 || linkedinMember3 || collegeMember3) 
+            && memberCount == 1) {
+            setAlertMessage('Cannot add new members.');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        } else if ((nameMember3 || emailMember3 || contactMember3 || resumeMember3 || imageMember3 ||
+            githubMember3 || linkedinMember3 || collegeMember3) && memberCount == 2) {
+            setAlertMessage('Cannot add new members.');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
+
+        if(!loading) {
+            uploadResumeLead();
         }
     }
 
@@ -523,6 +822,70 @@ const Edit = () => {
                                 required 
                                 placeholder="Contact No." />
 
+                            {resumeLinkLead !== '' ? 
+                            <div className="flex justify-between">
+                                <a
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    href={resumeLinkLead}
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    View Resume
+                                </a>
+                                <button
+                                    className="bg-red-600 hover:bg-red-800 px-4 ml-2 text-white font-bold uppercase rounded-xl mb-3"
+                                    onClick={() => setResumeLinkLead('')}>
+                                    Remove
+                                </button>
+                            </div>
+                            :
+                            <div className="flex justify-between">
+                                <label
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    htmlFor="resumeFile">
+                                    {resumeLead ? 'Resume : ' + resumeLead.name : 'Click to select your Resume'}
+                                </label>
+                                <input
+                                    className="hidden"
+                                    type="file"
+                                    accept=".pdf"
+                                    id='resumeFile'
+                                    onChange={(e) => setResumeLead(e.target.files[0])}
+                                    required />
+                            </div>
+                            }
+
+                            {imageLinkLead !== '' ?
+                            <div className="flex justify-between">
+                                <a
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    href={imageLinkLead}
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    View Image
+                                </a>
+                                <button
+                                    className="bg-red-600 hover:bg-red-800 px-4 ml-2 text-white font-bold uppercase rounded-xl mb-3"
+                                    onClick={() => setImageLinkLead('')}>
+                                    Remove
+                                </button>
+                            </div>
+                            :
+                            <div className="flex justify-between">
+                                <label
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    htmlFor="imageFile">
+                                    {imageLead ? 'Image : ' + imageLead.name : 'Click to select your Image'}
+                                </label>
+                                <input
+                                    className="hidden"
+                                    type="file"
+                                    accept="image/*"
+                                    id='imageFile'
+                                    onChange={(e) => setImageLead(e.target.files[0])}
+                                    required />
+                            </div>
+                            }
+
                             <input 
                                 className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
@@ -575,6 +938,70 @@ const Edit = () => {
                                 required 
                                 placeholder="Contact No." />
 
+                            {resumeLinkMember2 !== '' ? 
+                            <div className="flex justify-between">
+                                <a
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    href={resumeLinkMember2}
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    View Resume
+                                </a>
+                                <button
+                                    className="bg-red-600 hover:bg-red-800 px-4 ml-2 text-white font-bold uppercase rounded-xl mb-3"
+                                    onClick={() => setResumeLinkMember2('')}>
+                                    Remove
+                                </button>
+                            </div>
+                            :
+                            <div className="flex justify-between">
+                                <label
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    htmlFor="resumeFile">
+                                    {resumeMember2 ? 'Resume : ' + resumeMember2.name : 'Click to select your Resume'}
+                                </label>
+                                <input
+                                    className="hidden"
+                                    type="file"
+                                    accept=".pdf"
+                                    id='resumeFile'
+                                    onChange={(e) => setResumeMember2(e.target.files[0])}
+                                    required />
+                            </div>
+                            }
+
+                            {imageLinkMember2 !== '' ?
+                            <div className="flex justify-between">
+                                <a
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    href={imageLinkMember2}
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    View Image
+                                </a>
+                                <button
+                                    className="bg-red-600 hover:bg-red-800 px-4 ml-2 text-white font-bold uppercase rounded-xl mb-3"
+                                    onClick={() => setImageLinkMember2('')}>
+                                    Remove
+                                </button>
+                            </div>
+                            :
+                            <div className="flex justify-between">
+                                <label
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    htmlFor="imageFile">
+                                    {imageMember2 ? 'Image : ' + imageMember2.name : 'Click to select your Image'}
+                                </label>
+                                <input
+                                    className="hidden"
+                                    type="file"
+                                    accept="image/*"
+                                    id='imageFile'
+                                    onChange={(e) => setImageMember2(e.target.files[0])}
+                                    required />
+                            </div>
+                            }
+
                             <input 
                                 className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
                                 type="text" 
@@ -626,6 +1053,70 @@ const Edit = () => {
                                 onChange={(e) => setCollegeMember3(e.target.value)}  
                                 required 
                                 placeholder="Contact No." />
+
+                            {resumeLinkMember3 !== '' ? 
+                            <div className="flex justify-between">
+                                <a
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    href={resumeLinkMember3}
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    View Resume
+                                </a>
+                                <button
+                                    className="bg-red-600 hover:bg-red-800 px-4 ml-2 text-white font-bold uppercase rounded-xl mb-3"
+                                    onClick={() => setResumeLinkMember3('')}>
+                                    Remove
+                                </button>
+                            </div>
+                            :
+                            <div className="flex justify-between">
+                                <label
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    htmlFor="resumeFile">
+                                    {resumeMember3 ? 'Resume : ' + resumeMember3.name : 'Click to select your Resume'}
+                                </label>
+                                <input
+                                    className="hidden"
+                                    type="file"
+                                    accept=".pdf"
+                                    id='resumeFile'
+                                    onChange={(e) => setResumeMember3(e.target.files[0])}
+                                    required />
+                            </div>
+                            }
+
+                            {imageLinkMember3 !== '' ?
+                            <div className="flex justify-between">
+                                <a
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    href={imageLinkMember3}
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    View Image
+                                </a>
+                                <button
+                                    className="bg-red-600 hover:bg-red-800 px-4 ml-2 text-white font-bold uppercase rounded-xl mb-3"
+                                    onClick={() => setImageLinkMember3('')}>
+                                    Remove
+                                </button>
+                            </div>
+                            :
+                            <div className="flex justify-between">
+                                <label
+                                    className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3"
+                                    htmlFor="imageFile">
+                                    {imageMember3 ? 'Image : ' + imageMember3.name : 'Click to select your Image'}
+                                </label>
+                                <input
+                                    className="hidden"
+                                    type="file"
+                                    accept="image/*"
+                                    id='imageFile'
+                                    onChange={(e) => setImageMember3(e.target.files[0])}
+                                    required />
+                            </div>
+                            }
 
                             <input 
                                 className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
