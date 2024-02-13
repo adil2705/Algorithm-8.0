@@ -1147,8 +1147,9 @@ const Edit = () => {
                                 <h2 className="font-bold text-3xl">Instructions</h2>
                                 <ul className="list-disc mt-4 list-inside text-lg">
                                     <li>Only the lead can edit the details.</li>
-                                    <li>Ensure that the your email and the one you used for logging in are both same.</li>
                                     <li>New members cannot be added here only details of existing members can be altered.</li>
+                                    <li>Upload your Resume in .pdf format ({'<'}100 kb)</li>
+                                    <li>Upload your Image in any image format ({'<'}100 kb)</li>
                                     <li>Linkedin Link : linkedin.com/in/profile-id</li>
                                     <li>GitHub Link : github.com/username</li>
                                 </ul>
@@ -1175,10 +1176,10 @@ const Edit = () => {
                         </div>
                         <div className="flex justify-center text-center md:text-left font-bold">
                             <Link
-                                to="/register"
+                                to="/dashboard"
                                 className={`mt-3 ${isMobile ? 'mx-2' : 'mx-3'} text-lg bg-white px-4 py-2 text-orange-600 uppercase rounded-xl`} 
                                 style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                                Fill Form
+                                Goto Dashboard
                             </Link>
                         </div>
                     </form>

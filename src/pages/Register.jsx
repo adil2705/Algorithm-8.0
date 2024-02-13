@@ -518,7 +518,6 @@ const Register = () => {
                             <div className="bg-blur rounded-2xl h-full p-4">
                                 <h2 className="font-bold text-3xl">Instructions</h2>
                                 <ul className="list-disc mt-4 list-inside text-lg">
-                                    <li>Ensure that the your email and the one you used for logging in are both same.</li>
                                     <li>Use existing team name to register your self as a part of existing team.</li>
                                     <li>Enter new team name to create a new team and share that team name with your members so that they can become part of your team.</li>
                                     <li>Member to register first is automatically the lead of the team.</li>
