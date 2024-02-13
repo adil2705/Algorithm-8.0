@@ -349,11 +349,11 @@ const Dashboard = () => {
                       <div className="h-full w-6 flex items-center justify-center">
                         <div className="h-full w-1 bg-red-500 pointer-events-none"></div>
                       </div>
-                      <div className="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-green-500 shadow text-center">
+                      <div className="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-red-500 shadow text-center">
                         <i className="fas fa-check-circle text-white"></i>
                       </div>
                     </div>
-                    <div className="bg-green-500 col-start-4 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
+                    <div className="bg-red-500 col-start-4 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
                       <p className="leading-tight text-justify">Quiz</p>
                     </div>
                   </div>
