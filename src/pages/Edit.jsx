@@ -812,6 +812,7 @@ const Edit = () => {
                                 value={emailLead}
                                 onChange={(e) => setEmailLead(e.target.value)}
                                 required 
+                                readOnly
                                 placeholder="Email Address" />
 
                             <input 
@@ -928,6 +929,7 @@ const Edit = () => {
                                 value={emailMember2}
                                 onChange={(e) => setEmailMember2(e.target.value)}  
                                 required 
+                                readOnly
                                 placeholder="Email Address" />
 
                             <input 
@@ -1044,6 +1046,7 @@ const Edit = () => {
                                 value={emailMember3}
                                 onChange={(e) => setEmailMember3(e.target.value)}  
                                 required 
+                                readOnly
                                 placeholder="Email Address" />
 
                             <input 
