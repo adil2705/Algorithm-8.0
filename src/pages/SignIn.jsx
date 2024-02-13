@@ -59,7 +59,6 @@ export default function SignIn() {
             navigate('/');
         }, 2000);
     } catch (error) {
-        setLoading(false);
         if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
             try {
                 await signInWithEmailAndPassword(auth, email, password);
@@ -106,6 +105,8 @@ export default function SignIn() {
         return 'The email address is already in use by another account.';
       case 'auth/weak-password':
         return 'The password must be 6 characters long or more.';
+      case 'auth/too-many-requests':
+        return 'Too many requests try again later.';
       default:
         return 'An unknown error occurred.';
     }
