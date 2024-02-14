@@ -79,11 +79,18 @@ const Hero = () => {
                     Register
                 </Link> 
                 :
+                <div classname="flex flex-row justify-center items-center>
                 <Link
                   to="/edit"
                   className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
                     Edit Form
                 </Link>
+                <Link
+                  to="/dashboard"
+                  className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
+                    Dashboard
+                </Link>
+               </div>
                 : 
                 <Link
                   to="/signin"
