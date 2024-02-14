@@ -57,7 +57,7 @@ const Faq = () => {
                 </p>
               </details>
             </div>
-            <div class="w-full lg:w-1/2 px-4 py-2 sm:py-0">
+            <div class="w-full lg:w-1/2 px-4 py-2">
               <details class="mb-4">
                  <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
                   <span>Who all can participate in Algorithm 8.0?</span>
