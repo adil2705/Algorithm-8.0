@@ -79,7 +79,7 @@ const Hero = () => {
                     Register
                 </Link> 
                 :
-                <div classname="flex flex-row justify-center items-center">
+                <div classname="flex flex-row justify-center items-center m-2">
                 <Link
                   to="/edit"
                   className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
