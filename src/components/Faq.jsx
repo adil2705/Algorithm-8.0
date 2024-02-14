@@ -13,11 +13,11 @@ const Faq = () => {
           <h2 className={styles.sectionHeadText}>FAQ's</h2>
         </motion.div>
         <motion.div variants={fadeIn("up", "spring", 0.5, 0.75)}>
-          <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+          <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 mt-10">
             <div class="w-full lg:w-1/2 px-4 py-2">
               <details class="mb-4">
                 <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
-                  <span> What is Algorithm 8.0 all about ?</span>
+                  <span>What is Algorithm 8.0 all about?</span>
                   <span className="transition group-open:rotate-180" />
                 </summary>
                 <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
@@ -32,12 +32,12 @@ const Faq = () => {
                   <span className="transition group-open:rotate-180" />
                 </summary>
                 <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
-                The meals will be provided along with some snacks and basic amenities.
+                  The meals will be provided along with some snacks and basic amenities.
                 </p>
                 </details>
                 <details class="mb-4">
                 <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
-                  <span> What do I need to bring to the hackathon?</span>
+                  <span>What do I need to bring to the hackathon?</span>
                   <span className="transition group-open:rotate-180" />
                 </summary>
                 <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
@@ -48,20 +48,19 @@ const Faq = () => {
               </details>
               <details class="mb-4">
                 <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
-                  <span> How many hours hackathon it is?</span>
+                  <span>How many hours will the hackathon last for?</span>
                   <span className="transition group-open:rotate-180" />
                 </summary>
                 <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
-                  Algorithm is a 32 Hrs hackathon. For more detail check the
+                  Algorithm is a 36 Hrs hackathon. For more detail check the
                   timeline section.
                 </p>
               </details>
             </div>
             <div class="w-full lg:w-1/2 px-4 py-2">
               <details class="mb-4">
-                
                  <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
-                  <span> Who can participate in Algorithm 8.0?</span>
+                  <span>Who all can participate in Algorithm 8.0?</span>
                   <span className="transition group-open:rotate-180" />
                 </summary>
                 <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
@@ -71,7 +70,7 @@ const Faq = () => {
               </details>
               <details class="mb-4">
                 <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
-                  <span> How will the solutions be evaluated and scored?</span>
+                  <span>How will the solutions be evaluated and scored?</span>
                   <span className="transition group-open:rotate-180" />
                 </summary>
                 <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
@@ -83,7 +82,6 @@ const Faq = () => {
               <details class="mb-4">
                 <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
                   <span>
-                    
                     What kind of support will be available during the hackathon?
                   </span>
                   <span className="transition group-open:rotate-180" />
@@ -97,13 +95,12 @@ const Faq = () => {
               <details class="mb-4">
                 <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
                   <span>
-                  Can I work on my solution before the hackathon?
-                   
+                    Can I work on my solution before the hackathon?
                   </span>
                   <span className="transition group-open:rotate-180" />
                 </summary>
                 <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
-                The meals will be provided along with some snacks and basic amenities.
+                  {/* The meals will be provided along with some snacks and basic amenities. */}
                 </p>
               </details>
             </div>
