@@ -893,7 +893,7 @@ const Edit = () => {
                                 value={githubLead}
                                 onChange={(e) => setGithubLead(e.target.value)}  
                                 required 
-                                placeholder="GitHub Profile" />
+                                placeholder="GitHub's Profile" />
 
                             <input 
                                 className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
@@ -901,7 +901,7 @@ const Edit = () => {
                                 value={linkedinLead}
                                 onChange={(e) => setLinkedinLead(e.target.value)} 
                                 required 
-                                placeholder="LinkedIn Address" />
+                                placeholder="LinkedIn's Profile" />
 
                             <input 
                                 className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
@@ -909,7 +909,7 @@ const Edit = () => {
                                 value={collegeLead}
                                 onChange={(e) => setCollegeLead(e.target.value)} 
                                 required 
-                                placeholder="College Name" />
+                                placeholder="College's Name" />
                         </fieldset>
                         
                         <fieldset className='border border-orange-600 p-6 rounded-2xl m-3 flex-1 bg-blur'>
@@ -1010,7 +1010,7 @@ const Edit = () => {
                                 value={githubMember2}
                                 onChange={(e) => setGithubMember2(e.target.value)}
                                 required 
-                                placeholder="GitHub Profile" />
+                                placeholder="GitHub's Profile" />
 
                             <input 
                                 className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
@@ -1018,7 +1018,7 @@ const Edit = () => {
                                 value={linkedinMember2}
                                 onChange={(e) => setLinkedinMember2(e.target.value)} 
                                 required 
-                                placeholder="LinkedIn Address" />
+                                placeholder="LinkedIn's Profile" />
 
                             <input 
                                 className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
@@ -1026,7 +1026,7 @@ const Edit = () => {
                                 value={collegeMember2}
                                 onChange={(e) => setCollegeMember2(e.target.value)}  
                                 required 
-                                placeholder="College Name" />
+                                placeholder="College's Name" />
                         </fieldset>
 
                         <fieldset className='border border-orange-600 p-6 rounded-2xl m-3 flex-1 bg-blur'>
@@ -1127,7 +1127,7 @@ const Edit = () => {
                                 value={githubMember3}
                                 onChange={(e) => setGithubMember3(e.target.value)}
                                 required 
-                                placeholder="GitHub Profile" />
+                                placeholder="GitHub's Profile" />
 
                             <input 
                                 className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
@@ -1135,7 +1135,7 @@ const Edit = () => {
                                 value={linkedinMember3}
                                 onChange={(e) => setLinkedinMember3(e.target.value)}
                                 required 
-                                placeholder="LinkedIn Address" />
+                                placeholder="LinkedIn's Profile" />
 
                             <input 
                                 className="text-xl bg-black w-full px-4 py-2 border border-solid border-white rounded-xl mb-3" 
@@ -1143,7 +1143,7 @@ const Edit = () => {
                                 value={collegeMember3}
                                 onChange={(e) => setCollegeMember3(e.target.value)}  
                                 required 
-                                placeholder="College Name" />
+                                placeholder="College's Name" />
                         </fieldset>
                         <aside className='border border-orange-600 rounded-2xl p-3 mt-[26px] mx-2 mb-3 flex-1'>
                             <div className="bg-blur rounded-2xl h-full p-4">
@@ -1153,8 +1153,8 @@ const Edit = () => {
                                     <li>New members cannot be added here only details of existing members can be altered.</li>
                                     <li>Upload your Resume in .pdf format ({'<'}100 kb)</li>
                                     <li>Upload your Image in any image format ({'<'}100 kb)</li>
-                                    <li>Linkedin Link : linkedin.com/in/profile-id</li>
-                                    <li>GitHub Link : github.com/username</li>
+                                    <li>Linkedin's Link : linkedin.com/in/profile-id</li>
+                                    <li>GitHub's Link : github.com/username</li>
                                 </ul>
                             </div>
                         </aside>

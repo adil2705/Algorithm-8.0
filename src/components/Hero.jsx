@@ -87,7 +87,7 @@ const Hero = () => {
                 </Link>
                 <Link
                   to="/dashboard"
-                  className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
+                  className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200 ml-5">
                     Dashboard
                 </Link>
                </div>

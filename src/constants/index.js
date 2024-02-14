@@ -112,9 +112,9 @@ export const clients = [
 
 export const notice = [
   {
-    date: "14 feb 2024",
-    id: "NOTICE 1",
-    notice: "Registration will be going to start soon please visit this page for upcoming Notice"
+    date: "14 Feb 2024",
+    id: "Notice 1",
+    notice: "Visit this page to get updates about the event.",
   }
 ];
 
