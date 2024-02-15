@@ -34,7 +34,7 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Web Develoment",
+    title: "Web Development",
     icon: web_development,
   },
   {
