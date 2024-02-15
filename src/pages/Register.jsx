@@ -495,7 +495,7 @@ const Register = () => {
                                 value={githubMember}
                                 onChange={(e) => setGithubMember(e.target.value)}  
                                 required 
-                                placeholder="GitHub's Profile" />
+                                placeholder="GitHub Profile" />
 
                             <input 
                                 className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
@@ -503,7 +503,7 @@ const Register = () => {
                                 value={linkedinMember}
                                 onChange={(e) => setLinkedinMember(e.target.value)} 
                                 required 
-                                placeholder="LinkedIn's Profile" />
+                                placeholder="LinkedIn Profile" />
 
                             <input 
                                 className="text-xl w-full bg-black px-4 py-2 border border-solid border-gray-300 rounded-xl mb-3" 
@@ -511,7 +511,7 @@ const Register = () => {
                                 value={collegeMember}
                                 onChange={(e) => setCollegeMember(e.target.value)} 
                                 required 
-                                placeholder="College's Name" />
+                                placeholder="College Name" />
                         </fieldset>
 
                         <aside className='border border-orange-600 rounded-2xl p-3 mt-[26px] mx-2 mb-3 flex-1'>
@@ -524,8 +524,8 @@ const Register = () => {
                                     <li>Each team can only have three members.</li>
                                     <li>Upload your Resume in .pdf format ({'<'}100 kb)</li>
                                     <li>Upload your Image in any image format ({'<'}100 kb)</li>
-                                    <li>LinkedIn's Link : linkedin.com/in/profile-id</li>
-                                    <li>GitHub's Link : github.com/username</li>
+                                    <li>LinkedIn Link : linkedin.com/in/profile-id</li>
+                                    <li>GitHub Link : github.com/username</li>
                                 </ul>
                             </div>
                         </aside>

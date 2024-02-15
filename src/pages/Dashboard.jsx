@@ -152,6 +152,7 @@ const Dashboard = () => {
   }, [docRef]);
 
   const deleteMember2 = async () => {
+    setShowPopup(true);
     if(isLead) {
       setWhichMember('2');
       setShowPopup(true);
@@ -335,16 +336,16 @@ const Dashboard = () => {
                     <input id="contact" type="number" placeholder="Contact No." value={contactLead} disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
-                    <label htmlFor="github_profile" className="text-sm">GitHub's Profile</label>
-                    <input id="github_profile" type="text" placeholder="GitHub's Profile" value={githubLead} disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <label htmlFor="github_profile" className="text-sm">GitHub Profile</label>
+                    <input id="github_profile" type="text" placeholder="GitHub Profile" value={githubLead} disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
-                    <label htmlFor="linkdin_profile" className="text-sm">LinkedIn's Profile</label>
-                    <input id="linkdin_profile" type="text" value={linkedinLead} placeholder="LinkedIn's Profile" disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <label htmlFor="linkdin_profile" className="text-sm">LinkedIn Profile</label>
+                    <input id="linkdin_profile" type="text" value={linkedinLead} placeholder="LinkedIn Profile" disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full border-b">
-                    <label htmlFor="college" className="text-sm">College's Name</label>
-                    <input id="college" type="text" value={collegeLead} placeholder="College's Name" disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <label htmlFor="college" className="text-sm">College Name</label>
+                    <input id="college" type="text" value={collegeLead} placeholder="College Name" disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 mt-2">
                     <a
@@ -386,16 +387,16 @@ const Dashboard = () => {
                     <input id="contact" type="number" placeholder="Contect No." value={contactMember2} disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
-                    <label htmlFor="github_profile" className="text-sm">GitHub's Profile</label>
-                    <input id="github_profile" type="text" placeholder="GitHub's Profile" value={githubMember2} disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <label htmlFor="github_profile" className="text-sm">GitHub Profile</label>
+                    <input id="github_profile" type="text" placeholder="GitHub Profile" value={githubMember2} disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
-                    <label htmlFor="linkdin_profile" className="text-sm">LinkedIn's Profile</label>
-                    <input id="linkdin_profile" type="text" value={linkedinMember2} placeholder="linkedIn's Profile" disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <label htmlFor="linkdin_profile" className="text-sm">LinkedIn Profile</label>
+                    <input id="linkdin_profile" type="text" value={linkedinMember2} placeholder="linkedIn Profile" disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full border-b">
-                    <label htmlFor="college" className="text-sm">College's Name</label>
-                    <input id="college" type="text" value={collegeMember2} placeholder="College's Name" disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <label htmlFor="college" className="text-sm">College Name</label>
+                    <input id="college" type="text" value={collegeMember2} placeholder="College Name" disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 mt-2">
                     <a
@@ -437,16 +438,16 @@ const Dashboard = () => {
                     <input id="contact" type="number" placeholder="Contact No." value={contactMember3} disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
-                    <label htmlFor="github_profile" className="text-sm">GitHub's Profile</label>
-                    <input id="github_profile" type="text" placeholder="GitHub's Profile" value={githubMember3} disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <label htmlFor="github_profile" className="text-sm">GitHub Profile</label>
+                    <input id="github_profile" type="text" placeholder="GitHub Profile" value={githubMember3} disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 border-b">
-                    <label htmlFor="linkdin_profile" className="text-sm">LinkedIn's Profile</label>
-                    <input id="linkdin_profile" type="text" value={linkedinMember3} placeholder="LinkedIn's Profile" disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <label htmlFor="linkdin_profile" className="text-sm">LinkedIn Profile</label>
+                    <input id="linkdin_profile" type="text" value={linkedinMember3} placeholder="LinkedIn Profile" disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full border-b">
-                    <label htmlFor="college" className="text-sm">College's Name</label>
-                    <input id="college" type="text" placeholder="College's Name" value={collegeMember3} disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
+                    <label htmlFor="college" className="text-sm">College Name</label>
+                    <input id="college" type="text" placeholder="College Name" value={collegeMember3} disabled="disabled" className="w-full h-8 rounded-md focus:ring bg-inherit" />
                   </div>
                   <div className="col-span-full sm:col-span-3 mt-2">
                     <a
