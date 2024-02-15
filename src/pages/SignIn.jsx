@@ -107,6 +107,8 @@ export default function SignIn() {
         return 'The password must be 6 characters long or more.';
       case 'auth/too-many-requests':
         return 'Too many requests try again later.';
+      case 'auth/missing-email':
+        return 'An email address is required.';
       default:
         return 'An unknown error occurred.';
     }
