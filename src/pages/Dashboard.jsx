@@ -9,7 +9,8 @@ import { collection, query, where, getDocs, updateDoc, deleteField } from "fireb
 import { notice } from "../constants";
 
 import {
-  Alert
+  Alert,
+  Popup
 } from "../components";
 
 const Dashboard = () => {
@@ -57,6 +58,9 @@ const Dashboard = () => {
 
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [whichMember, setWhichMember] = useState('');
 
   var q = query(collection(db, "teams"), where("teamName", "==", teamName));
   const [docRef, setDocRef] = useState(null);
@@ -149,6 +153,8 @@ const Dashboard = () => {
 
   const deleteMember2 = async () => {
     if(isLead) {
+      setWhichMember('2');
+      setShowPopup(true);
       if (memberCount == 2) {
         await updateDoc(docRef.ref, {
           nameMember2: deleteField(),
@@ -176,6 +182,7 @@ const Dashboard = () => {
         setGithubMember2('');
         setLinkedinMember2('');
         setCollegeMember2('');
+        setWhichMember('');
       } else {
         setAlertMessage('Member 2 dosen\'t exists');
         setAlertType('error');
@@ -196,6 +203,8 @@ const Dashboard = () => {
 
   const deleteMember3 = async () => {
     if(isLead) {
+      setWhichMember('3');
+      setShowPopup(true);
       if (memberCount == 3) {
         await updateDoc(docRef.ref, {
           nameMember3: deleteField(),
@@ -223,6 +232,7 @@ const Dashboard = () => {
         setGithubMember3('');
         setLinkedinMember3('');
         setCollegeMember3('');
+        setWhichMember('');
       } else {
         setAlertMessage('Member 3 dosen\'t exists');
         setAlertType('error');
@@ -245,6 +255,15 @@ const Dashboard = () => {
     <div className="fixed isolate overflow-hidden h-screen w-screen flex justify-center">
       <div className="fixed bg-primary w-full top-0 z-10">
         {showAlert && <Alert message={alertMessage} type={alertType} />}
+      </div>
+      <div className="fixed bg-primary w-full top-0 z-10">
+        {
+          showPopup && 
+          <Popup
+            onClose={() => setShowPopup(false)}
+            onOkay={() => whichMember == '2' ? deleteMember2() : deleteMember3()}
+            onRevert={() => setShowPopup(false)} />
+        }
       </div>
       <div
         className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl "
@@ -452,22 +471,23 @@ const Dashboard = () => {
             </form>
           </div>
 
-          <div className="row-span-2 col-span-1 md:col-span-2 border border-orange-600 rounded-xl md:overflow-y-auto">
+          <div className="row-span-2 col-span-1 md:col-span-2 border-2 border-orange-600 rounded-xl md:overflow-y-auto">
             <div className="text-white">
               <div className="container max-w-4xl px-10 py-6 mx-auto rounded-lg shadow-sm">
                 <div className="flex items-center justify-between">
-                  <span className="text-md dark:text-gray-400">{notice[0].date}</span>
+                  <span className="text-lg dark:text-gray-400">{notice[0].date}</span>
                 </div>
                 <div className="mt-3">
-                  <a rel="noopener noreferrer" href="#" className="text-xl font-bold hover:underline">{notice[0].id}</a>
-                  <p className="mt-2 text-md">{notice[0].notice}</p>
+                  <a rel="noopener noreferrer" href="#" className="text-2xl font-bold hover:underline">{notice[0].id}</a>
+                  <p className="mt-2 text-lg">{notice[0].notice}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="row-span-2 col-span-1 md:col-span-2 ">
-            <div className="container grid grid-cols-1 gap-6 m-4 mx-auto md:m-0 md:grid-cols-1 py-5">
+          <div className="row-span-2 col-span-1 md:col-span-2 border-2 border-orange-600 rounded-xl md:overflow-y-auto p-3">
+            <div className="container grid grid-cols-1 gap-6 m-4 mx-auto md:m-0 md:grid-cols-1">
+              <h1 className="text-2xl font-bold text-white">Delete Members</h1>
               <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
                 <div className="flex items-center justify-center px-4 bg-black text-2xl text-white bg-opacity-60">
                   1
@@ -495,12 +515,12 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            {/* card end */}
           </div>
-          <div className="row-span-4 col-span-1 md:col-start-6 md:row-start-1  md:overflow-y-auto ">
+
+          <div className="row-span-4 col-span-1 md:col-start-6 md:row-start-1 md:overflow-y-auto border-2 border-orange-600 rounded-xl md:overflow-y-auto p-3">
             <div className="p-2">
               <div className="container">
-                <div className="m-4 text-white text-2xl">Timeline</div>
+                <h1 className="text-2xl font-bold text-white mb-5">Timeline</h1>
                 <div className="flex flex-col md:grid grid-cols-12 text-white">
                   <div className="flex md:contents">
                     <div className="col-start-2 col-end-4 mr-10 md:mx-auto relative">

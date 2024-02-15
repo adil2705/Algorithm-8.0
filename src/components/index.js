@@ -9,6 +9,7 @@ import CanvasLoader from "./Loader";
 import Faq from "./Faq";
 import Foot from "./Footer";
 import Alert from './Alert';
+import Popup from './Popup';
 
 export {
   Hero,
@@ -21,5 +22,6 @@ export {
   Contact,
   CanvasLoader,
   StarsCanvas,
-  Alert
+  Alert,
+  Popup
 };
