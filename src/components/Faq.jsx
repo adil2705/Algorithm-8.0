@@ -100,6 +100,7 @@ const Faq = () => {
                   <span className="transition group-open:rotate-180" />
                 </summary>
                 <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
+                The problem statement will be provided 3 days before the conduction of the hackathon and the teams can start working on the hackathon once the problem statements are displayed.
                   {/* The meals will be provided along with some snacks and basic amenities. */}
                 </p>
               </details>
