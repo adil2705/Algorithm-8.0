@@ -8,21 +8,6 @@ const Popup = ({
     return (
         <div role="alert" className="border border-gray-100 bg-white p-4">
             <div className="flex items-start gap-4">
-                <span className="text-orange-600">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        className="h-8 w-8">
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </span>
-
                 <div className="flex-1">
                     <strong className="block text-xl font-bold text-orange-600">Are you sure you want to remove this member?</strong>
                     <div className="mt-4 flex gap-2">

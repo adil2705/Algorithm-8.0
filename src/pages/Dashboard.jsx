@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/UserContext';
 
 import { db } from "../firebase-config";
-
 import { collection, query, where, getDocs, updateDoc, deleteField } from "firebase/firestore";
 
 import { notice } from "../constants";
@@ -56,7 +55,6 @@ const Dashboard = () => {
 
   const [memberCount, setMemberCount] = useState(0);
 
-  const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
 
   const [showPopup, setShowPopup] = useState(false);
@@ -152,7 +150,6 @@ const Dashboard = () => {
   }, [docRef]);
 
   const deleteMember2 = async () => {
-    setShowPopup(true);
     if(isLead) {
       setWhichMember('2');
       setShowPopup(true);
