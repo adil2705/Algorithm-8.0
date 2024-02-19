@@ -99,10 +99,10 @@ export default function SignIn() {
         return 'The user corresponding to the given email has been disabled.';
       case 'auth/user-not-found':
         return 'There is no user corresponding to the given email.';
-      case 'auth/wrong-password':
-        return 'The password is invalid for the given email.';
+      case 'auth/invalid-password':
+        return 'Invalid Password.';
       case 'auth/email-already-in-use':
-        return 'The email address is already in use by another account.';
+        return 'The email address is already in use.';
       case 'auth/weak-password':
         return 'The password must be 6 characters long or more.';
       case 'auth/too-many-requests':
