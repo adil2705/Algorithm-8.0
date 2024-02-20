@@ -101,6 +101,8 @@ export default function SignIn() {
         return 'There is no user corresponding to the given email.';
       case 'auth/invalid-password':
         return 'Invalid Password.';
+      case 'auth/invalid-credential':
+        return 'Invalid Password.';
       case 'auth/email-already-in-use':
         return 'The email address is already in use.';
       case 'auth/weak-password':
@@ -151,8 +153,7 @@ export default function SignIn() {
               <Lottie 
                 options={defaultOptions}
                 height={400}
-                width={isMobile ? 300 : 420}
-              />
+                width={isMobile ? 300 : 420} />
             </div>
             <div className={`md:w-1/2 max-w-sm ${isMobile ? 'p-5' : 'p-10'}`}>
               <div className='flex flex-row'>

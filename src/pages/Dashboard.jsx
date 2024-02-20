@@ -57,11 +57,35 @@ const Dashboard = () => {
 
   const [loading2, setLoading2] = useState(false);
 
+  const [isRegistered, setIsRegistered] = useState(false);
+
   const [showPopup, setShowPopup] = useState(false);
   const [whichMember, setWhichMember] = useState('');
 
   var q = query(collection(db, "teams"), where("teamName", "==", teamName));
   const [docRef, setDocRef] = useState(null);
+
+  if(user) {
+    const checkUserRegistered = async () => {
+      var q1 = query(collection(db, "teams"), where("emailLead", "==", user.email));
+      var q2 = query(collection(db, "teams"), where("emailMember2", "==", user.email));
+      var q3 = query(collection(db, "teams"), where("emailMember3", "==", user.email));
+  
+      const [querySnapshot1, querySnapshot2, querySnapshot3] = await Promise.all([
+        getDocs(q1),
+        getDocs(q2),
+        getDocs(q3)
+      ]);
+  
+      if (querySnapshot1.empty && querySnapshot2.empty && querySnapshot3.empty) {
+        setIsRegistered(false);
+      } else {
+        setIsRegistered(true);
+      }
+    }
+
+    checkUserRegistered();
+  }
 
   const getTeamData = async (e) => {
     e.preventDefault();
@@ -150,39 +174,48 @@ const Dashboard = () => {
   }, [docRef]);
 
   const deleteMember2 = async () => {
-    if(isLead) {
-      setWhichMember('2');
-      setShowPopup(true);
-      if (memberCount == 2) {
-        await updateDoc(docRef.ref, {
-          nameMember2: deleteField(),
-          emailMember2: deleteField(),
-          contactMember2: deleteField(),
-          githubMember2: deleteField(),
-          linkedinMember2: deleteField(),
-          collegeMember2: deleteField(),
-          resumeMember2: deleteField(),
-          imageMember2: deleteField(),
-        });
-        setMember2Exists(true);
-        setMemberCount(1);
-        setAlertMessage('Member 2 deleted successfully');
-        setAlertType('success');
-        setShowAlert(true);
-        setTimeout(() => {
-          setShowAlert(false);
-        }, 2000);
-        setNameMember2('');
-        setEmailMember2('');
-        setContactMember2('');
-        setResumeLinkMember2('');
-        setImageLinkMember2('');
-        setGithubMember2('');
-        setLinkedinMember2('');
-        setCollegeMember2('');
-        setWhichMember('');
+    if(memberCount == 2) {
+      if(isLead) {
+        setWhichMember('2');
+        setShowPopup(true);
+        if (memberCount == 2) {
+          await updateDoc(docRef.ref, {
+            nameMember2: deleteField(),
+            emailMember2: deleteField(),
+            contactMember2: deleteField(),
+            githubMember2: deleteField(),
+            linkedinMember2: deleteField(),
+            collegeMember2: deleteField(),
+            resumeMember2: deleteField(),
+            imageMember2: deleteField(),
+          });
+          setMember2Exists(true);
+          setMemberCount(1);
+          setAlertMessage('Member 2 deleted successfully');
+          setAlertType('success');
+          setShowAlert(true);
+          setTimeout(() => {
+            setShowAlert(false);
+          }, 2000);
+          setNameMember2('');
+          setEmailMember2('');
+          setContactMember2('');
+          setResumeLinkMember2('');
+          setImageLinkMember2('');
+          setGithubMember2('');
+          setLinkedinMember2('');
+          setCollegeMember2('');
+          setWhichMember('');
+        } else {
+          setAlertMessage('Member 2 dosen\'t exists');
+          setAlertType('error');
+          setShowAlert(true);
+          setTimeout(() => {
+            setShowAlert(false);
+          }, 2000);
+        }
       } else {
-        setAlertMessage('Member 2 dosen\'t exists');
+        setAlertMessage('You are not authorized to delete a member.');
         setAlertType('error');
         setShowAlert(true);
         setTimeout(() => {
@@ -190,49 +223,59 @@ const Dashboard = () => {
         }, 2000);
       }
     } else {
-      setAlertMessage('You are not authorized to delete a member.');
+      setAlertMessage('Member 2 dosen\'t exists');
       setAlertType('error');
       setShowAlert(true);
       setTimeout(() => {
         setShowAlert(false);
       }, 2000);
+      setWhichMember('');
     }
   }
 
   const deleteMember3 = async () => {
-    if(isLead) {
-      setWhichMember('3');
-      setShowPopup(true);
-      if (memberCount == 3) {
-        await updateDoc(docRef.ref, {
-          nameMember3: deleteField(),
-          emailMember3: deleteField(),
-          contactMember3: deleteField(),
-          githubMember3: deleteField(),
-          linkedinMember3: deleteField(),
-          collegeMember3: deleteField(),
-          resumeMember3: deleteField(),
-          imageMember3: deleteField(),
-        });
-        setMember3Exists(true);
-        setMemberCount(2);
-        setAlertMessage('Member 3 deleted successfully');
-        setAlertType('success');
-        setShowAlert(true);
-        setTimeout(() => {
-          setShowAlert(false);
-        }, 2000);
-        setNameMember3('');
-        setEmailMember3('');
-        setContactMember3('');
-        setResumeLinkMember3('');
-        setImageLinkMember3('');
-        setGithubMember3('');
-        setLinkedinMember3('');
-        setCollegeMember3('');
-        setWhichMember('');
+    if(memberCount == 3) {
+      if(isLead) {
+        setWhichMember('3');
+        setShowPopup(true);
+        if (memberCount == 3) {
+          await updateDoc(docRef.ref, {
+            nameMember3: deleteField(),
+            emailMember3: deleteField(),
+            contactMember3: deleteField(),
+            githubMember3: deleteField(),
+            linkedinMember3: deleteField(),
+            collegeMember3: deleteField(),
+            resumeMember3: deleteField(),
+            imageMember3: deleteField(),
+          });
+          setMember3Exists(true);
+          setMemberCount(2);
+          setAlertMessage('Member 3 deleted successfully');
+          setAlertType('success');
+          setShowAlert(true);
+          setTimeout(() => {
+            setShowAlert(false);
+          }, 2000);
+          setNameMember3('');
+          setEmailMember3('');
+          setContactMember3('');
+          setResumeLinkMember3('');
+          setImageLinkMember3('');
+          setGithubMember3('');
+          setLinkedinMember3('');
+          setCollegeMember3('');
+          setWhichMember('');
+        } else {
+          setAlertMessage('Member 3 dosen\'t exists');
+          setAlertType('error');
+          setShowAlert(true);
+          setTimeout(() => {
+            setShowAlert(false);
+          }, 2000);
+        }
       } else {
-        setAlertMessage('Member 3 dosen\'t exists');
+        setAlertMessage('You are not authorized to delete a member.');
         setAlertType('error');
         setShowAlert(true);
         setTimeout(() => {
@@ -240,12 +283,13 @@ const Dashboard = () => {
         }, 2000);
       }
     } else {
-      setAlertMessage('You are not authorized to delete a member.');
+      setAlertMessage('Member 3 dosen\'t exists');
       setAlertType('error');
       setShowAlert(true);
       setTimeout(() => {
         setShowAlert(false);
       }, 2000);
+      setWhichMember('');
     }
   }
 
@@ -286,32 +330,53 @@ const Dashboard = () => {
       <div className="box m-12 p-6 lg:p-8 bg-orange-100 rounded-xl w-full md:overflow-hidden overflow-y-auto bg-opacity-10 ">
         <div className="grid grid-cols-1 md:grid-cols-6 grid-rows-full md:grid-rows-4 gap-4 text-black h-full">
           <div className="h-96 md:h-full md:row-span-4 col-span-1 md:col-span-3 border-2 text-white border-orange-600 overflow-y-auto rounded-xl">
-            <div className="bg-gradient-to-r from-amber-500 to-orange-900 p-3 flex justify-center sticky top-0"> 
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-8 w-8 cursor-pointer mt-2 mr-2" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-                onClick={() => window.history.back()}>
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              <input
-                className="w-3/4 text-lg px-4 py-2 border border-solid mr-4 border-orange-600 rounded-xl"
-                type="text"
-                value={teamName}
-                onChange={(e) => setTeamName(e.target.value)}
-                placeholder="Team Name" />
-              <button
-                onClick={getTeamData}
-                className="w-2/4 sm:w-1/5 bg-white font-bold h-full px-4 py-2.5 text-orange-600 hover:bg-orange-800 uppercase rounded-xl text-lg">
-                Search
-              </button>
-            </div>
+            {
+              isRegistered ? (
+                <div className="bg-gradient-to-r from-amber-500 to-orange-900 p-3 flex justify-center sticky top-0"> 
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-8 w-8 cursor-pointer mr-2" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                    onClick={() => window.history.back()}>
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  <input
+                    className="w-3/4 text-lg px-4 py-2 border border-solid mr-4 border-orange-600 rounded-xl"
+                    type="text"
+                    value={teamName}
+                    onChange={(e) => setTeamName(e.target.value)}
+                    placeholder="Team Name" />
+                  <button
+                    onClick={getTeamData}
+                    className="w-2/4 sm:w-1/5 bg-white font-bold h-full px-4 py-2.5 text-orange-600 hover:bg-orange-800 uppercase rounded-xl text-lg">
+                    Search
+                  </button>
+                </div>
+              ) : (
+                <div className="bg-gradient-to-r from-amber-500 to-orange-900 p-3 flex justify-center sticky top-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-8 w-8 cursor-pointer mr-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    onClick={() => window.history.back()}>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  <h1 className="text-2xl font-bold text-white">You are not registered in any team.</h1>
+                </div>
+              )
+            }
 
             <form noValidate="" action="" className="container flex flex-col mx-auto space-y-12">
               <fieldset className="grid grid-cols-4 gap-6 p-3 rounded-md shadow-sm">
