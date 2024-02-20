@@ -12,11 +12,11 @@ export default function Foot() {
                             <h1 className="text-white font-bold text-xl ">AIKTC's Algorithm 8.0</h1>
                         </div>
                         <div className="mt-6 lg:mb-0 mb-6">
-                            <button className="bg-blur text-orange-600 m-1 rounded-full border-2 border-orange-600 shadow-lg font-normal h-12 w-12 items-center justify-center align-center focus:outline-none mr-2 transform transition hover:-translate-y-0.5" type="button">
-                                <a href="https://www.instagram.com/algorithm_aiktc/" className="fab fa-2x fa-instagram" target='_blank'></a>
+                            <button className="bg-blur text-orange-600 m-1 shadow-lg font-normal h-12 w-12 items-center justify-center align-center focus:outline-none mr-2 transform transition hover:-translate-y-0.5" type="button">
+                                <a href="https://www.instagram.com/algorithm_aiktc/" className="fab fa-3x fa-instagram" target='_blank'></a>
                             </button>
-                            <button className="bg-blur text-orange-600 m-1 rounded-full border-2 border-orange-600 shadow-lg font-normal h-12 w-12 items-center justify-center align-center focus:outline-none mr-2 transform transition hover:-translate-y-0.5" type="button">
-                                <a href="/" className="fab fa-linkedin fa-2x" target='_blank'></a>
+                            <button className="bg-blur text-orange-600 m-1 shadow-lg font-normal h-12 w-12 items-center justify-center align-center focus:outline-none mr-2 transform transition hover:-translate-y-0.5" type="button">
+                                <a href="/" className="fab fa-linkedin fa-3x" target='_blank'></a>
                             </button>
                         </div>
                     </div>
