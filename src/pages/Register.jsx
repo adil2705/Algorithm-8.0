@@ -519,8 +519,8 @@ const Register = () => {
                             <div className="bg-blur rounded-2xl h-full p-4">
                                 <h2 className="font-bold text-3xl">Instructions</h2>
                                 <ul className="list-disc mt-4 list-inside text-lg">
-                                    <li>Use existing team name to register your self as a part of existing team.</li>
-                                    <li>Enter new team name to create a new team and share that team name with your members so that they can become part of your team.</li>
+                                    <li>Use existing team name to register yourself as a part of existing team (team name is case & space sensitive).</li>
+                                    <li>Enter new team name to create a new team and share that team name with your team-mates so that they can become part of your team.</li>
                                     <li>Member to register first is automatically the lead of the team.</li>
                                     <li>Each team can only have three members.</li>
                                     <li>Upload your Resume in .pdf format ({'<'}100 kb)</li>

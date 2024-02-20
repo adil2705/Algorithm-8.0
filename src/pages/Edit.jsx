@@ -725,7 +725,7 @@ const Edit = () => {
             nameMember3 || emailMember3 || contactMember3 || resumeMember3 || imageMember3 ||
             githubMember3 || linkedinMember3 || collegeMember3) 
             && memberCount == 1) {
-            setAlertMessage('Cannot add new members.');
+            setAlertMessage('Cannot add new members here 😒.');
             setAlertType('error');
             setShowAlert(true);
             setTimeout(() => {
@@ -734,7 +734,7 @@ const Edit = () => {
             return;
         } else if ((nameMember3 || emailMember3 || contactMember3 || resumeMember3 || imageMember3 ||
             githubMember3 || linkedinMember3 || collegeMember3) && memberCount == 2) {
-            setAlertMessage('Cannot add new members.');
+            setAlertMessage('Cannot add new members here 😒.');
             setAlertType('error');
             setShowAlert(true);
             setTimeout(() => {
@@ -1149,7 +1149,7 @@ const Edit = () => {
                             <div className="bg-blur rounded-2xl h-full p-4">
                                 <h2 className="font-bold text-3xl">Instructions</h2>
                                 <ul className="list-disc mt-4 list-inside text-lg">
-                                    <li>Only the lead can edit the details.</li>
+                                    <li>Only the lead can edit the team details.</li>
                                     <li>New members cannot be added here only details of existing members can be altered.</li>
                                     <li>Upload your Resume in .pdf format ({'<'}100 kb)</li>
                                     <li>Upload your Image in any image format ({'<'}100 kb)</li>
