@@ -41,4 +41,6 @@ git checkout experiment
 ```js
 git push origin experiment
 ```
+7. Create a pull request
+8. Wait for the pull request to be reviewed and merged with the production branch
 
