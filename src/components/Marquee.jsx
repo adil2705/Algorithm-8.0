@@ -3,7 +3,7 @@ import React from 'react';
 const Marquee = () => {
   const marqueeContent = `
     <marquee direction="left" behavior="scroll" scrollamount="3" >
-      Problem Statement will be relesed soon
+  
     </marquee>
   `;
 
