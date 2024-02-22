@@ -86,7 +86,7 @@ const Contact = () => {
               className='text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl' />
           </label>
           <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your email</span>
+            <span className='text-white font-medium mb-4'>Your Email</span>
             <input
               type='email'
               name='email'
@@ -96,13 +96,13 @@ const Contact = () => {
               className='text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl' />
           </label>
           <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Message...</span>
+            <span className='text-white font-medium mb-4'>Your Message</span>
             <textarea
               rows={4}
               name='message'
               value={form.message}
               onChange={handleChange}
-              placeholder='Your Message '
+              placeholder='Type Here...'
               className='text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl' />
           </label>
           <button
