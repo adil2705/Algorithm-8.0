@@ -45,7 +45,7 @@ const Register = () => {
     const contactRegex = /^[0-9]{10}$/;
     const githubLinkedinRegex = /^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9_-]+$/;
     const linkedinRegex = /^(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+$/;    
-    const collegeRegex = /^[a-zA-Z]+(([',.. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+    const collegeRegex = /^[a-zA-Z]+(([',. -][a-zA-Z. ])?[a-zA-Z]*)*$/;
 
     var q = query(collection(db, "teams"), where("teamName", "==", teamName));
     var querySnapshot = null;
