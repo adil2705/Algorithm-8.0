@@ -8,6 +8,7 @@ import { SectionWrapper } from "../hoc";
 import { Link } from "react-router-dom";
 
 import Navbar from "./Navbar";
+import Marquee from "./Marquee";
 
 import { UserContext } from '../context/UserContext';
 
@@ -47,7 +48,8 @@ const Hero = () => {
     <section className={`w-[100vw] h-[100vh] mb-32 ${isMobile ? 'hero-bg-mobile' : 'hero-bg-desktop'}`}>
       <Navbar user={user} />
       <section className={`flex flex-col items-center justify-center w-[100vw] h-[100vh] ${isMobile ? 'hero-bg-mobile' : 'hero-bg-desktop'}`}>
-        <section className='absolute flex md:flex-row flex-col py-10 relative z-0'>    
+        <section className='absolute flex md:flex-row flex-col py-10 relative z-0'>   
+{/*           <Marquee /> */}
           <div className={`flex-1 ${styles.flexStart} flex-col justify-center items-center`}>
             <motion.div variants={fadeIn("down", "spring", 0.3, 0.75)}>
               <h1 className="flex text-center justify-center font-poppins font-semibold lg:text-[40px] text-[30px] text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]">
