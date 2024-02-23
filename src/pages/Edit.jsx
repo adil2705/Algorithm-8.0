@@ -66,14 +66,14 @@ const Edit = () => {
     const [loading, setLoading] = useState(false);
     const [loading2, setLoading2] = useState(false);
 
-    const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
-    const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
-    const contactRegex = /^[0-9]{10}$/;
-    const githubLinkedinRegex = /^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9_-]+$/;
-    const linkedinRegex = /^(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+$/;    
-    const collegeRegex = /^[a-zA-Z]+(([',. -][a-zA-Z. ])?[a-zA-Z]*)*$/;
+    const nameRegex = /^\s*[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\s*$/;
+    const emailRegex = /^\s*[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\s*$/;
+    const contactRegex = /^\s*[0-9]{10}\s*$/;
+    const githubLinkedinRegex = /^\s*(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9_-]+\s*$/;
+    const linkedinRegex = /^\s*(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+\s*$/;    
+    const collegeRegex = /^\s*[a-zA-Z]+(([',. -][a-zA-Z. ])?[a-zA-Z]*)*\s*$/;
 
-    var q = query(collection(db, "teams"), where("teamName", "==", teamName));
+    var q = query(collection(db, "teams"), where("teamName", "==", teamName.trim()));
 
     const [docRef, setDocRef] = useState(null);
 
@@ -81,7 +81,7 @@ const Edit = () => {
         e.preventDefault();
 
         if (!user) {
-            setAlertMessage('Please login to edit.');
+            setAlertMessage('Please Login to Edit.');
             setAlertType('error');
             setShowAlert(true);
             setTimeout(() => {
@@ -1151,7 +1151,7 @@ const Edit = () => {
                                 <ul className="list-disc mt-4 list-inside text-lg">
                                     <li>Only the lead can edit the team details.</li>
                                     <li>New members cannot be added here only details of existing members can be altered.</li>
-                                    <li>Upload your Resume in .pdf format ({'<'}100 kb)</li>
+                                    <li>Upload your Resume in .pdf, .docx or any image format ({'<'}100 kb)</li>
                                     <li>Upload your Image in any image format ({'<'}100 kb)</li>
                                     <li>Linkedin Link : linkedin.com/in/profile-id</li>
                                     <li>GitHub Link : github.com/username</li>

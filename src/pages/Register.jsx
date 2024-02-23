@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -40,12 +40,12 @@ const Register = () => {
 
     const [loading, setLoading] = useState(false);
 
-    const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
-    const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
-    const contactRegex = /^[0-9]{10}$/;
-    const githubLinkedinRegex = /^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9_-]+$/;
-    const linkedinRegex = /^(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+$/;    
-    const collegeRegex = /^[a-zA-Z]+(([',. -][a-zA-Z. ])?[a-zA-Z]*)*$/;
+    const nameRegex = /^\s*[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\s*$/;
+    const emailRegex = /^\s*[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\s*$/;
+    const contactRegex = /^\s*[0-9]{10}\s*$/;
+    const githubLinkedinRegex = /^\s*(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9_-]+\s*$/;
+    const linkedinRegex = /^\s*(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+\s*$/;    
+    const collegeRegex = /^\s*[a-zA-Z]+(([',. -][a-zA-Z. ])?[a-zA-Z]*)*\s*$/;
 
     var q = query(collection(db, "teams"), where("teamName", "==", teamName));
     var querySnapshot = null;
@@ -78,7 +78,7 @@ const Register = () => {
         checkUserRegistered();
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         checkIfMemberExists();
     }, [teamName]);
 
@@ -114,8 +114,9 @@ const Register = () => {
         }
     }
 
-    const uploadResume = async () => {    
+    const uploadResume = async () => { 
         setLoading(true);
+
         if (resumeFile) {
             try {
                 setAlertMessage('Uploading Resume...');
@@ -170,15 +171,15 @@ const Register = () => {
             querySnapshot = await getDocs(q);
             if (querySnapshot.empty) {
                 await addDoc(collection(db, "teams"), {
-                    teamName: teamName,
-                    nameLead: nameMember,
+                    teamName: teamName.trim(),
+                    nameLead: nameMember.trim(),
                     emailLead: user.email,
-                    contactLead: contactMember,
+                    contactLead: contactMember.trim(),
                     resumeLead: resumeUrl,
                     imageLead: imageUrl,
-                    githubLead: githubMember,
-                    linkedinLead: linkedinMember,
-                    collegeLead: collegeMember
+                    githubLead: githubMember.trim(),
+                    linkedinLead: linkedinMember.trim(),
+                    collegeLead: collegeMember.trim()
                 });
                 setLoading(false);
                 setAlertMessage('Registered Successfully.');
@@ -213,7 +214,7 @@ const Register = () => {
                             data.nameMember2 != null &&
                             data.nameMember3 == null) {
                                 updateDoc(docRef.ref, {
-                                    teamName: teamName,
+                                    teamName: teamName.trim(),
                                     nameLead: data.nameLead,
                                     emailLead: data.emailLead,
                                     contactLead: data.contactLead,
@@ -230,14 +231,14 @@ const Register = () => {
                                     githubMember2: data.githubMember2,
                                     linkedinMember2: data.linkedinMember2,
                                     collegeMember2: data.collegeMember2,
-                                    nameMember3: nameMember,
+                                    nameMember3: nameMember.trim(),
                                     emailMember3: user.email,
-                                    contactMember3: contactMember,
+                                    contactMember3: contactMember.trim(),
                                     resumeMember3: resumeUrl,
                                     imageMember3: imageUrl,
-                                    githubMember3: githubMember,
-                                    linkedinMember3: linkedinMember,
-                                    collegeMember3: collegeMember
+                                    githubMember3: githubMember.trim(),
+                                    linkedinMember3: linkedinMember.trim(),
+                                    collegeMember3: collegeMember.trim()
                                 });
                                 setLoading(false);
                                 setAlertMessage('Registered Successfully.');
@@ -252,7 +253,7 @@ const Register = () => {
                                 data.nameMember2 == null &&
                                 data.nameMember3 == null) {
                                 updateDoc(docRef.ref, {
-                                    teamName: teamName,
+                                    teamName: teamName.trim(),
                                     nameLead: data.nameLead,
                                     emailLead: data.emailLead,
                                     contactLead: data.contactLead,
@@ -261,14 +262,14 @@ const Register = () => {
                                     githubLead: data.githubLead,
                                     linkedinLead: data.linkedinLead,
                                     collegeLead: data.collegeLead,
-                                    nameMember2: nameMember,
+                                    nameMember2: nameMember.trim(),
                                     emailMember2: user.email,
-                                    contactMember2: contactMember,
+                                    contactMember2: contactMember.trim(),
                                     resumeMember2: resumeUrl,
                                     imageMember2: imageUrl,
-                                    githubMember2: githubMember,
-                                    linkedinMember2: linkedinMember,
-                                    collegeMember2: collegeMember
+                                    githubMember2: githubMember.trim(),
+                                    linkedinMember2: linkedinMember.trim(),
+                                    collegeMember2: collegeMember.trim()
                                 });
                                 setLoading(false);
                                 setAlertMessage('Registered Successfully.');
@@ -397,7 +398,7 @@ const Register = () => {
             uploadResume();
         }
     }
-
+    
     return (
         <section className='relative z-0 bg-black overflow-x-hidden h-[100vh]'>
             <div className="fixed bg-primary w-full top-0 z-10">
@@ -517,13 +518,13 @@ const Register = () => {
 
                         <aside className='border border-orange-600 rounded-2xl p-3 mt-[26px] mx-2 mb-3 flex-1'>
                             <div className="bg-blur rounded-2xl h-full p-4">
-                                <h2 className="font-bold text-3xl">Instructions</h2>
-                                <ul className="list-disc mt-4 list-inside text-lg">
+                                <h2 className="font-bold text-3xl text-red-600">Instructions</h2>
+                                <ul className="list-disc mt-4 list-inside text-xl">
                                     <li>Use existing team name to register yourself as a part of existing team (team name is case & space sensitive).</li>
-                                    <li>Enter new team name to create a new team and share that team name with your team-mates so that they can become part of your team.</li>
+                                    <li>Enter a new team name to create a new team and share that team name with your team-mates so that they can become part of your team.</li>
                                     <li>Member to register first is automatically the lead of the team.</li>
                                     <li>Each team can only have three members.</li>
-                                    <li>Upload your Resume in .pdf format ({'<'}100 kb)</li>
+                                    <li>Upload your Resume in .pdf or .docx ({'<'}100 kb)</li>
                                     <li>Upload your Image in any image format ({'<'}100 kb)</li>
                                     <li>LinkedIn Link : linkedin.com/in/profile-id</li>
                                     <li>GitHub Link : github.com/username</li>
@@ -565,14 +566,18 @@ const Register = () => {
                                 </Link>
                             }
                         </div>
-                        <div className="flex justify-center text-center md:text-left font-bold">
-                            <Link
-                                to="/edit"
-                                className={`mt-3 ${isMobile ? 'mx-2' : 'mx-3'} text-lg bg-white px-4 py-2 text-orange-600 uppercase rounded-xl`} 
-                                style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                                Edit Form
-                            </Link>
-                        </div>
+
+                        {
+                            isRegistered ? 
+                            <div className="flex justify-center text-center md:text-left font-bold">
+                                <Link
+                                    to="/edit"
+                                    className={`mt-3 ${isMobile ? 'mx-2' : 'mx-3'} text-lg bg-white px-4 py-2 text-orange-600 uppercase rounded-xl`} 
+                                    style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                    Edit Form
+                                </Link>
+                            </div> : ''
+                        }
                     </form>
                 </div>
             </div>
