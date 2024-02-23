@@ -520,14 +520,16 @@ const Register = () => {
                             <div className="bg-blur rounded-2xl h-full p-4">
                                 <h2 className="font-bold text-3xl text-red-600">Instructions</h2>
                                 <ul className="list-disc mt-4 list-inside text-xl">
+                                    <li className='font-bold'>Each member has to register individually.</li>
                                     <li>Use existing team name to register yourself as a part of existing team (team name is case & space sensitive).</li>
-                                    <li>Enter a new team name to create a new team and share that team name with your team-mates so that they can become part of your team.</li>
+                                    <li>Choose a new team name to create a new team and share that team name with your team mates so that they can become part of your team.</li>
                                     <li>Member to register first is automatically the lead of the team.</li>
                                     <li>Each team can only have three members.</li>
                                     <li>Upload your Resume in .pdf or .docx ({'<'}100 kb)</li>
                                     <li>Upload your Image in any image format ({'<'}100 kb)</li>
                                     <li>LinkedIn Link : linkedin.com/in/profile-id</li>
                                     <li>GitHub Link : github.com/username</li>
+                                    <li>Join this Whatsapp Group to solve your doubts : <a href='https://chat.whatsapp.com/KEK3nEVvZzu1yXXvTO5ySS' className='text-blue-600'>Click to Join</a></li>
                                 </ul>
                             </div>
                         </aside>

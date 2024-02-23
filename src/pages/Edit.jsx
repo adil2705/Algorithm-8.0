@@ -81,7 +81,7 @@ const Edit = () => {
         e.preventDefault();
 
         if (!user) {
-            setAlertMessage('Please Login to Edit.');
+            setAlertMessage('Please login to edit.');
             setAlertType('error');
             setShowAlert(true);
             setTimeout(() => {
@@ -780,7 +780,7 @@ const Edit = () => {
                         type="text" 
                         value={teamName}
                         onChange={(e) => setTeamName(e.target.value)} 
-                        placeholder="Enter your Team Name here" />
+                        placeholder="Team Name" />
                     <button
                         onClick={getTeamData}
                         className="bg-white font-bold h-full px-4 py-2.5 text-orange-600 hover:bg-orange-800 uppercase rounded-xl text-lg">
@@ -1181,6 +1181,7 @@ const Edit = () => {
                                     <li>Upload your Image in any image format ({'<'}100 kb)</li>
                                     <li>Linkedin Link : linkedin.com/in/profile-id</li>
                                     <li>GitHub Link : github.com/username</li>
+                                    <li>Join this Whatsapp Group to solve your doubts : <a href='https://chat.whatsapp.com/KEK3nEVvZzu1yXXvTO5ySS' className='text-blue-600'>Click to Join</a></li>
                                 </ul>
                             </div>
                         </aside>
