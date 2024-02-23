@@ -59,7 +59,7 @@ const experiences = [
     iconBg: "#383E56",
     // date: "13th Feb 2024 - 20th Feb 2024",
     points: [
-      "Participants have to register themselves and form a team of 3 members.",
+      "Participants have to register themselves and form a team of three members.",
     ],
   },
   {
@@ -68,7 +68,7 @@ const experiences = [
     iconBg: "#E6DEDD",
     // date: "1st March 2024",
     points: [
-      "Problem statements will be announced and team lead has to select the topic and start working on it.",
+      "Problem statement will be announced and team lead has to select the topic and start working on it.",
     ],
   },
   {
@@ -86,7 +86,7 @@ const experiences = [
     iconBg: "#E6DEDD",
     // date: "2nd March 2024",
     points: [
-      "Winner will be announced.",
+      "Winners will be announced.",
     ],
   },
 ];
@@ -115,6 +115,11 @@ export const notice = [
     date: "14 Feb 2024",
     id: "Notice 1",
     notice: "Visit this page to get updates about the event.",
+  },
+  {
+    date: "23 Feb 2024",
+    id: "Notice 2",
+    notice: "Join the Whatsapp Group if you haven't already : https://chat.whatsapp.com/C47SLZvd6x8HBcw6suTdXp",
   }
 ];
 

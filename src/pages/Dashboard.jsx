@@ -62,7 +62,7 @@ const Dashboard = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [whichMember, setWhichMember] = useState('');
 
-  var q = query(collection(db, "teams"), where("teamName", "==", teamName));
+  var q = query(collection(db, "teams"), where("teamName", "==", teamName.trim()));
   const [docRef, setDocRef] = useState(null);
 
   if(user) {
@@ -86,6 +86,7 @@ const Dashboard = () => {
 
     checkUserRegistered();
   }
+
 
   const getTeamData = async (e) => {
     e.preventDefault();
@@ -144,9 +145,10 @@ const Dashboard = () => {
           setGithubMember2(data.githubMember2);
           setLinkedinMember2(data.linkedinMember2);
           setCollegeMember2(data.collegeMember2);
+          setMember2Exists(true);
           setMemberCount(2);
         } else {
-          setMember2Exists(true);
+          setMember2Exists(false);
         }
         if (data.nameMember3 && data.emailMember3 && data.contactMember3
           && data.githubMember3 && data.linkedinMember3 && data.collegeMember3) {
@@ -158,9 +160,10 @@ const Dashboard = () => {
           setGithubMember3(data.githubMember3);
           setLinkedinMember3(data.linkedinMember3);
           setCollegeMember3(data.collegeMember3);
+          setMember3Exists(true);
           setMemberCount(3);
         } else {
-          setMember3Exists(true);
+          setMember3Exists(false);
         }
         setLoading2(false);
       } 
@@ -191,7 +194,7 @@ const Dashboard = () => {
           });
           setMember2Exists(true);
           setMemberCount(1);
-          setAlertMessage('Member 2 deleted successfully');
+          setAlertMessage('Member 2 deleted successfully.');
           setAlertType('success');
           setShowAlert(true);
           setTimeout(() => {
@@ -206,8 +209,9 @@ const Dashboard = () => {
           setLinkedinMember2('');
           setCollegeMember2('');
           setWhichMember('');
+          showPopup(false);
         } else {
-          setAlertMessage('Member 2 dosen\'t exists');
+          setAlertMessage('Member 2 dosen\'t exists.');
           setAlertType('error');
           setShowAlert(true);
           setTimeout(() => {
@@ -223,7 +227,7 @@ const Dashboard = () => {
         }, 2000);
       }
     } else {
-      setAlertMessage('Member 2 dosen\'t exists');
+      setAlertMessage('Member 2 dosen\'t exists.');
       setAlertType('error');
       setShowAlert(true);
       setTimeout(() => {
@@ -251,7 +255,7 @@ const Dashboard = () => {
           });
           setMember3Exists(true);
           setMemberCount(2);
-          setAlertMessage('Member 3 deleted successfully');
+          setAlertMessage('Member 3 deleted successfully.');
           setAlertType('success');
           setShowAlert(true);
           setTimeout(() => {
@@ -266,8 +270,9 @@ const Dashboard = () => {
           setLinkedinMember3('');
           setCollegeMember3('');
           setWhichMember('');
+          showPopup(false);
         } else {
-          setAlertMessage('Member 3 dosen\'t exists');
+          setAlertMessage('Member 3 dosen\'t exists.');
           setAlertType('error');
           setShowAlert(true);
           setTimeout(() => {
@@ -283,7 +288,7 @@ const Dashboard = () => {
         }, 2000);
       }
     } else {
-      setAlertMessage('Member 3 dosen\'t exists');
+      setAlertMessage('Member 3 dosen\'t exists.');
       setAlertType('error');
       setShowAlert(true);
       setTimeout(() => {
@@ -335,7 +340,7 @@ const Dashboard = () => {
                 <div className="bg-gradient-to-r from-amber-500 to-orange-900 p-3 flex justify-center sticky top-0"> 
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
-                    className="h-8 w-8 cursor-pointer mr-2" 
+                    className="h-8 w-8 cursor-pointer mr-2 mt-2" 
                     fill="none" 
                     viewBox="0 0 24 24" 
                     stroke="currentColor"
@@ -382,7 +387,7 @@ const Dashboard = () => {
               <fieldset className="grid grid-cols-4 gap-6 p-3 rounded-md shadow-sm">
                 <div className="space-y-2 col-span-full lg:col-span-1 ">
                   <p className="text-lg font-bold">Member 1 (Lead)</p>
-                  <p className="text-medium">has access of deleting</p>
+                  <p className="text-medium">has access of deleting of other members.</p>
                 </div>
                 <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                   <div className="col-span-full border-b">
@@ -433,7 +438,7 @@ const Dashboard = () => {
               <fieldset className="grid grid-cols-4 gap-6 p-3 rounded-md shadow-sm">
                 <div className="space-y-2 col-span-full lg:col-span-1">
                   <p className="text-lg font-bold">Member 2</p>
-                  <p className={`${member2Exists == true ? 'block' : 'hidden'} text-medium text-red-500`}>Member 2 dosen't exists</p>
+                  <p className={`${!member2Exists ? 'block' : 'hidden'} text-medium text-red-500`}>Member 2 dosen't exists</p>
                 </div>
                 <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                   <div className="col-span-full border-b">
@@ -484,7 +489,7 @@ const Dashboard = () => {
               <fieldset className="grid grid-cols-4 gap-6 p-3 rounded-md shadow-sm pb-4">
                 <div className="space-y-2 col-span-full lg:col-span-1">
                   <p className="text-lg font-bold">Member 3</p>
-                  <p className={`${member3Exists == true ? 'block' : 'hidden'} text-medium text-red-500`}>Member 3 dosen't exists</p>
+                  <p className={`${!member3Exists ? 'block' : 'hidden'} text-medium text-red-500`}>Member 3 dosen't exists</p>
                 </div>
                 <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                   <div className="col-span-full border-b">
@@ -537,48 +542,60 @@ const Dashboard = () => {
           <div className="row-span-2 col-span-1 md:col-span-2 border-2 border-orange-600 rounded-xl md:overflow-y-auto">
             <div className="text-white">
               <div className="container max-w-4xl px-10 py-6 mx-auto rounded-lg shadow-sm">
-                <div className="flex items-center justify-between">
-                  <span className="text-lg dark:text-gray-400">{notice[0].date}</span>
-                </div>
-                <div className="mt-3">
-                  <a rel="noopener noreferrer" href="#" className="text-2xl font-bold hover:underline">{notice[0].id}</a>
-                  <p className="mt-2 text-lg">{notice[0].notice}</p>
+                <h1 className="text-2xl font-bold text-white">Notices</h1>
+                <div className="flex flex-col mt-4">
+                  {
+                    notice.map((item, index) => {
+                      return (
+                        <div key={index} className="flex flex-col p-4 bg-orange-600 bg-opacity-50 rounded-lg mb-4">
+                          <p className="text-sm text-white">{item.date}</p>
+                          <div className="flex items-center justify-between">
+                            <h1 className="text-xl font-semibold text-white">{item.id}</h1>
+                          </div>
+                          <p className="mt-2 text-white">{item.notice}</p>
+                        </div>
+                      )
+                    })
+                  }
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="row-span-2 col-span-1 md:col-span-2 border-2 border-orange-600 rounded-xl md:overflow-y-auto p-3">
-            <div className="container grid grid-cols-1 gap-6 m-4 mx-auto md:m-0 md:grid-cols-1">
-              <h1 className="text-2xl font-bold text-white">Delete Members</h1>
-              <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
-                <div className="flex items-center justify-center px-4 bg-black text-2xl text-white bg-opacity-60">
-                  1
+          {
+            isLead ?
+            <div className="row-span-2 col-span-1 md:col-span-2 border-2 border-orange-600 rounded-xl md:overflow-y-auto p-5">
+              <div className="container grid grid-cols-1 gap-6 m-4 mx-auto md:m-0 md:grid-cols-1">
+                <h1 className="text-2xl font-bold text-white">Delete Members</h1>
+                <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
+                  <div className="flex items-center justify-center px-4 bg-black text-2xl text-white bg-opacity-60">
+                    1
+                  </div>
+                  <div className="flex items-center justify-between flex-1 p-3 text-white">
+                    <p className="text-2xl font-semibold">{nameLead ? nameLead : 'Not Yet Registered'}</p>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between flex-1 p-3 text-white">
-                  <p className="text-2xl font-semibold">{nameLead ? nameLead : 'Not Registered'}</p>
+                <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
+                  <div className="flex items-center justify-center px-4 bg-black text-2xl text-white bg-opacity-60">
+                    2
+                  </div>
+                  <div className="flex items-center justify-between flex-1 p-3 text-white">
+                    <p className="text-2xl font-semibold">{nameMember2 ? nameMember2 : 'Not Yet Registered'}</p>
+                    <svg onClick={deleteMember2} xmlns="http://www.w3.org/2000/svg" width="30px" height="28px" viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M9 2H7a.5.5 0 0 0-.5.5V3h3v-.5A.5.5 0 0 0 9 2m2 1v-.5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2V3H2.251a.75.75 0 0 0 0 1.5h.312l.317 7.625A3 3 0 0 0 5.878 15h4.245a3 3 0 0 0 2.997-2.875l.318-7.625h.312a.75.75 0 0 0 0-1.5zm.936 1.5H4.064l.315 7.562A1.5 1.5 0 0 0 5.878 13.5h4.245a1.5 1.5 0 0 0 1.498-1.438zm-6.186 2v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0m3.75-.75a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0v-5a.75.75 0 0 1 .75-.75" clipRule="evenodd" /></svg>
+                  </div>
+                </div>
+                <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
+                  <div className="flex items-center justify-center px-4 bg-black text-2xl text-white bg-opacity-60">
+                    3
+                  </div>
+                  <div className="flex items-center justify-between flex-1 p-3 text-white">
+                    <p className="text-2xl font-semibold">{nameMember3 ? nameMember3 : 'Not Yet Registered'}</p>
+                    <svg onClick={deleteMember3} xmlns="http://www.w3.org/2000/svg" width="30px" height="28px" viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M9 2H7a.5.5 0 0 0-.5.5V3h3v-.5A.5.5 0 0 0 9 2m2 1v-.5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2V3H2.251a.75.75 0 0 0 0 1.5h.312l.317 7.625A3 3 0 0 0 5.878 15h4.245a3 3 0 0 0 2.997-2.875l.318-7.625h.312a.75.75 0 0 0 0-1.5zm.936 1.5H4.064l.315 7.562A1.5 1.5 0 0 0 5.878 13.5h4.245a1.5 1.5 0 0 0 1.498-1.438zm-6.186 2v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0m3.75-.75a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0v-5a.75.75 0 0 1 .75-.75" clipRule="evenodd" /></svg>
+                  </div>
                 </div>
               </div>
-              <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
-                <div className="flex items-center justify-center px-4 bg-black text-2xl text-white bg-opacity-60">
-                  2
-                </div>
-                <div className="flex items-center justify-between flex-1 p-3 text-white">
-                  <p className="text-2xl font-semibold">{nameMember2 ? nameMember2 : 'Not Registered'}</p>
-                  <svg onClick={deleteMember2} xmlns="http://www.w3.org/2000/svg" width="30px" height="28px" viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M9 2H7a.5.5 0 0 0-.5.5V3h3v-.5A.5.5 0 0 0 9 2m2 1v-.5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2V3H2.251a.75.75 0 0 0 0 1.5h.312l.317 7.625A3 3 0 0 0 5.878 15h4.245a3 3 0 0 0 2.997-2.875l.318-7.625h.312a.75.75 0 0 0 0-1.5zm.936 1.5H4.064l.315 7.562A1.5 1.5 0 0 0 5.878 13.5h4.245a1.5 1.5 0 0 0 1.498-1.438zm-6.186 2v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0m3.75-.75a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0v-5a.75.75 0 0 1 .75-.75" clipRule="evenodd" /></svg>
-                </div>
-              </div>
-              <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
-                <div className="flex items-center justify-center px-4 bg-black text-2xl text-white bg-opacity-60">
-                  3
-                </div>
-                <div className="flex items-center justify-between flex-1 p-3 text-white">
-                  <p className="text-2xl font-semibold">{nameMember3 ? nameMember3 : 'Not Registered'}</p>
-                  <svg onClick={deleteMember3} xmlns="http://www.w3.org/2000/svg" width="30px" height="28px" viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M9 2H7a.5.5 0 0 0-.5.5V3h3v-.5A.5.5 0 0 0 9 2m2 1v-.5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2V3H2.251a.75.75 0 0 0 0 1.5h.312l.317 7.625A3 3 0 0 0 5.878 15h4.245a3 3 0 0 0 2.997-2.875l.318-7.625h.312a.75.75 0 0 0 0-1.5zm.936 1.5H4.064l.315 7.562A1.5 1.5 0 0 0 5.878 13.5h4.245a1.5 1.5 0 0 0 1.498-1.438zm-6.186 2v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0m3.75-.75a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0v-5a.75.75 0 0 1 .75-.75" clipRule="evenodd" /></svg>
-                </div>
-              </div>
-            </div>
-          </div>
+            </div> : ''
+          }
 
           <div className="row-span-4 col-span-1 md:col-start-6 md:row-start-1 md:overflow-y-auto border-2 border-orange-600 rounded-xl md:overflow-y-auto p-3">
             <div className="p-2">

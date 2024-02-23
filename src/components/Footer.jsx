@@ -16,7 +16,7 @@ export default function Foot() {
                                 <a href="https://www.instagram.com/algorithm_aiktc/" className="fab fa-3x fa-instagram" target='_blank'></a>
                             </button>
                             <button className="bg-blur text-orange-600 m-1 shadow-lg font-normal h-12 w-12 items-center justify-center align-center focus:outline-none mr-2 transform transition hover:-translate-y-0.5" type="button">
-                                <a href="/" className="fab fa-linkedin fa-3x" target='_blank'></a>
+                                <a href="https://www.linkedin.com/in/algorithm-aiktc-a6871a2b5/" className="fab fa-linkedin fa-3x" target='_blank'></a>
                             </button>
                         </div>
                     </div>
@@ -29,7 +29,7 @@ export default function Foot() {
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-12 md:w-5" viewBox="0 0 20 20" fill="white">
                                             <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                                         </svg>
-                                        <a className="text-gray-200 hover:text-white font-semibold block pb-2 text-lg" href="https://maps.app.goo.gl/aVcguAUbhBLJEzqc6" >Anjuman-I-Islam's Kalsekar Technical Campus - AIKTC, Navi Mumbai</a>
+                                        <a className="text-gray-200 hover:text-white font-semibold block pb-2 text-lg" href="https://maps.app.goo.gl/aVcguAUbhBLJEzqc6">Anjuman-I-Islam's Kalsekar Technical Campus - AIKTC, Navi Mumbai</a>
                                     </li>
                                     <li className="flex gap-4 items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
