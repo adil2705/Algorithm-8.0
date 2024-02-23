@@ -1,15 +1,13 @@
 import React from 'react';
+import '../css/marquee.css';
 
 const Marquee = () => {
-  const marqueeContent = `
-    <marquee direction="left" behavior="scroll" scrollamount="3" >
-  
-    </marquee>
-  `;
+  const marqueeContent = "Problem statement to be announced soon.";
 
   return (
-    <div className="text-4xl -top-2 font-bold text-white" dangerouslySetInnerHTML={{ __html: marqueeContent }}  />
-    
+    <div className="marquee text-2xl -top-2 font-bold text-white">
+      <p>{marqueeContent}</p>
+    </div>
   );
 };
 
