@@ -34,7 +34,7 @@ const Navbar = ({
 
   return (
     <section>
-      <nav className={`relative ${isMobile ? 'px-8' : 'px-16'} py-4 flex justify-between items-center bg-blur`}>
+      <nav className={`relative ${isMobile ? 'px-8' : 'px-16'} py-4 flex flex-row justify-between items-center bg-blur`}>
         <img src={logo} alt='logo' className='w-16 h-16 object-contain' />
         <div className="lg:hidden">
           <button className="flex items-center text-orange-600 p-3" onClick={toggleMenu}>

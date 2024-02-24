@@ -46,6 +46,7 @@ const Register = () => {
     const githubLinkedinRegex = /^\s*(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9_-]+\s*$/;
     const linkedinRegex = /^\s*(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+\s*$/;    
     const collegeRegex = /^\s*[a-zA-Z]+(([',. -][a-zA-Z. ])?[a-zA-Z]*)*\s*$/;
+    const teamRegex = /^\s*[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\s*$/;
 
     var q = query(collection(db, "teams"), where("teamName", "==", teamName));
     var querySnapshot = null;
@@ -301,6 +302,15 @@ const Register = () => {
             return;
         }
 
+        if(!teamRegex.test(teamName) || !teamName) {
+            setAlertMessage('Please enter a valid Team Name.');
+            setAlertType('error');
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+            return;
+        }
         if (!nameRegex.test(nameMember) || !nameMember) {
             setAlertMessage('Please enter a valid Name.');
             setAlertType('error');

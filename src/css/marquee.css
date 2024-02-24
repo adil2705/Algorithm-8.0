@@ -1,8 +1,8 @@
 .marquee {
-    width: 100%;
+    width: 200vw;
     overflow: hidden;
     position: relative;
-    height: 50px; /* Define a height for the marquee container */
+    height: 50px; 
 }
 
 .marquee p {

@@ -45,19 +45,19 @@ const Hero = () => {
   }
 
   return (
-    <section className={`w-[100vw] h-[100vh] mb-32 ${isMobile ? 'hero-bg-mobile' : 'hero-bg-desktop'}`}>
+    <section className={`${isMobile ? 'hero-bg-mobile' : 'hero-bg-desktop'}`}>
       <Navbar user={user} />
-      <section className={`flex flex-col items-center justify-center w-[100vw] h-[100vh] ${isMobile ? 'hero-bg-mobile' : 'hero-bg-desktop'}`}>
-        <Marquee />
-        <section className='absolute flex md:flex-row flex-col py-10 relative z-0'>   
+      <Marquee />
+      <section className={`flex flex-col items-center justify-center w-[100vw] ${isMobile ? 'h-[70vh]' :'h-[95vh]'}`}>
+        <section className={`${isMobile ? '' : '-top-10'} flex md:flex-row flex-col relative z-0`}>   
           <div className={`flex-1 ${styles.flexStart} flex-col justify-center items-center`}>
             <motion.div variants={fadeIn("down", "spring", 0.3, 0.75)}>
-              <h1 className="flex text-center justify-center font-poppins font-semibold lg:text-[40px] text-[30px] text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]">
+              <h1 className="flex text-center justify-center font-poppins font-semibold text-4xl text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]">
                 AIKTC's
               </h1>
             </motion.div>
             <motion.div variants={fadeIn("down", "spring", 0.3, 0.75)}>
-              <h1 className="flex text-center justify-center px-1 font-poppins font-semibold lg:text-[40px] text-[30px] text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]">
+              <h1 className="flex text-center justify-center px-1 font-poppins font-semibold text-4xl text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]">
               Department of Computer Engineering Presents
               </h1>
             </motion.div>
@@ -73,7 +73,14 @@ const Hero = () => {
                 </h1>
               </motion.div>
             </div>
-            <div className="flex flex-row justify-center items-center">
+            <div className="flex flex-col justify-center items-center w-full p-0">
+              <motion.div variants={fadeIn("left", "spring", 0.3, 0.75)}>
+                <h1 className="leading-none flex text-center font-bold text-4xl text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]">
+                  where logic meets creativity
+                </h1>
+              </motion.div>
+            </div>
+            <div className="flex flex-row justify-center items-center mt-10">
               {user ? !isRegistered ? 
                 <Link
                   to="/register"
