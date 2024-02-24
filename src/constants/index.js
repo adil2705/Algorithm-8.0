@@ -75,7 +75,7 @@ const experiences = [
     title: "Team Reporting Day",
     icon: three,
     iconBg: "#383E56",
-    date: "1rd March 2024",
+    date: "1st March 2024",
     points: [
       "Each team has to report to AIKTC's CAMPUS at 9:00 AM IST to 10:00 AM IST.",
     ],
