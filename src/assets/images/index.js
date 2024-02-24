@@ -20,6 +20,9 @@ import logo from "./logo.png";
 import main from "./main.png";
 import upload from "./upload.svg";
 
+import insta from "./insta.png";
+import youtube from "./youtube.png";
+
 export {
   app_development,
   blockchain,
@@ -41,5 +44,7 @@ export {
   menu,
   main,
   close,
-  upload
+  upload,
+  insta,
+  youtube
 };

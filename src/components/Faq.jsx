@@ -15,6 +15,24 @@ const Faq = () => {
         <motion.div variants={fadeIn("up", "spring", 0.5, 0.75)}>
           <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 mt-10">
             <div class="w-full lg:w-1/2 px-4 py-2">
+            <details class="mb-4">
+                <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
+                  <span>
+                    Explain the registration process?
+                  </span>
+                  <span className="transition group-open:rotate-180" />
+                </summary>
+                <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
+                  <ul className="list-disc list-inside">
+                    <li className='font-bold'>Each member has to register individually.</li>
+                    <li>Use existing team name to register yourself as a part of existing team (team name is case & space sensitive).</li>
+                    <li>Choose a new team name to create a new team and share that team name with your team mates so that they can become part of your team.</li>
+                    <li>Member to register first is automatically the lead of the team.</li>
+                    <li>Each team can only have three members.</li>
+                    <li>Join this Whatsapp Group to solve your doubts : <a href='https://chat.whatsapp.com/KEK3nEVvZzu1yXXvTO5ySS' className='text-blue-600'>Click to Join</a></li>
+                  </ul>
+                </p>
+              </details>
               <details class="mb-4">
                 <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
                   <span>What is Algorithm 8.0 all about?</span>
@@ -101,7 +119,6 @@ const Faq = () => {
                 </summary>
                 <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-md">
                 The problem statement will be provided 3 days before the conduction of the hackathon and the teams can start working on the hackathon once the problem statements are displayed.
-                  {/* The meals will be provided along with some snacks and basic amenities. */}
                 </p>
               </details>
             </div>

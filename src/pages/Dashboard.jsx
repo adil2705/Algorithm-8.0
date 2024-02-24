@@ -8,8 +8,7 @@ import { collection, query, where, getDocs, updateDoc, deleteField } from "fireb
 import { notice } from "../constants";
 
 import {
-  Alert,
-  Popup
+  Alert
 } from "../components";
 
 const Dashboard = () => {
@@ -50,22 +49,22 @@ const Dashboard = () => {
 
   const [isLead, setIsLead] = useState(false);
 
+  const [dataFetched, setDataFetched] = useState(false);
+
   const [member2Exists, setMember2Exists] = useState(false);
   const [member3Exists, setMember3Exists] = useState(false);
 
   const [memberCount, setMemberCount] = useState(0);
 
-  const [loading2, setLoading2] = useState(false);
-
   const [isRegistered, setIsRegistered] = useState(false);
 
   const [showPopup, setShowPopup] = useState(false);
-  const [whichMember, setWhichMember] = useState('');
 
-  var q = query(collection(db, "teams"), where("teamName", "==", teamName.trim()));
+  const [confirmDeleteMember, setConfirmDeleteMember] = useState(false);
+
   const [docRef, setDocRef] = useState(null);
 
-  if(user) {
+  if(user && !dataFetched) {
     const checkUserRegistered = async () => {
       var q1 = query(collection(db, "teams"), where("emailLead", "==", user.email));
       var q2 = query(collection(db, "teams"), where("emailMember2", "==", user.email));
@@ -79,93 +78,73 @@ const Dashboard = () => {
   
       if (querySnapshot1.empty && querySnapshot2.empty && querySnapshot3.empty) {
         setIsRegistered(false);
+        return;
       } else {
         setIsRegistered(true);
+
+        if (!querySnapshot1.empty) {
+          setDocRef(querySnapshot1.docs[0]);
+        } else if (!querySnapshot2.empty) {
+          setDocRef(querySnapshot2.docs[0]);
+        } else if (!querySnapshot3.empty) {
+          setDocRef(querySnapshot3.docs[0]);
+        }
+
+        setData();
+
+        return;
       }
     }
 
     checkUserRegistered();
-  }
+  } 
 
-
-  const getTeamData = async (e) => {
-    e.preventDefault();
-
-    if (!user) {
-      setAlertMessage('Please login to view the dashboard.');
-      setAlertType('error');
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 2000);
-      return;
-    }
-
-    await getDocs(q).then((querySnapshot) => {
-      if (querySnapshot.empty) {
-        setLoading2(false);
-        setAlertMessage('No such team exists.');
-        setAlertType('error');
-        setShowAlert(true);
-        setTimeout(() => {
-          setShowAlert(false);
-        }, 2000);
-        return;
-      } else {
-        querySnapshot.forEach((doc) => {
-          setDocRef(doc);
-        });
-      }
-    });
-  }
-
-  useEffect(() => {
+  const setData = async () => {
     if (docRef != null && docRef.exists()) {
       const data = docRef.data();
-      if (data && user.email == data.emailLead) {
-        if (data.nameLead || data.emailLead || data.contactLead
-          || data.githubLead || data.linkedinLead || data.collegeLead) {
-          setNameLead(data.nameLead);
-          setEmailLead(data.emailLead);
-          setContactLead(data.contactLead);
-          setImageLinkLead(data.imageLead);
-          setResumeLinkLead(data.resumeLead);
-          setGithubLead(data.githubLead);
-          setLinkedinLead(data.linkedinLead);
-          setCollegeLead(data.collegeLead);
-          setMemberCount(1);
-        }
-        if (data.nameMember2 && data.emailMember2 && data.contactMember2
-          && data.githubMember2 && data.linkedinMember2 && data.collegeMember2) {
-          setNameMember2(data.nameMember2);
-          setEmailMember2(data.emailMember2);
-          setContactMember2(data.contactMember2);
-          setImageLinkMember2(data.imageMember2);
-          setResumeLinkMember2(data.resumeMember2);
-          setGithubMember2(data.githubMember2);
-          setLinkedinMember2(data.linkedinMember2);
-          setCollegeMember2(data.collegeMember2);
-          setMember2Exists(true);
-          setMemberCount(2);
-        } else {
-          setMember2Exists(false);
-        }
-        if (data.nameMember3 && data.emailMember3 && data.contactMember3
-          && data.githubMember3 && data.linkedinMember3 && data.collegeMember3) {
-          setNameMember3(data.nameMember3);
-          setEmailMember3(data.emailMember3);
-          setContactMember3(data.contactMember3);
-          setImageLinkMember3(data.imageMember3);
-          setResumeLinkMember3(data.resumeMember3);
-          setGithubMember3(data.githubMember3);
-          setLinkedinMember3(data.linkedinMember3);
-          setCollegeMember3(data.collegeMember3);
-          setMember3Exists(true);
-          setMemberCount(3);
-        } else {
-          setMember3Exists(false);
-        }
-        setLoading2(false);
+      if (data.nameLead || data.emailLead || data.contactLead
+        || data.githubLead || data.linkedinLead || data.collegeLead) {
+        setDataFetched(true);
+        setTeamName(data.teamName);
+        setNameLead(data.nameLead);
+        setEmailLead(data.emailLead);
+        setContactLead(data.contactLead);
+        setImageLinkLead(data.imageLead);
+        setResumeLinkLead(data.resumeLead);
+        setGithubLead(data.githubLead);
+        setLinkedinLead(data.linkedinLead);
+        setCollegeLead(data.collegeLead);
+        setMemberCount(1);
+      }
+      if (data.nameMember2 && data.emailMember2 && data.contactMember2
+        && data.githubMember2 && data.linkedinMember2 && data.collegeMember2) {
+        setNameMember2(data.nameMember2);
+        setEmailMember2(data.emailMember2);
+        setContactMember2(data.contactMember2);
+        setImageLinkMember2(data.imageMember2);
+        setResumeLinkMember2(data.resumeMember2);
+        setGithubMember2(data.githubMember2);
+        setLinkedinMember2(data.linkedinMember2);
+        setCollegeMember2(data.collegeMember2);
+        setMember2Exists(true);
+        setMemberCount(2);
+      } else {
+        setMember2Exists(false);
+      }
+      if (data.nameMember3 && data.emailMember3 && data.contactMember3
+        && data.githubMember3 && data.linkedinMember3 && data.collegeMember3) {
+        setNameMember3(data.nameMember3);
+        setEmailMember3(data.emailMember3);
+        setContactMember3(data.contactMember3);
+        setImageLinkMember3(data.imageMember3);
+        setResumeLinkMember3(data.resumeMember3);
+        setGithubMember3(data.githubMember3);
+        setLinkedinMember3(data.linkedinMember3);
+        setCollegeMember3(data.collegeMember3);
+        setMember3Exists(true);
+        setMemberCount(3);
+      } else {
+        setMember3Exists(false);
       } 
 
       if (data && user.email != data.emailLead) {
@@ -174,42 +153,44 @@ const Dashboard = () => {
         setIsLead(true);
       }
     }
-  }, [docRef]);
+  }
 
   const deleteMember2 = async () => {
     if(memberCount == 2) {
       if(isLead) {
-        setWhichMember('2');
+        setWhichMember('3');
         setShowPopup(true);
         if (memberCount == 2) {
-          await updateDoc(docRef.ref, {
-            nameMember2: deleteField(),
-            emailMember2: deleteField(),
-            contactMember2: deleteField(),
-            githubMember2: deleteField(),
-            linkedinMember2: deleteField(),
-            collegeMember2: deleteField(),
-            resumeMember2: deleteField(),
-            imageMember2: deleteField(),
-          });
-          setMember2Exists(true);
-          setMemberCount(1);
-          setAlertMessage('Member 2 deleted successfully.');
-          setAlertType('success');
-          setShowAlert(true);
-          setTimeout(() => {
-            setShowAlert(false);
-          }, 2000);
-          setNameMember2('');
-          setEmailMember2('');
-          setContactMember2('');
-          setResumeLinkMember2('');
-          setImageLinkMember2('');
-          setGithubMember2('');
-          setLinkedinMember2('');
-          setCollegeMember2('');
-          setWhichMember('');
-          showPopup(false);
+          if(confirmDeleteMember) {
+            await updateDoc(docRef.ref, {
+              nameMember2: deleteField(),
+              emailMember2: deleteField(),
+              contactMember2: deleteField(),
+              githubMember2: deleteField(),
+              linkedinMember2: deleteField(),
+              collegeMember2: deleteField(),
+              resumeMember2: deleteField(),
+              imageMember2: deleteField(),
+            });
+            setMember2Exists(true);
+            setMemberCount(memberCount - 1);
+            setAlertMessage('Member 2 deleted successfully.');
+            setAlertType('success');
+            setShowAlert(true);
+            setTimeout(() => {
+              setShowAlert(false);
+            }, 2000);
+            setNameMember2('');
+            setEmailMember2('');
+            setContactMember2('');
+            setResumeLinkMember2('');
+            setImageLinkMember2('');
+            setGithubMember2('');
+            setLinkedinMember2('');
+            setCollegeMember2('');
+            setConfirmDeleteMember(false);
+            showPopup(false);
+          }
         } else {
           setAlertMessage('Member 2 dosen\'t exists.');
           setAlertType('error');
@@ -243,34 +224,36 @@ const Dashboard = () => {
         setWhichMember('3');
         setShowPopup(true);
         if (memberCount == 3) {
-          await updateDoc(docRef.ref, {
-            nameMember3: deleteField(),
-            emailMember3: deleteField(),
-            contactMember3: deleteField(),
-            githubMember3: deleteField(),
-            linkedinMember3: deleteField(),
-            collegeMember3: deleteField(),
-            resumeMember3: deleteField(),
-            imageMember3: deleteField(),
-          });
-          setMember3Exists(true);
-          setMemberCount(2);
-          setAlertMessage('Member 3 deleted successfully.');
-          setAlertType('success');
-          setShowAlert(true);
-          setTimeout(() => {
-            setShowAlert(false);
-          }, 2000);
-          setNameMember3('');
-          setEmailMember3('');
-          setContactMember3('');
-          setResumeLinkMember3('');
-          setImageLinkMember3('');
-          setGithubMember3('');
-          setLinkedinMember3('');
-          setCollegeMember3('');
-          setWhichMember('');
-          showPopup(false);
+          if(confirmDeleteMember) {
+            await updateDoc(docRef.ref, {
+              nameMember3: deleteField(),
+              emailMember3: deleteField(),
+              contactMember3: deleteField(),
+              githubMember3: deleteField(),
+              linkedinMember3: deleteField(),
+              collegeMember3: deleteField(),
+              resumeMember3: deleteField(),
+              imageMember3: deleteField(),
+            });
+            setMember3Exists(true);
+            setMemberCount(memberCount - 1);
+            setAlertMessage('Member 3 deleted successfully.');
+            setAlertType('success');
+            setShowAlert(true);
+            setTimeout(() => {
+              setShowAlert(false);
+            }, 2000);
+            setNameMember3('');
+            setEmailMember3('');
+            setContactMember3('');
+            setResumeLinkMember3('');
+            setImageLinkMember3('');
+            setGithubMember3('');
+            setLinkedinMember3('');
+            setCollegeMember3('');z
+            setConfirmDeleteMember(false);
+            showPopup(false);
+          }
         } else {
           setAlertMessage('Member 3 dosen\'t exists.');
           setAlertType('error');
@@ -303,15 +286,58 @@ const Dashboard = () => {
       <div className="fixed bg-primary w-full top-0 z-10">
         {showAlert && <Alert message={alertMessage} type={alertType} />}
       </div>
-      <div className="fixed bg-primary w-full top-0 z-10">
-        {
-          showPopup && 
-          <Popup
-            onClose={() => setShowPopup(false)}
-            onOkay={() => whichMember == '2' ? deleteMember2() : deleteMember3()}
-            onRevert={() => setShowPopup(false)} />
-        }
-      </div>
+
+      {/* Fix this asap... */}
+      {
+        showPopup ?
+        <div className="fixed bg-primary w-full top-0 z-10">
+          <div role="alert" className="border border-gray-100 bg-white p-4">
+            <div className="flex items-start gap-4">
+                <div className="flex-1">
+                    <strong className="block text-xl font-bold text-orange-600">Are you sure you want to remove this member? (Note : Your action is irreversible.)</strong>
+                    <div className="mt-4 flex gap-2">
+                        <button onClick={setConfirmDeleteMember(true)} className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
+                            <span className="text-xl font-bold">Yes</span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                className="h-4 w-4">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                            </svg>
+                        </button>
+
+                        <button className="block rounded-lg px-4 py-2 text-gray-700 transition hover:bg-gray-50" onClick={setShowPopup(false)}>
+                            <span className="text-xl font-bold">No</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button className="text-gray-500 transition hover:text-gray-600" onClick={setShowPopup(false)}>
+                    <span className="sr-only">Dismiss popup</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="h-6 w-6">
+                        <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+          </div>
+        </div> : ''
+      }
+
       <div
         className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl "
         aria-hidden="true">
@@ -338,30 +364,20 @@ const Dashboard = () => {
             {
               isRegistered ? (
                 <div className="bg-gradient-to-r from-amber-500 to-orange-900 p-3 flex justify-center sticky top-0"> 
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    className="h-8 w-8 cursor-pointer mr-2 mt-2" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-8 w-8 cursor-pointer mr-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
                     stroke="currentColor"
                     onClick={() => window.history.back()}>
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
                       d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                   </svg>
-                  <input
-                    className="w-3/4 text-lg px-4 py-2 border border-solid mr-4 border-orange-600 rounded-xl"
-                    type="text"
-                    value={teamName}
-                    onChange={(e) => setTeamName(e.target.value)}
-                    placeholder="Team Name" />
-                  <button
-                    onClick={getTeamData}
-                    className="w-2/4 sm:w-1/5 bg-white font-bold h-full px-4 py-2.5 text-orange-600 hover:bg-orange-800 uppercase rounded-xl text-lg">
-                    Search
-                  </button>
+                  <p className="text-2xl font-bold text-white">Team Name : {teamName}</p>
                 </div>
               ) : (
                 <div className="bg-gradient-to-r from-amber-500 to-orange-900 p-3 flex justify-center sticky top-0">
@@ -539,9 +555,9 @@ const Dashboard = () => {
             </form>
           </div>
 
-          <div className="row-span-2 col-span-1 md:col-span-2 border-2 border-orange-600 rounded-xl md:overflow-y-auto">
+          <div className="row-span-2 col-span-1 md:col-span-2 border-2 border-orange-600 rounded-xl md:overflow-y-auto p-5">
             <div className="text-white">
-              <div className="container max-w-4xl px-10 py-6 mx-auto rounded-lg shadow-sm">
+              <div className="container max-w-4xl mx-auto rounded-lg shadow-sm">
                 <h1 className="text-2xl font-bold text-white">Notices</h1>
                 <div className="flex flex-col mt-4">
                   {
@@ -597,8 +613,8 @@ const Dashboard = () => {
             </div> : ''
           }
 
-          <div className="row-span-4 col-span-1 md:col-start-6 md:row-start-1 md:overflow-y-auto border-2 border-orange-600 rounded-xl md:overflow-y-auto p-3">
-            <div className="p-2">
+          <div className="row-span-4 col-span-1 md:col-start-6 md:row-start-1 md:overflow-y-auto border-2 border-orange-600 rounded-xl md:overflow-y-auto p-5">
+            <div>
               <div className="container">
                 <h1 className="text-2xl font-bold text-white mb-5">Timeline</h1>
                 <div className="flex flex-col md:grid grid-cols-12 text-white">

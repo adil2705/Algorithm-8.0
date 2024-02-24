@@ -2,10 +2,10 @@ import React from 'react';
 import '../css/marquee.css';
 
 const Marquee = () => {
-  const marqueeContent = "Problem statement to be announced soon.";
+  const marqueeContent = "Problem statement to be announced on Monday (26th Feb 2024)";
 
   return (
-    <div className="marquee text-2xl -top-2 font-bold text-white">
+    <div className="marquee text-2xl border-y font-bold text-white bg-blur">
       <p>{marqueeContent}</p>
     </div>
   );
