@@ -8,7 +8,7 @@ const Marquee = () => {
   const isMobile = window.innerWidth < 768;
 
   return (
-    <div className={`${isMobile ? 'marquee-mobile' : 'marquee'} text-xl border-y border-orange-600 font-bold text-white bg-blur`}>
+    <div className={`${isMobile ? 'marquee-mobile' : 'marquee'} text-xl border-y border-orange-600 font-bold text-white bg-blur flex justifu-center`}>
       <p>{marqueeContent}</p>
     </div>
   );
