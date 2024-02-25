@@ -48,8 +48,8 @@ const Hero = () => {
     <section className={`${isMobile ? 'hero-bg-mobile' : 'hero-bg-desktop'}`}>
       <Navbar user={user} />
       <Marquee />
-      <section className={`flex flex-col items-center justify-center w-[100vw] ${isMobile ? 'h-[85vh]' :'h-[90vh]'}`}>
-        <section className={`${isMobile ? '-top-8' : '-top-4'} flex md:flex-row flex-col relative z-0`}>   
+      <section className={`flex flex-col items-center justify-center w-[100vw] ${isMobile ? 'h-[100vh]' :'h-[95vh]'}`}>
+        <section className={`${isMobile ? '-top-24' : '-top-4'} flex md:flex-row flex-col relative z-0`}>   
           <div className={`flex-1 ${styles.flexStart} flex-col justify-center items-center`}>
             <motion.div variants={fadeIn("down", "spring", 0.3, 0.75)}>
               <h1 className={`flex text-center justify-center font-poppins font-semibold ${isMobile ? 'text-3xl' : 'text-4xl'} text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]`}>
