@@ -48,7 +48,7 @@ const Register = () => {
     const collegeRegex = /^\s*[a-zA-Z]+(([',. -][a-zA-Z. ])?[a-zA-Z]*)*\s*$/;
     const teamRegex = /^\s*[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\s*$/;
 
-    var q = query(collection(db, "teams"), where("teamName", "==", teamName));
+    var q = query(collection(db, "teams"), where("teamName", "==", teamName.trim()));
     var querySnapshot = null;
     var docRef = null;
 
@@ -204,7 +204,7 @@ const Register = () => {
                             data.nameMember2 != null &&
                             data.nameMember3 != null) {
                                 setLoading(false);
-                                setAlertMessage('Team already has 3 members');
+                                setAlertMessage('Team already has all 3 members.');
                                 setAlertType('error');
                                 setShowAlert(true);
                                 setTimeout(() => {

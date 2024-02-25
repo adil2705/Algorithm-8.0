@@ -583,28 +583,28 @@ const Dashboard = () => {
             <div className="row-span-2 col-span-1 md:col-span-2 border-2 border-orange-600 rounded-xl md:overflow-y-auto p-5">
               <div className="container grid grid-cols-1 gap-6 m-4 mx-auto md:m-0 md:grid-cols-1">
                 <h1 className="text-2xl font-bold text-white">Delete Members</h1>
-                <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
-                  <div className="flex items-center justify-center p-3 text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
+                <div className="flex overflow-hidden rounded-lg text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
+                  <div className="flex items-center justify-center p-3 border-r-2 border-white">
                     1
                   </div>
-                  <div className="flex items-center justify-between flex-1 p-3 text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900 border-l-2 border-white">
+                  <div className="flex items-center justify-between flex-1 p-3">
                     <p className="text-2xl font-semibold">{nameLead ? nameLead : 'Not Yet Registered'}</p>
                   </div>
                 </div>
-                <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
-                  <div className="flex items-center justify-center p-3 text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
+                <div className="flex overflow-hidden rounded-lg text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
+                  <div className="flex items-center justify-center p-3 border-r-2 border-white">
                     2
                   </div>
-                  <div className="flex items-center justify-between flex-1 p-3 text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900 border-l-2 border-white">
+                  <div className="flex items-center justify-between flex-1 p-3">
                     <p className="text-2xl font-semibold">{nameMember2 ? nameMember2 : 'Not Yet Registered'}</p>
                     <svg onClick={deleteMember2} xmlns="http://www.w3.org/2000/svg" width="30px" height="28px" viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M9 2H7a.5.5 0 0 0-.5.5V3h3v-.5A.5.5 0 0 0 9 2m2 1v-.5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2V3H2.251a.75.75 0 0 0 0 1.5h.312l.317 7.625A3 3 0 0 0 5.878 15h4.245a3 3 0 0 0 2.997-2.875l.318-7.625h.312a.75.75 0 0 0 0-1.5zm.936 1.5H4.064l.315 7.562A1.5 1.5 0 0 0 5.878 13.5h4.245a1.5 1.5 0 0 0 1.498-1.438zm-6.186 2v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0m3.75-.75a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0v-5a.75.75 0 0 1 .75-.75" clipRule="evenodd" /></svg>
                   </div>
                 </div>
-                <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
-                  <div className="flex items-center justify-center p-3 text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
+                <div className="flex overflow-hidden rounded-lg text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
+                  <div className="flex items-center justify-center p-3 border-r-2 border-white">
                     3
                   </div>
-                  <div className="flex items-center justify-between flex-1 p-3 text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900 border-l-2 border-white">
+                  <div className="flex items-center justify-between flex-1 p-3">
                     <p className="text-2xl font-semibold">{nameMember3 ? nameMember3 : 'Not Yet Registered'}</p>
                     <svg onClick={deleteMember3} xmlns="http://www.w3.org/2000/svg" width="30px" height="28px" viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M9 2H7a.5.5 0 0 0-.5.5V3h3v-.5A.5.5 0 0 0 9 2m2 1v-.5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2V3H2.251a.75.75 0 0 0 0 1.5h.312l.317 7.625A3 3 0 0 0 5.878 15h4.245a3 3 0 0 0 2.997-2.875l.318-7.625h.312a.75.75 0 0 0 0-1.5zm.936 1.5H4.064l.315 7.562A1.5 1.5 0 0 0 5.878 13.5h4.245a1.5 1.5 0 0 0 1.498-1.438zm-6.186 2v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0m3.75-.75a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0v-5a.75.75 0 0 1 .75-.75" clipRule="evenodd" /></svg>
                   </div>
@@ -613,10 +613,10 @@ const Dashboard = () => {
             </div> : ''
           }
 
-          <div className="row-span-4 col-span-1 md:col-start-6 md:row-start-1 md:overflow-y-auto border-2 border-orange-600 rounded-xl md:overflow-y-auto p-5">
+          <div className="row-span-4 col-span-1 md:col-start-6 md:row-start-1 md:overflow-y-auto border-2 border-orange-600 rounded-xl md:overflow-y-auto py-5">
             <div>
               <div className="container">
-                <h1 className="text-2xl font-bold text-white mb-5">Timeline</h1>
+                <h1 className="text-2xl font-bold text-white mb-5 pl-5">Timeline</h1>
                 <div className="flex flex-col md:grid grid-cols-12 text-white">
                   <div className="flex md:contents">
                     <div className="col-start-2 col-end-4 mr-10 md:mx-auto relative">
@@ -628,7 +628,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="bg-green-500 col-start-4 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
-                      <p className="leading-tight text-justify w-full">
+                      <p className="leading-tight text-justify w-full text-lg font-bold">
                         Registration Done 
                       </p>
                     </div>
@@ -643,7 +643,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="bg-red-500 col-start-4 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
-                      <p className="leading-tight text-justify">Quiz</p>
+                      <p className="leading-tight text-justify text-lg font-bold">Quiz</p>
                     </div>
                   </div>
                   <div className="flex md:contents">
@@ -656,7 +656,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="bg-red-500 col-start-4 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
-                      <p className="leading-tight text-justify">Selection</p>
+                      <p className="leading-tight text-justify text-lg font-bold">Selection</p>
                     </div>
                   </div>
                   <div className="flex md:contents">
@@ -669,7 +669,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="bg-red-500 col-start-4 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
-                      <p className="leading-tight text-justify">Selected</p>
+                      <p className="leading-tight text-justify text-lg font-bold">Selected</p>
                     </div>
                   </div>
                 </div>
