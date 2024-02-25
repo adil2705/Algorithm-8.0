@@ -563,12 +563,12 @@ const Dashboard = () => {
                   {
                     notice.map((item, index) => {
                       return (
-                        <div key={index} className="flex flex-col p-4 bg-orange-600 bg-opacity-50 rounded-lg mb-4">
-                          <p className="text-sm text-white">{item.date}</p>
+                        <div key={index} className="flex flex-col p-3 bg-gradient-to-r from-amber-500 to-orange-900 rounded-lg mb-4">
+                          <p className="text-lg text-white">{item.date}</p>
                           <div className="flex items-center justify-between">
-                            <h1 className="text-xl font-semibold text-white">{item.id}</h1>
+                            <h1 className="text-xl font-bold text-white">{item.id}</h1>
                           </div>
-                          <p className="mt-2 text-white">{item.notice}</p>
+                          <p className="mt-2 text-white text-lg">{item.notice}</p>
                         </div>
                       )
                     })
@@ -584,27 +584,27 @@ const Dashboard = () => {
               <div className="container grid grid-cols-1 gap-6 m-4 mx-auto md:m-0 md:grid-cols-1">
                 <h1 className="text-2xl font-bold text-white">Delete Members</h1>
                 <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
-                  <div className="flex items-center justify-center px-4 bg-black text-2xl text-white bg-opacity-60">
+                  <div className="flex items-center justify-center p-3 text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
                     1
                   </div>
-                  <div className="flex items-center justify-between flex-1 p-3 text-white">
+                  <div className="flex items-center justify-between flex-1 p-3 text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900 border-l-2 border-white">
                     <p className="text-2xl font-semibold">{nameLead ? nameLead : 'Not Yet Registered'}</p>
                   </div>
                 </div>
                 <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
-                  <div className="flex items-center justify-center px-4 bg-black text-2xl text-white bg-opacity-60">
+                  <div className="flex items-center justify-center p-3 text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
                     2
                   </div>
-                  <div className="flex items-center justify-between flex-1 p-3 text-white">
+                  <div className="flex items-center justify-between flex-1 p-3 text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900 border-l-2 border-white">
                     <p className="text-2xl font-semibold">{nameMember2 ? nameMember2 : 'Not Yet Registered'}</p>
                     <svg onClick={deleteMember2} xmlns="http://www.w3.org/2000/svg" width="30px" height="28px" viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M9 2H7a.5.5 0 0 0-.5.5V3h3v-.5A.5.5 0 0 0 9 2m2 1v-.5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2V3H2.251a.75.75 0 0 0 0 1.5h.312l.317 7.625A3 3 0 0 0 5.878 15h4.245a3 3 0 0 0 2.997-2.875l.318-7.625h.312a.75.75 0 0 0 0-1.5zm.936 1.5H4.064l.315 7.562A1.5 1.5 0 0 0 5.878 13.5h4.245a1.5 1.5 0 0 0 1.498-1.438zm-6.186 2v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0m3.75-.75a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0v-5a.75.75 0 0 1 .75-.75" clipRule="evenodd" /></svg>
                   </div>
                 </div>
                 <div className="flex overflow-hidden rounded-lg bg-orange-600 bg-opacity-50">
-                  <div className="flex items-center justify-center px-4 bg-black text-2xl text-white bg-opacity-60">
+                  <div className="flex items-center justify-center p-3 text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
                     3
                   </div>
-                  <div className="flex items-center justify-between flex-1 p-3 text-white">
+                  <div className="flex items-center justify-between flex-1 p-3 text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900 border-l-2 border-white">
                     <p className="text-2xl font-semibold">{nameMember3 ? nameMember3 : 'Not Yet Registered'}</p>
                     <svg onClick={deleteMember3} xmlns="http://www.w3.org/2000/svg" width="30px" height="28px" viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M9 2H7a.5.5 0 0 0-.5.5V3h3v-.5A.5.5 0 0 0 9 2m2 1v-.5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2V3H2.251a.75.75 0 0 0 0 1.5h.312l.317 7.625A3 3 0 0 0 5.878 15h4.245a3 3 0 0 0 2.997-2.875l.318-7.625h.312a.75.75 0 0 0 0-1.5zm.936 1.5H4.064l.315 7.562A1.5 1.5 0 0 0 5.878 13.5h4.245a1.5 1.5 0 0 0 1.498-1.438zm-6.186 2v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0m3.75-.75a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0v-5a.75.75 0 0 1 .75-.75" clipRule="evenodd" /></svg>
                   </div>
@@ -669,7 +669,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="bg-red-500 col-start-4 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
-                      <p className="leading-tight text-justify">Selection Done</p>
+                      <p className="leading-tight text-justify">Selected</p>
                     </div>
                   </div>
                 </div>

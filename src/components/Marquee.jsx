@@ -1,4 +1,5 @@
 import React from 'react';
+
 import '../css/marquee.css';
 
 const Marquee = () => {
@@ -7,7 +8,7 @@ const Marquee = () => {
   const isMobile = window.innerWidth < 768;
 
   return (
-    <div className={`${isMobile ? 'marquee-mobile' : 'marquee'} text-2xl border-y font-bold text-white bg-blur`}>
+    <div className={`${isMobile ? 'marquee-mobile' : 'marquee'} text-2xl border-y border-orange-600 font-bold text-white bg-blur`}>
       <p>{marqueeContent}</p>
     </div>
   );

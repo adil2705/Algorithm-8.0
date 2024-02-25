@@ -119,7 +119,13 @@ export const notice = [
   {
     date: "23 Feb 2024",
     id: "Notice 2",
-    notice: "Join the Whatsapp Group if you haven't already : https://chat.whatsapp.com/C47SLZvd6x8HBcw6suTdXp",
+    notice: "Join the Whatsapp Group if you haven't already : https://chat.whatsapp.com/C47SLZvd6x8HBcw6suTdXp.",
+  },
+  ,
+  {
+    date: "25 Feb 2024",
+    id: "Notice 3",
+    notice: "Problem statement to be announced on Monday (26th Feb 2024).",
   }
 ];
 

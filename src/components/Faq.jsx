@@ -13,7 +13,7 @@ const Faq = () => {
           <h2 className={styles.sectionHeadText}>FAQ's</h2>
         </motion.div>
         <motion.div variants={fadeIn("up", "spring", 0.5, 0.75)}>
-          <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 mt-10">
+          <div class="flex flex-wrap md:w-full lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 mt-10">
             <div class="w-full lg:w-1/2 px-4 py-2">
             <details class="mb-4">
                 <summary className="rounded-md bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
@@ -128,7 +128,6 @@ const Faq = () => {
     </section>
   );
 }
-
 
 export default SectionWrapper(Faq, "faq");
 
