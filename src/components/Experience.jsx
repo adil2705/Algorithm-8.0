@@ -54,7 +54,7 @@ const Experience = () => {
     <>
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText} text-center`}>
-          This is the detailed list event of Algorithm 8.0
+          This is the detailed list of events of Algorithm 8.0
         </p>
         <h2 className={`${styles.sectionHeadText} text-center`}>
           Timeline of Events
