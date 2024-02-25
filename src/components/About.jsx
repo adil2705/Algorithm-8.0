@@ -41,13 +41,13 @@ const About = () => {
       </motion.div>
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
-        className='mt-4 text-secondary text-[20px] leading-[30px] text-justify w-full'>
-        Overall, Algorithm is a unique and innovative event that encourages 
+        className='mt-4 text-secondary text-[20px] leading-[30px] text-center w-full'>
+        Overall, Algorithm 8.0 is an unique and innovative event that encourages 
         innovation and collaboration in the tech community. It provides a 
-        platform for participants to challenge themselves, expand their knowledge,
+        platform for our participants to challenge themselves, expand their knowledge,
         and create meaningful solutions to real-world problems related to social 
         awareness. Whether you are a seasoned developer or a newcomer to the field, 
-        Algorithm offers a unique opportunity to be a part of something truly impactful 
+        Algorithm 8.0 offers a unique opportunity to be a part of something truly impactful 
         and make a difference in the world.
       </motion.p>
       <div className='mt-20 flex flex-wrap gap-10'>
