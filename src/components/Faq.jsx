@@ -6,16 +6,18 @@ import { fadeIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 
 const Faq = () => {
+  const isMobile = window.innerWidth < 768; 
+
   return (
-    <section className="text-gray-700 sm:py-15 py-20 max-w-7xl mx-auto relative z-0">
-      <div className="container mx-auto text-center">
+    <section className="text-gray-600 sm:py-15 py-2 relative z-0">
+      <div className="container text-center">
         <motion.div variants={fadeIn("down", "spring", 0.3, 0.75)}>
           <h2 className={styles.sectionHeadText}>FAQ's</h2>
         </motion.div>
         <motion.div variants={fadeIn("up", "spring", 0.5, 0.75)}>
-          <div class="flex flex-wrap md:w-screen lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 mt-10">
-            <div class="w-full lg:w-1/2 px-4 py-2">
-            <details class="mb-4">
+          <div class="flex flex-wrap md:w-screen lg:w-4/5 sm:mx-auto sm:mb-2 mt-10">
+            <div class={`w-full lg:w-1/2 ${isMobile ? 'px-0' : 'px-2'} py-2`}>  
+              <details class="mb-4">
                 <summary className="rounded-xl bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
                   <span>
                     Explain the registration process?
@@ -75,7 +77,7 @@ const Faq = () => {
                 </p>
               </details>
             </div>
-            <div class="w-full lg:w-1/2 px-4 py-2">
+            <div class={`w-full lg:w-1/2 ${isMobile ? 'px-0' : 'px-2'} py-2`}>
               <details class="mb-4">
                  <summary className="rounded-xl bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
                   <span>Who all can participate in Algorithm 8.0?</span>
