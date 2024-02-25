@@ -12,7 +12,24 @@
     height: 50px; 
 }
 
-p {
+.marquee p {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    line-height: 50px;
+    text-align: center;
+
+    -moz-transform:translateX(100%);
+    -webkit-transform:translateX(100%); 
+    transform:translateX(100%);
+
+    -moz-animation: marquee 30s linear infinite;
+    -webkit-animation: marquee 30s linear infinite;
+    animation: marquee 30s linear infinite;
+}
+
+.marquee-mobile p {
     position: absolute;
     width: 100%;
     height: 100%;
