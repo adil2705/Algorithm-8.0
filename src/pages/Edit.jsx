@@ -765,7 +765,7 @@ const Edit = () => {
             </div>
 
             <div className={`${isMobile ? 'p-5' : 'p-10'}`} >
-                <div className='flex flex-row'>
+                <div className='flex flex-row mb-8'>
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         className="h-8 w-8 cursor-pointer mt-1" 
@@ -779,7 +779,7 @@ const Edit = () => {
                             strokeWidth={2} 
                             d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
-                    <h1 className="mb-8 ml-2.5 font-bold text-4xl">Edit Registration</h1>
+                    <p className="ml-2.5 font-bold text-4xl">Edit Form</p>
                 </div>
 
                 {
@@ -796,10 +796,10 @@ const Edit = () => {
                             }
                         </div>
                     </div> : isRegistered ?
-                    <div className="flex bg-blur border-orange-600 border m-2 rounded-xl p-3 justify-center">
+                    <div className="flex bg-blur border-orange-600 border m-3 rounded-xl p-3 justify-center">
                         <h1 className="text-2xl font-bold text-white">Only lead can edit the details.</h1>
                     </div> :
-                    <div className="flex bg-blur border-orange-600 border m-2 rounded-xl p-3 justify-center">
+                    <div className="flex bg-blur border-orange-600 border m-3 rounded-xl p-3 justify-center">
                         <h1 className="text-2xl font-bold text-white">You are not registered in any team.</h1>
                     </div>
                 }
@@ -1163,7 +1163,7 @@ const Edit = () => {
                             </fieldset> : ''
                         }
 
-                        <aside className='border border-orange-600 rounded-2xl p-3 mt-[26px] mx-2 mb-3 flex-1'>
+                        <aside className='border border-orange-600 rounded-2xl p-3 mt-[26px] mx-3 mb-3 flex-1'>
                             <div className="bg-blur rounded-2xl h-full p-4">
                                 <h2 className="font-bold text-3xl text-red-600">Instructions</h2>
                                 <ul className="list-disc mt-4 list-inside text-xl">
@@ -1180,7 +1180,7 @@ const Edit = () => {
 
                         {
                             (member2Exists && !member3Exists) || !user || !isLead ? 
-                            <div className="border-2 border-orange-600 rounded-2xl mt-[26px] mx-2 mb-3 flex flex-row overflow-hidden">
+                            <div className="border border-orange-600 rounded-2xl mt-[26px] m-3 flex flex-row overflow-hidden">
                                 <a 
                                     href="https://www.instagram.com/algorithm_aiktc/"
                                     target="_blank"

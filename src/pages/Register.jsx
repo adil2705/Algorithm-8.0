@@ -415,7 +415,7 @@ const Register = () => {
                 {showAlert && <Alert message={alertMessage} type={alertType} />}
             </div>
             <div className={`${isMobile ? 'p-5' : 'p-10'}`} >
-                <div className='flex flex-row'>
+                <div className='flex flex-row mb-8'>
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         className="h-8 w-8 cursor-pointer mt-1" 
@@ -429,7 +429,7 @@ const Register = () => {
                             strokeWidth={2} 
                             d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
-                    <h1 className="mb-8 ml-2.5 font-bold text-4xl">Registration Form</h1>
+                    <p className="ml-2.5 font-bold text-4xl">Registration Form</p>
                 </div>
                 <div>
                     <form className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
@@ -526,7 +526,7 @@ const Register = () => {
                                 placeholder="College Name" />
                         </fieldset>
 
-                        <aside className='border border-orange-600 rounded-2xl p-3 mt-[26px] mx-2 mb-3 flex-1'>
+                        <aside className='border border-orange-600 rounded-2xl p-3 mt-[26px] mx-3 mb-3 flex-1'>
                             <div className="bg-blur rounded-2xl h-full p-4">
                                 <h2 className="font-bold text-3xl text-red-600">Instructions</h2>
                                 <ul className="list-disc mt-4 list-inside text-xl">

@@ -82,7 +82,7 @@ const Contact = () => {
               name='name'
               value={form.name}
               onChange={handleChange}
-              placeholder="What's your good name?"
+              placeholder="Arman Khan"
               className='text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl' />
           </label>
           <label className='flex flex-col'>
@@ -92,7 +92,7 @@ const Contact = () => {
               name='email'
               value={form.email}
               onChange={handleChange}
-              placeholder="What's your email address?"
+              placeholder="ak2341776@gmail.com"
               className='text-xl w-full px-4 py-2 border border-solid border-gray-300 rounded-xl' />
           </label>
           <label className='flex flex-col'>
