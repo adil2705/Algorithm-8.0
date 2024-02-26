@@ -57,18 +57,18 @@ const experiences = [
     title: "Event Registration",
     icon: one,
     iconBg: "#383E56",
-    date: "13th Feb 2024 - 26th Feb 2024",
+    date: "20th Feb 2024 - 26th Feb 2024",
     points: [
       "Participants have to register themselves and form a team of three members.",
     ],
   },
   {
-    title: "Problem statement announcement",
+    title: "Problem statement announced",
     icon: two,
     iconBg: "#E6DEDD",
     date: "26th Feb 2024",
     points: [
-      "Problem statement will be announced and team lead has to select the topic and start working on it.",
+      "Problem statement has been announced and team lead has to select the topic and start working on it.",
     ],
   },
   {
