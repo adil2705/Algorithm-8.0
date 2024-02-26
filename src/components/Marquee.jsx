@@ -10,7 +10,7 @@ const Marquee = () => {
   return (
     <div className={`${isMobile ? 'marquee-mobile' : 'marquee'} flex flex-col justify-center items-center text-xl border-y border-orange-600 font-bold text-white bg-blur flex justifu-center`}>
       
-       <span className='mt-5 sm:text-lg font-bold leading-12 text-center text-blue-700'><a href='https://forms.gle/VRtRWuiwkDumRzEx7' target='_blank'>Problem Statement</a></span>
+       <span className='mt-5 sm:text-lg font-bold leading-12 text-center sm:text-center:text-blue-700'><a href='https://forms.gle/VRtRWuiwkDumRzEx7' target='_blank'>Problem Statement</a></span>
       
     </div>
   );
