@@ -1,8 +1,8 @@
 import {
-  airbnb,
-  binance,
-  coinbase,
-  dropbox,
+  black_out,
+  manha_foundation,
+  sister_bakeworld,
+  standee,
   one,
   two,
   three,
@@ -94,19 +94,19 @@ const experiences = [
 export const clients = [
   {
     id: "client-1",
-    logo: airbnb,
+    logo: black_out,
   },
   {
     id: "client-2",
-    logo: binance,
+    logo: standee,
   },
   {
     id: "client-3",
-    logo: coinbase,
+    logo: manha_foundation,
   },
   {
     id: "client-4",
-    logo: dropbox,
+    logo: sister_bakeworld,
   },
 ];
 

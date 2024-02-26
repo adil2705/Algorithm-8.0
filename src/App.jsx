@@ -3,15 +3,15 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 
-import { 
-  About, 
-  Contact, 
-  Experience, 
-  Hero,  
-  Clients, 
-  StarsCanvas, 
-  Faq, 
-  Foot 
+import {
+  About,
+  Contact,
+  Experience,
+  Hero,
+  Clients,
+  StarsCanvas,
+  Faq,
+  Foot
 } from "./components";
 
 import { Register, SignIn, Edit, Dashboard, Rejected } from "./pages"
@@ -55,8 +55,8 @@ const Landing = () => {
       <div className='relative z-0 bg-black'>
         <About />
         <Experience />
+        <Clients />
         <Faq />
-        {/* <Clients /> */}
         <Contact />
         <Foot />
         {window.innerWidth > 768 && <StarsCanvas />}
