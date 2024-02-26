@@ -14,7 +14,7 @@ import {
   Foot 
 } from "./components";
 
-import { Register, SignIn, Edit, Dashboard } from "./pages"
+import { Register, SignIn, Edit, Dashboard, Rejected } from "./pages"
 
 import { UserContext } from './context/UserContext';
 
@@ -39,6 +39,7 @@ const App = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/edit" element={<Edit />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/rejected" element={<Rejected />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

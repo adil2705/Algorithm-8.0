@@ -10,12 +10,10 @@ import one from "./one.png";
 import two from "./two.png";
 import three from "./three.png";
 import four from "./four.png";
-import web_development from "./web-development.png";
-import machine_learning from "./machine-learning.png";
-import web_development2 from "./coding.png";
-import bitcoin from "./bitcoin.png";
-import blockchain from "./blockchain.png";
-import app_development from "./app-development.png";
+import web_development from "./web-development.svg";
+import machine_learning from "./machine-learning.svg";
+import blockchain from "./blockchain.svg";
+import app_development from "./app-development.svg";
 import logo from "./logo.png";
 import main from "./main.png";
 import upload from "./upload.svg";
@@ -26,8 +24,6 @@ import youtube from "./youtube.png";
 export {
   app_development,
   blockchain,
-  bitcoin,
-  web_development2,
   machine_learning,
   web_development,
   four,

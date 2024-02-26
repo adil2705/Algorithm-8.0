@@ -52,12 +52,12 @@ const Hero = () => {
         <section className={`${isMobile ? '-top-24' : '-top-4'} flex md:flex-row flex-col relative z-0`}>   
           <div className={`flex-1 ${styles.flexStart} flex-col justify-center items-center`}>
             <motion.div variants={fadeIn("down", "spring", 0.3, 0.75)}>
-              <h1 className={`flex text-center justify-center font-poppins font-semibold ${isMobile ? 'text-3xl' : 'text-4xl'} text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]`}>
+              <h1 className={`flex text-center justify-center font-poppins font-semibold ${isMobile ? 'text-2xl' : 'text-4xl'} text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]`}>
                 AIKTC's
               </h1>
             </motion.div>
             <motion.div variants={fadeIn("down", "spring", 0.3, 0.75)}>
-              <h1 className={`flex text-center justify-center px-1 font-poppins font-semibold ${isMobile ? 'text-3xl' : 'text-4xl'} text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]`}>
+              <h1 className={`flex text-center justify-center px-1 font-poppins font-semibold ${isMobile ? 'text-2xl' : 'text-4xl'} text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]`}>
               Department of Computer Engineering Presents
               </h1>
             </motion.div>
@@ -75,7 +75,7 @@ const Hero = () => {
             </div>
             <div className="flex flex-col justify-center items-center w-full p-0">
               <motion.div variants={fadeIn("left", "spring", 0.3, 0.75)}>
-                <h1 className={`flex text-center justify-center px-1 font-poppins font-semibold ${isMobile ? 'text-3xl' : 'text-4xl'} text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]`}>
+                <h1 className={`flex text-center justify-center px-1 font-poppins font-semibold ${isMobile ? 'text-2xl' : 'text-4xl'} text-white drop-shadow-[0_1.2px_1.2px_rgba(234,88,12,1.0)]`}>
                   where logic meets creativity
                 </h1>
               </motion.div>

@@ -765,22 +765,22 @@ const Edit = () => {
             </div>
 
             <div className={`${isMobile ? 'p-5' : 'p-10'}`} >
-                <div className='flex flex-row mb-8'>
-                    <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        className="h-8 w-8 cursor-pointer mt-1" 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
-                        stroke="currentColor"
-                        onClick={() => window.history.back()}>
-                        <path 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round" 
-                            strokeWidth={2} 
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                    <p className="ml-2.5 font-bold text-4xl">Edit Form</p>
-                </div>
+            <div className='flex flex-row items-center mb-8'>
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-8 w-8 cursor-pointer" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                    onClick={() => window.history.back()}>
+                    <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <p className="ml-2.5 font-bold text-4xl">Edit Form</p>
+            </div>
 
                 {
                     isRegistered && isLead ?

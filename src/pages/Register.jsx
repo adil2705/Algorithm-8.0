@@ -415,10 +415,10 @@ const Register = () => {
                 {showAlert && <Alert message={alertMessage} type={alertType} />}
             </div>
             <div className={`${isMobile ? 'p-5' : 'p-10'}`} >
-                <div className='flex flex-row mb-8'>
+                <div className='flex flex-row mb-8 items-center'>
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
-                        className="h-8 w-8 cursor-pointer mt-1" 
+                        className="h-8 w-8 cursor-pointer" 
                         fill="none" 
                         viewBox="0 0 24 24" 
                         stroke="currentColor"
