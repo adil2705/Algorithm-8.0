@@ -48,15 +48,6 @@ const Faq = () => {
               </details>
               <details class="mb-4">
                 <summary className="rounded-xl bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
-                  <span>What kind of support will be available during the hackathon?</span>
-                  <span className="transition group-open:rotate-180" />
-                </summary>
-                <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-xl">
-                  Support during the hackathon may include access to mentors, technical support for hardware and software issues, and resources for researching algorithmic techniques.
-                </p>
-                </details>
-                <details class="mb-4">
-                <summary className="rounded-xl bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
                   <span>What do I need to bring to the hackathon?</span>
                   <span className="transition group-open:rotate-180" />
                 </summary>
