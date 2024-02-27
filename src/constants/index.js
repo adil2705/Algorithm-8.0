@@ -121,11 +121,15 @@ export const notice = [
     id: "Notice 2",
     notice: "Join the Whatsapp Group if you haven't already : https://chat.whatsapp.com/C47SLZvd6x8HBcw6suTdXp.",
   },
-  ,
   {
     date: "25 Feb 2024",
     id: "Notice 3",
     notice: "Problem statement to be announced on Monday (26th Feb 2024).",
+  },
+  {
+    date: "27 Feb 2024",
+    id: "Notice 4",
+    notice: "Quiz to be conducted on 28th Feb 2024 7PM onwards.",
   }
 ];
 
