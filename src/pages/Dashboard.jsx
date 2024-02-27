@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { UserContext } from '../context/UserContext';
 
 import { db } from "../firebase-config";
-import { collection, query, where, getDocs, updateDoc, deleteField } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 import { notice } from "../constants";
 
@@ -46,21 +46,12 @@ const Dashboard = () => {
   const [githubMember3, setGithubMember3] = useState('');
   const [linkedinMember3, setLinkedinMember3] = useState('');
   const [collegeMember3, setCollegeMember3] = useState('');
-
-  const [isLead, setIsLead] = useState(false);
-
   const [dataFetched, setDataFetched] = useState(false);
 
   const [member2Exists, setMember2Exists] = useState(false);
   const [member3Exists, setMember3Exists] = useState(false);
 
-  const [memberCount, setMemberCount] = useState(0);
-
   const [isRegistered, setIsRegistered] = useState(false);
-
-  const [showPopup, setShowPopup] = useState(false);
-
-  const [confirmDeleteMember, setConfirmDeleteMember] = useState(false);
 
   const [docRef, setDocRef] = useState(null);
 
@@ -155,188 +146,11 @@ const Dashboard = () => {
     }
   }
 
-  const deleteMember2 = async () => {
-    if(memberCount == 2) {
-      if(isLead) {
-        setWhichMember('3');
-        setShowPopup(true);
-        if (memberCount == 2) {
-          if(confirmDeleteMember) {
-            await updateDoc(docRef.ref, {
-              nameMember2: deleteField(),
-              emailMember2: deleteField(),
-              contactMember2: deleteField(),
-              githubMember2: deleteField(),
-              linkedinMember2: deleteField(),
-              collegeMember2: deleteField(),
-              resumeMember2: deleteField(),
-              imageMember2: deleteField(),
-            });
-            setMember2Exists(true);
-            setMemberCount(memberCount - 1);
-            setAlertMessage('Member 2 deleted successfully.');
-            setAlertType('success');
-            setShowAlert(true);
-            setTimeout(() => {
-              setShowAlert(false);
-            }, 2000);
-            setNameMember2('');
-            setEmailMember2('');
-            setContactMember2('');
-            setResumeLinkMember2('');
-            setImageLinkMember2('');
-            setGithubMember2('');
-            setLinkedinMember2('');
-            setCollegeMember2('');
-            setConfirmDeleteMember(false);
-            showPopup(false);
-          }
-        } else {
-          setAlertMessage('Member 2 dosen\'t exists.');
-          setAlertType('error');
-          setShowAlert(true);
-          setTimeout(() => {
-            setShowAlert(false);
-          }, 2000);
-        }
-      } else {
-        setAlertMessage('You are not authorized to delete a member.');
-        setAlertType('error');
-        setShowAlert(true);
-        setTimeout(() => {
-          setShowAlert(false);
-        }, 2000);
-      }
-    } else {
-      setAlertMessage('Member 2 dosen\'t exists.');
-      setAlertType('error');
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 2000);
-      setWhichMember('');
-    }
-  }
-
-  const deleteMember3 = async () => {
-    if(memberCount == 3) {
-      if(isLead) {
-        setWhichMember('3');
-        setShowPopup(true);
-        if (memberCount == 3) {
-          if(confirmDeleteMember) {
-            await updateDoc(docRef.ref, {
-              nameMember3: deleteField(),
-              emailMember3: deleteField(),
-              contactMember3: deleteField(),
-              githubMember3: deleteField(),
-              linkedinMember3: deleteField(),
-              collegeMember3: deleteField(),
-              resumeMember3: deleteField(),
-              imageMember3: deleteField(),
-            });
-            setMember3Exists(true);
-            setMemberCount(memberCount - 1);
-            setAlertMessage('Member 3 deleted successfully.');
-            setAlertType('success');
-            setShowAlert(true);
-            setTimeout(() => {
-              setShowAlert(false);
-            }, 2000);
-            setNameMember3('');
-            setEmailMember3('');
-            setContactMember3('');
-            setResumeLinkMember3('');
-            setImageLinkMember3('');
-            setGithubMember3('');
-            setLinkedinMember3('');
-            setCollegeMember3('');z
-            setConfirmDeleteMember(false);
-            showPopup(false);
-          }
-        } else {
-          setAlertMessage('Member 3 dosen\'t exists.');
-          setAlertType('error');
-          setShowAlert(true);
-          setTimeout(() => {
-            setShowAlert(false);
-          }, 2000);
-        }
-      } else {
-        setAlertMessage('You are not authorized to delete a member.');
-        setAlertType('error');
-        setShowAlert(true);
-        setTimeout(() => {
-          setShowAlert(false);
-        }, 2000);
-      }
-    } else {
-      setAlertMessage('Member 3 dosen\'t exists.');
-      setAlertType('error');
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 2000);
-      setWhichMember('');
-    }
-  }
-
   return (
     <div className="fixed isolate overflow-hidden h-screen w-screen flex justify-center">
       <div className="fixed bg-primary w-full top-0 z-10">
         {showAlert && <Alert message={alertMessage} type={alertType} />}
       </div>
-
-      {/* Fix this asap... */}
-      {
-        showPopup ?
-        <div className="fixed bg-primary w-full top-0 z-10">
-          <div role="alert" className="border border-gray-100 bg-white p-4">
-            <div className="flex items-start gap-4">
-                <div className="flex-1">
-                    <strong className="block text-xl font-bold text-orange-600">Are you sure you want to remove this member? (Note : Your action is irreversible.)</strong>
-                    <div className="mt-4 flex gap-2">
-                        <button onClick={setConfirmDeleteMember(true)} className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
-                            <span className="text-xl font-bold">Yes</span>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="h-4 w-4">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                            </svg>
-                        </button>
-
-                        <button className="block rounded-lg px-4 py-2 text-gray-700 transition hover:bg-gray-50" onClick={setShowPopup(false)}>
-                            <span className="text-xl font-bold">No</span>
-                        </button>
-                    </div>
-                </div>
-
-                <button className="text-gray-500 transition hover:text-gray-600" onClick={setShowPopup(false)}>
-                    <span className="sr-only">Dismiss popup</span>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        className="h-6 w-6">
-                        <path 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round" 
-                            d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-          </div>
-        </div> : ''
-      }
 
       <div
         className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl "
@@ -578,40 +392,35 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {
-            isLead ?
-            <div className="row-span-2 col-span-1 md:col-span-2 border-2 border-orange-600 rounded-xl md:overflow-y-auto p-5">
-              <div className="container grid grid-cols-1 gap-6 m-4 mx-auto md:m-0 md:grid-cols-1">
-                <h1 className="text-2xl font-bold text-white">Delete Members</h1>
-                <div className="flex overflow-hidden rounded-lg text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
-                  <div className="flex items-center justify-center p-3 border-r-2 border-white">
-                    1
-                  </div>
-                  <div className="flex items-center justify-between flex-1 p-3">
-                    <p className="text-2xl font-semibold">{nameLead ? nameLead : 'Not Yet Registered'}</p>
-                  </div>
+          <div className="row-span-2 col-span-1 md:col-span-2 border-2 border-orange-600 rounded-xl md:overflow-y-auto p-5">
+            <div className="container grid grid-cols-1 gap-6 m-4 mx-auto md:m-0 md:grid-cols-1">
+              <h1 className="text-2xl font-bold text-white">Members</h1>
+              <div className="flex overflow-hidden rounded-lg text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
+                <div className="flex items-center justify-center p-3 border-r-2 border-white">
+                  1
                 </div>
-                <div className="flex overflow-hidden rounded-lg text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
-                  <div className="flex items-center justify-center p-3 border-r-2 border-white">
-                    2
-                  </div>
-                  <div className="flex items-center justify-between flex-1 p-3">
-                    <p className="text-2xl font-semibold">{nameMember2 ? nameMember2 : 'Not Yet Registered'}</p>
-                    <svg onClick={deleteMember2} xmlns="http://www.w3.org/2000/svg" width="30px" height="28px" viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M9 2H7a.5.5 0 0 0-.5.5V3h3v-.5A.5.5 0 0 0 9 2m2 1v-.5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2V3H2.251a.75.75 0 0 0 0 1.5h.312l.317 7.625A3 3 0 0 0 5.878 15h4.245a3 3 0 0 0 2.997-2.875l.318-7.625h.312a.75.75 0 0 0 0-1.5zm.936 1.5H4.064l.315 7.562A1.5 1.5 0 0 0 5.878 13.5h4.245a1.5 1.5 0 0 0 1.498-1.438zm-6.186 2v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0m3.75-.75a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0v-5a.75.75 0 0 1 .75-.75" clipRule="evenodd" /></svg>
-                  </div>
-                </div>
-                <div className="flex overflow-hidden rounded-lg text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
-                  <div className="flex items-center justify-center p-3 border-r-2 border-white">
-                    3
-                  </div>
-                  <div className="flex items-center justify-between flex-1 p-3">
-                    <p className="text-2xl font-semibold">{nameMember3 ? nameMember3 : 'Not Yet Registered'}</p>
-                    <svg onClick={deleteMember3} xmlns="http://www.w3.org/2000/svg" width="30px" height="28px" viewBox="0 0 16 16"><path fill="white" fillRule="evenodd" d="M9 2H7a.5.5 0 0 0-.5.5V3h3v-.5A.5.5 0 0 0 9 2m2 1v-.5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2V3H2.251a.75.75 0 0 0 0 1.5h.312l.317 7.625A3 3 0 0 0 5.878 15h4.245a3 3 0 0 0 2.997-2.875l.318-7.625h.312a.75.75 0 0 0 0-1.5zm.936 1.5H4.064l.315 7.562A1.5 1.5 0 0 0 5.878 13.5h4.245a1.5 1.5 0 0 0 1.498-1.438zm-6.186 2v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0m3.75-.75a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0v-5a.75.75 0 0 1 .75-.75" clipRule="evenodd" /></svg>
-                  </div>
+                <div className="flex items-center justify-between flex-1 p-3">
+                  <p className="text-2xl font-semibold">{nameLead ? nameLead : 'Not Yet Registered'}</p>
                 </div>
               </div>
-            </div> : ''
-          }
+              <div className="flex overflow-hidden rounded-lg text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
+                <div className="flex items-center justify-center p-3 border-r-2 border-white">
+                  2
+                </div>
+                <div className="flex items-center justify-between flex-1 p-3">
+                  <p className="text-2xl font-semibold">{nameMember2 ? nameMember2 : 'Not Yet Registered'}</p>
+                </div>
+              </div>
+              <div className="flex overflow-hidden rounded-lg text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
+                <div className="flex items-center justify-center p-3 border-r-2 border-white">
+                  3
+                </div>
+                <div className="flex items-center justify-between flex-1 p-3">
+                  <p className="text-2xl font-semibold">{nameMember3 ? nameMember3 : 'Not Yet Registered'}</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div className="row-span-4 col-span-1 md:col-start-6 md:row-start-1 md:overflow-y-auto border-2 border-orange-600 rounded-xl md:overflow-y-auto py-5">
             <div>
