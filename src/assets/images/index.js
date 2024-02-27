@@ -21,7 +21,16 @@ import upload from "./upload.svg";
 import insta from "./insta.png";
 import youtube from "./youtube.png";
 
+import black_out from "./sponsers/Black_out.jpg";
+import manha_foundation from "./sponsers/Manha_Foundation_Logo.png";
+import sister_bakeworld from "./sponsers/sister's_bakeworld.jpg";
+import standee from "./sponsers/Standee.png";
+
 export {
+  black_out,
+  manha_foundation,
+  sister_bakeworld,
+  standee,
   app_development,
   blockchain,
   machine_learning,
