@@ -48,15 +48,6 @@ const Faq = () => {
               </details>
               <details class="mb-4">
                 <summary className="rounded-xl bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
-                  <span>What kind of support will be available during the hackathon?</span>
-                  <span className="transition group-open:rotate-180" />
-                </summary>
-                <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-xl">
-                  Support during the hackathon may include access to mentors, technical support for hardware and software issues, and resources for researching algorithmic techniques.
-                </p>
-                </details>
-                <details class="mb-4">
-                <summary className="rounded-xl bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
                   <span>What do I need to bring to the hackathon?</span>
                   <span className="transition group-open:rotate-180" />
                 </summary>
@@ -66,14 +57,15 @@ const Faq = () => {
                   develop and test your code.
                 </p>
               </details>
-              <details class="mb-0">
+              <details class="mb-4">
                 <summary className="rounded-xl bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
-                  <span>How many hours will hackathon last for?</span>
+                  <span>
+                    Can I work on my solution before the hackathon?
+                  </span>
                   <span className="transition group-open:rotate-180" />
                 </summary>
                 <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-xl">
-                  Algorithm is a 32 Hrs hackathon. For more detail check the
-                  timeline section.
+                The problem statement will be provided 3 days before the conduction of the hackathon and the teams can start working on the hackathon once the problem statements are displayed.
                 </p>
               </details>
             </div>
@@ -112,15 +104,14 @@ const Faq = () => {
                   resources for researching algorithmic techniques.
                 </p>
               </details>
-              <details class="mb-4">
+              <details class="mb-0">
                 <summary className="rounded-xl bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
-                  <span>
-                    Can I work on my solution before the hackathon?
-                  </span>
+                  <span>How many hours will hackathon last for?</span>
                   <span className="transition group-open:rotate-180" />
                 </summary>
                 <p className="pl-4 pt-4 text-left antialiased bg-tertiary text-white p-4 mt-2 rounded-xl">
-                The problem statement will be provided 3 days before the conduction of the hackathon and the teams can start working on the hackathon once the problem statements are displayed.
+                  Algorithm is a 32 Hrs hackathon. For more detail check the
+                  timeline section.
                 </p>
               </details>
             </div>
