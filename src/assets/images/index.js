@@ -17,6 +17,9 @@ import app_development from "./app-development.svg";
 import logo from "./logo.png";
 import main from "./main.png";
 import upload from "./upload.svg";
+import development from "./development.svg";
+import open_source from "./open-source.svg";
+import vr from "./vr.svg";
 
 import insta from "./insta.png";
 import youtube from "./youtube.png";
@@ -51,5 +54,8 @@ export {
   close,
   upload,
   insta,
-  youtube
+  youtube,
+  development,
+  open_source,
+  vr,
 };

@@ -57,7 +57,7 @@ const Faq = () => {
                   develop and test your code.
                 </p>
               </details>
-              <details class="mb-4">
+              <details class="mb-0">
                 <summary className="rounded-xl bg-blur text-white border-2 border-orange-600 py-5 px-5 font-semibold">
                   <span>
                     Can I work on my solution before the hackathon?

@@ -10,7 +10,10 @@ import {
   web_development,
   app_development,
   machine_learning,
-  blockchain
+  blockchain,
+  development,
+  open_source,
+  vr
 } from "../assets/images";
 
 export const navLinks = [
@@ -34,20 +37,20 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Web Development",
-    icon: web_development,
+    title: "Software Development",
+    icon: development,
   },
   {
-    title: "App Development",
-    icon: app_development,
+    title: "Open Source",
+    icon: open_source,
   },
   {
-    title: "Machine Learning",
+    title: "Artificial Intelligence",
     icon: machine_learning,
   },
   {
-    title: "Blockchain Technology",
-    icon: blockchain,
+    title: "Virtual Reality",
+    icon: vr,
   },
 ];
 
