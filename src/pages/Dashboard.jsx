@@ -105,7 +105,6 @@ const Dashboard = () => {
         setGithubLead(data.githubLead);
         setLinkedinLead(data.linkedinLead);
         setCollegeLead(data.collegeLead);
-        setMemberCount(1);
       }
       if (data.nameMember2 && data.emailMember2 && data.contactMember2
         && data.githubMember2 && data.linkedinMember2 && data.collegeMember2) {
@@ -118,7 +117,6 @@ const Dashboard = () => {
         setLinkedinMember2(data.linkedinMember2);
         setCollegeMember2(data.collegeMember2);
         setMember2Exists(true);
-        setMemberCount(2);
       } else {
         setMember2Exists(false);
       }
@@ -133,7 +131,6 @@ const Dashboard = () => {
         setLinkedinMember3(data.linkedinMember3);
         setCollegeMember3(data.collegeMember3);
         setMember3Exists(true);
-        setMemberCount(3);
       } else {
         setMember3Exists(false);
       } 
