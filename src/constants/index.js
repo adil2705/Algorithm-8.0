@@ -7,10 +7,7 @@ import {
   two,
   three,
   four,
-  web_development,
-  app_development,
   machine_learning,
-  blockchain,
   development,
   open_source,
   vr
