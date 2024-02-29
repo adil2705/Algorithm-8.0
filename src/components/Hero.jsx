@@ -101,7 +101,7 @@ const Hero = () => {
                 <Link
                   to="/register"
                   className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
-                    Registration Ended
+                    Register
                 </Link> 
                 :
                 <div classname="flex flex-row justify-center items-center space-x-2">
