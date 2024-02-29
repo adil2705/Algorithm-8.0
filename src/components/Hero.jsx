@@ -20,6 +20,8 @@ const Hero = () => {
 
   const [isRegistered, setIsRegistered] = useState(false);
 
+  const [status, setStatus] = useState("fail");
+
   const user = useContext(UserContext);
 
   if(user) {
@@ -38,6 +40,20 @@ const Hero = () => {
         setIsRegistered(false);
       } else {
         setIsRegistered(true);
+
+        if(querySnapshot1 != null) {
+          querySnapshot1.forEach((doc) => {
+            setStatus(doc.data().status);
+          });
+        } else if(querySnapshot2 != null) {
+          querySnapshot2.forEach((doc) => {
+            setStatus(doc.data().status);
+          });
+        } else if(querySnapshot3 != null) {
+          querySnapshot3.forEach((doc) => {
+            setStatus(doc.data().status);
+          });
+        }
       }
     }
 
@@ -89,16 +105,24 @@ const Hero = () => {
                 </Link> 
                 :
                 <div classname="flex flex-row justify-center items-center space-x-2">
-                <Link
-                  to="/edit"
-                  className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
-                    Edit Form
-                </Link>
-                <Link
-                  to="/dashboard"
-                  className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200 ml-5">
-                    Dashboard
-                </Link>
+                  <Link
+                    to="/edit"
+                    className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200">
+                      Edit Form
+                  </Link>
+                  {
+                    status == "pass" ?
+                    <Link
+                      to="/dashboard"
+                      className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200 ml-5">
+                      Dashboard
+                    </Link> :
+                    <Link
+                      to="/rejected"
+                      className="inline-block py-2 px-6 bg-white text-orange-600 text-xl lg:text-2xl font-bold rounded-xl transition duration-200 ml-5">
+                      Dashboard
+                    </Link>
+                  }
                </div>
                 : 
                 <Link

@@ -23,12 +23,12 @@ const Rejected = () => {
       </div>
       <div className="box m-12 p-6 lg:p-8 bg-orange-100 rounded-lg w-full md:overflow-hidden overflow-y-auto bg-opacity-10 flex justify-center items-center font-semi-bold text-3xl ">
           <div className="px-20">
-          Dear Participants, <br />
+          Dear Participant, <br />
           We regret to inform you that you have not been selected to participate in Algorithm 8.0 Hackathon this year. <br/>
           We appreciate your interest and encourage you to consider applying again next year. <br />
           Keep coding and stay tuned for future opportunities. <br />
           Best regards,<br />
-          Algorithm 8.0 Hackathon Team
+          Algorithm 8.0 Team
           </div>
       </div>
     </div>
