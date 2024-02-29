@@ -27,7 +27,7 @@ const Rejected = () => {
           We regret to inform you that you have not been selected to participate in Algorithm 8.0 Hackathon this year. <br/>
           We appreciate your interest and encourage you to consider applying again next year. <br />
           Keep coding and stay tuned for future opportunities. <br />
-          Best regards,<br />
+          Best regards,<br /><br />
           Algorithm 8.0 Team
           </div>
       </div>
