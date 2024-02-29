@@ -63,12 +63,12 @@ const experiences = [
     ],
   },
   {
-    title: "Problem statement announced",
+    title: "Problem Statement Announced",
     icon: two,
     iconBg: "#E6DEDD",
     date: "26th Feb 2024",
     points: [
-      "Problem statement has been announced and team lead has to select the topic and start working on it.",
+      "Problem statement has been announced and the team lead has to select the topic and start working on it.",
     ],
   },
   {

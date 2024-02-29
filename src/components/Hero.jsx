@@ -20,6 +20,8 @@ const Hero = () => {
 
   const [isRegistered, setIsRegistered] = useState(false);
 
+  const [status, setStatus] = useState("fail");
+
   const user = useContext(UserContext);
 
   if(user) {
@@ -36,6 +38,20 @@ const Hero = () => {
   
       if (querySnapshot1.empty && querySnapshot2.empty && querySnapshot3.empty) {
         setIsRegistered(false);
+        
+        if(querySnapshot1 != null) {
+          querySnapshot1.forEach((doc) => {
+            setStatus(doc.data().status);
+          });
+        } else if(querySnapshot2 != null) {
+          querySnapshot2.forEach((doc) => {
+            setStatus(doc.data().status);
+          });
+        } else if(querySnapshot3 != null) {
+          querySnapshot3.forEach((doc) => {
+            setStatus(doc.data().status);
+          });
+        }
       } else {
         setIsRegistered(true);
       }
