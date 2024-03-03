@@ -51,7 +51,6 @@ const services = [
   },
 ];
 
-
 const experiences = [
   {
     title: "Event Registration",
@@ -110,7 +109,7 @@ export const clients = [
   },
 ];
 
-export const notice = [
+const notice = [
   {
     date: "14 Feb 2024",
     id: "Notice 1",
@@ -133,4 +132,19 @@ export const notice = [
   }
 ];
 
-export { services, experiences };
+const timeline = [
+  {
+    event: 'Registration',
+  },
+  {
+    event: 'Quiz',
+  },
+  {
+    event: 'Selection',
+  },
+  {
+    event: 'Selected',
+  }
+];
+
+export { services, experiences, notice, timeline };
