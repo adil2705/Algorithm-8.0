@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserContext';
 import { db } from "../firebase-config";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
-import { notice } from "../constants";
+import { notice, timeline } from "../constants";
 
 import {
   Alert
@@ -379,7 +379,7 @@ const Dashboard = () => {
                           <div className="flex items-center justify-between">
                             <h1 className="text-xl font-bold text-white">{item.id}</h1>
                           </div>
-                          <p className="mt-2 text-white text-lg">{item.notice}</p>
+                          <p className="mt-2 text-white text-lg break-words">{item.notice}</p>
                         </div>
                       )
                     })
@@ -397,7 +397,7 @@ const Dashboard = () => {
                   1
                 </div>
                 <div className="flex items-center justify-between flex-1 p-3">
-                  <p className="text-2xl font-semibold">{nameLead ? nameLead : 'Not Yet Registered'}</p>
+                  <p className="text-2xl font-semibold break-words">{nameLead ? nameLead : 'Not Yet Registered'}</p>
                 </div>
               </div>
               <div className="flex overflow-hidden rounded-lg text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
@@ -405,7 +405,7 @@ const Dashboard = () => {
                   2
                 </div>
                 <div className="flex items-center justify-between flex-1 p-3">
-                  <p className="text-2xl font-semibold">{nameMember2 ? nameMember2 : 'Not Yet Registered'}</p>
+                  <p className="text-2xl font-semibold break-words">{nameMember2 ? nameMember2 : 'Not Yet Registered'}</p>
                 </div>
               </div>
               <div className="flex overflow-hidden rounded-lg text-2xl text-white font-bold bg-gradient-to-r from-amber-500 to-orange-900">
@@ -413,78 +413,43 @@ const Dashboard = () => {
                   3
                 </div>
                 <div className="flex items-center justify-between flex-1 p-3">
-                  <p className="text-2xl font-semibold">{nameMember3 ? nameMember3 : 'Not Yet Registered'}</p>
+                  <p className="text-2xl font-semibold break-words">{nameMember3 ? nameMember3 : 'Not Yet Registered'}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="row-span-4 col-span-1 md:col-start-6 md:row-start-1 md:overflow-y-auto border-2 border-orange-600 rounded-xl md:overflow-y-auto py-5">
+          <div className="row-span-4 col-span-1 md:col-start-6 md:row-start-1 border-2 border-orange-600 rounded-xl md:overflow-y-auto p-5">
             <div>
-              <div className="container">
-                <h1 className="text-2xl font-bold text-white mb-5 pl-5">Timeline</h1>
-                <div className="flex flex-col md:grid grid-cols-12 text-white">
-                  <div className="flex md:contents">
-                    <div className="col-start-2 col-end-4 mr-10 md:mx-auto relative">
-                      <div className="h-full w-6 flex items-center justify-center">
-                        <div className="h-full w-1 bg-green-500 pointer-events-none"></div>
-                      </div>
-                      <div className="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-green-500 shadow text-center">
-                        <i className="fas fa-check-circle text-white"></i>
-                      </div>
+                <div className="container">
+                    <h1 className="text-2xl font-bold text-white mb-5">Timeline</h1>
+                    <div className="flex flex-col md:grid grid-cols-12 text-white">
+                        {
+                            timeline.map((item, index) => {
+                                return (
+                                  <div key={index} className="flex md:contents">
+                                    <div className="col-start-2 col-end-4 mr-10 md:mx-auto relative">
+                                        <div className="h-full w-6 flex items-center justify-center">
+                                            <div className="h-full w-1 bg-green-500 pointer-events-none"></div>
+                                        </div>
+                                        <div className="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-green-500 shadow text-center">
+                                            <i className="fas fa-check-circle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div className="bg-green-500 col-start-4 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full overflow-auto">
+                                        <p className="leading-tight text-justify text-lg font-bold break-words">{item.event}</p>
+                                    </div>
+                                  </div>
+                                )
+                            })
+                        }
                     </div>
-                    <div className="bg-green-500 col-start-4 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
-                      <p className="leading-tight text-justify w-full text-lg font-bold">
-                        Registration Done 
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex md:contents">
-                    <div className="col-start-2 col-end-4 mr-10 md:mx-auto relative">
-                      <div className="h-full w-6 flex items-center justify-center">
-                        <div className="h-full w-1 bg-green-500 pointer-events-none"></div>
-                      </div>
-                      <div className="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-green-500 shadow text-center">
-                        <i className="fas fa-check-circle text-white"></i>
-                      </div>
-                    </div>
-                    <div className="bg-green-500 col-start-4 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
-                      <p className="leading-tight text-justify text-lg font-bold">Quiz</p>
-                    </div>
-                  </div>
-                  <div className="flex md:contents">
-                    <div className="col-start-2 col-end-4 mr-10 md:mx-auto relative">
-                      <div className="h-full w-6 flex items-center justify-center">
-                        <div className="h-full w-1 bg-green-500 pointer-events-none"></div>
-                      </div>
-                      <div className="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-green-500 shadow text-center">
-                        <i className="fas fa-check-circle text-white"></i>
-                      </div>
-                    </div>
-                    <div className="bg-green-500 col-start-4 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
-                      <p className="leading-tight text-justify text-lg font-bold">Selection</p>
-                    </div>
-                  </div>
-                  <div className="flex md:contents">
-                    <div className="col-start-2 col-end-4 mr-10 md:mx-auto relative">
-                      <div className="h-full w-6 flex items-center justify-center">
-                        <div className="h-full w-1 bg-green-500 pointer-events-none"></div>
-                      </div>
-                      <div className="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-green-500 shadow text-center">
-                        <i className="fas fa-check-circle text-white"></i>
-                      </div>
-                    </div>
-                    <div className="bg-green-500 col-start-4 col-end-12 p-4 rounded-xl my-4 mr-auto shadow-md w-full">
-                      <p className="leading-tight text-justify text-lg font-bold">Selected</p>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
